@@ -18,9 +18,9 @@ export class EmployerPageComponent implements OnInit {
     private employerService: EmployerService
   ) {}
 
+  //ngOnInit is to initialize a component such making initial API calls, setting default values and so on.
   ngOnInit(): void {
     this.employerId = Number(this.route.snapshot.params['id']);
-    // Additional initialization logic can be added here
     this.employer = this.employerService.getEmployerById(this.employerId)
   }
 
