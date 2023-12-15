@@ -11,7 +11,8 @@ import { Employer } from '../interfaces/employer';
 })
 export class EmployerPageComponent implements OnInit {
   employerId: number = -1;
-  employer: Employer | undefined
+  employer: Employer | undefined;
+  jobPosts: JobPost[] | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,7 @@ export class EmployerPageComponent implements OnInit {
   ngOnInit(): void {
     this.employerId = Number(this.route.snapshot.params['id']);
     this.employer = this.employerService.getEmployerById(this.employerId)
+    this.jobPosts = this.employerService.getJobPostsByEmployerId(this.employerId)
   }
 
 
