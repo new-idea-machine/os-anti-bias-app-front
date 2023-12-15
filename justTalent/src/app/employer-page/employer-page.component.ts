@@ -3,9 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { EmployerService } from '../employer.service';
 import { JobPost } from '../interfaces/job-post';
 import { Employer } from '../interfaces/employer';
+import { JobListComponent } from '../job-list/job-list.component';
 
 @Component({
   selector: 'app-employer-page',
+  standalone: true,
+  imports: [JobListComponent],
   templateUrl: './employer-page.component.html',
   styleUrls: ['./employer-page.component.css']
 })
