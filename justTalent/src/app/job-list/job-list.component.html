@@ -1,1 +1,7 @@
 <p>job-list works!</p>
+
+<div>
+  <div *ngFor="let jobPost of jobPosts">
+    <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
+  </div>
+</div>
