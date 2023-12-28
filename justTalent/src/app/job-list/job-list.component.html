@@ -1,7 +1,15 @@
 <p>job-list works!</p>
 
 <div>
+
+  <!--
+  OLD SYNTAX WITH ngFor
   <div *ngFor="let jobPost of jobPosts">
     <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
   </div>
+  -->
+  <!-- NEW SYNTAX WITH @for -->
+  @for (jobPost of jobPosts; track jobPost) {
+    <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
+  }
 </div>
