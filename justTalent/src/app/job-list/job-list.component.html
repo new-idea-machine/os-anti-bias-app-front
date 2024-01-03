@@ -1,6 +1,10 @@
-<p>job-list works!</p>
-
-<div>
+<div class="job-table">
+  <div class="header-row">
+    <div class="cell">Job Title</div>
+    <div class="cell">Job Post ID</div>
+    <div class="cell">Start Date</div>
+    <!-- Add more header cells as needed -->
+  </div>
 
   <!--
   OLD SYNTAX WITH ngFor
@@ -12,4 +16,7 @@
   @for (jobPost of jobPosts; track jobPost) {
     <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
   }
+  <!-- <div *ngFor="let jobPost of jobPosts" class="data-row">
+    <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
+  </div> -->
 </div>
