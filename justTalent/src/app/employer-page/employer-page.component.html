@@ -1,11 +1,14 @@
-<div>
-  <p>Employer Name: {{employer?.employer_name}}</p>
-  <p>Established Date: {{employer?.established_date}}</p>
-  <p>Contact Person: {{employer?.contact_name}}</p>
-  <p>Contact Email: {{employer?.contact_email}}</p>
-  <p>About: {{employer?.description}}</p>
+<div class="employer-page">
+  <div class="employer-info">
+    <p>Employer Name: {{employer?.employer_name}}</p>
+    <p>Established Date: {{employer?.established_date}}</p>
+    <p>Contact Person: {{employer?.contact_name}}</p>
+    <p>Contact Email: {{employer?.contact_email}}</p>
+    <p>About: {{employer?.description}}</p>
+  </div>
+
+  <div class="job-postings">
+    <app-job-list [jobPosts]="jobPosts"></app-job-list>
+  </div>
 </div>
 
-<div>
-  <app-job-list [jobPosts]="jobPosts"></app-job-list>
-</div>
