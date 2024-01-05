@@ -1,14 +1,41 @@
 <div class="employer-page">
-  <div class="employer-info">
-    <p>Employer Name: {{employer?.employer_name}}</p>
-    <p>Established Date: {{employer?.established_date}}</p>
-    <p>Contact Person: {{employer?.contact_name}}</p>
-    <p>Contact Email: {{employer?.contact_email}}</p>
-    <p>About: {{employer?.description}}</p>
+  <!-- EMPLOYER PAGE HEADER -->
+  <div class="employer-page-header">
+    <div class="employer-page-header-content">
+
+    </div>
+    <div class="employer-page-header-content">
+      <h2>CONTACT COMPANY!</h2>
+    </div>
   </div>
 
+  <!-- EMPLOYER INFORMATION -->
+  <div class="employer-info">
+    <div>
+      <h2>Employer Details</h2>
+    </div>
+    <div>
+      <p>Employer Name: {{employer?.employer_name}}</p>
+      <p>Established Date: {{employer?.established_date}}</p>
+      <p>Contact Person: {{employer?.contact_name}}</p>
+      <p>Contact Email: {{employer?.contact_email}}</p>
+      <p>About: {{employer?.description}}</p>
+    </div>
+    <div>
+      <button class="employer-info-button">VISIT COMPANY WEBSITE</button>
+    </div>
+
+  </div>
+  <!-- JOB POSTS LIST -->
   <div class="job-postings">
+    <h2 class="job-postings-title">JOB OPENINGS</h2>
     <app-job-list [jobPosts]="jobPosts"></app-job-list>
+    <button class="job-postings-view-more-button">View More</button>
+  </div>
+  <!-- EMPLOYER PAGE LAYOUT ONE -->
+  <div class="employer-page-footer">
+    <h2>GET IN TOUCH WTIH COMPANY!</h2>
+    <button class="employer-message-button">MESSAGE NOW</button>
   </div>
 </div>
 

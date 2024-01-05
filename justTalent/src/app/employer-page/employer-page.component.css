@@ -1,5 +1,5 @@
 .employer-page {
-
+text-align: center;;
 
 }
 
@@ -12,4 +12,46 @@ padding: 2rem;
 background-color: #757070 ;
 color: white;
 padding: 2rem;
+}
+
+.job-postings-title {
+  /* text-align: left; */
+}
+
+.employer-page-header {
+height: 300px;
+padding: 2rem;
+background-color: #757070 ;
+display: flex;
+flex-direction: row;
+}
+
+.employer-page-header-content {
+  width: 50%;
+  border: 3px solid pink;
+}
+
+.employer-page-footer {
+background-color: #3F3838;
+height: 300px;
+padding: 2rem;
+}
+
+.employer-page-footer h2 {
+  color: white;
+}
+
+.job-postings-view-more-button {
+  margin-top: 2rem;
+}
+
+.employer-info-button,
+.job-postings-view-more-button,
+.employer-message-button {
+  border-radius: 10px;
+  padding: 0.5rem;
+  background-color: #4573EA;
+  border: 1px solid #4573EA;
+  color: white;
+  cursor: pointer;
 }
