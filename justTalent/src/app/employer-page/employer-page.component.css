@@ -1,40 +1,52 @@
 .employer-page {
-text-align: center;;
+  text-align: center;;
 
 }
 
 .employer-info {
-background-color: #D9D9D9;
-padding: 2rem;
+  background-color: #D9D9D9;
+  padding: 2rem;
 }
 
 .job-postings {
-background-color: #757070 ;
-color: white;
-padding: 2rem;
+  background-color: #757070 ;
+  color: white;
+  padding: 2rem;
 }
 
 .job-postings-title {
-  /* text-align: left; */
+  font-size: 1.7rem;
 }
 
 .employer-page-header {
-height: 300px;
-padding: 2rem;
-background-color: #757070 ;
-display: flex;
-flex-direction: row;
+  /* height: 300px; */
+  padding: 2rem;
+  background-color: #757070 ;
+  display: flex;
+  flex-direction: row;
 }
 
 .employer-page-header-content {
   width: 50%;
-  border: 3px solid pink;
+  /* border: 3px solid pink; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.employer-page-header-content h2{
+  font-size: 2rem;
+}
+
+.employer-page-header-image{
+  width: 100%;
+  object-fit: contain;
 }
 
 .employer-page-footer {
-background-color: #3F3838;
-height: 300px;
-padding: 2rem;
+  background-color: #3F3838;
+  height: 300px;
+  padding: 2rem;
 }
 
 .employer-page-footer h2 {
