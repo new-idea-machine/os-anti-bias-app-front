@@ -1,0 +1,13 @@
+<div class="container job-details-container">
+  @if (jobPost) {
+    <div>
+      <h2>{{ jobPost.job_title }}</h2>
+      <p><strong>Requirements:</strong> {{ jobPost.requirements}}</p>
+
+      <p><strong>Location:</strong> {{ jobPost.location }}</p>
+      <p><strong>Type:</strong> {{ jobPost.type_of_work }}</p>
+    </div>
+  } @else {
+    <p>Loading...</p>
+  }
+</div>

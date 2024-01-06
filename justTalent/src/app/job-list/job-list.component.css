@@ -1,0 +1,22 @@
+.job-table {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.header-row {
+  display: flex;
+  border: 1px solid #ddd;
+}
+
+
+.cell {
+  flex: 1;
+  padding: 8px;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 8px;
+}
