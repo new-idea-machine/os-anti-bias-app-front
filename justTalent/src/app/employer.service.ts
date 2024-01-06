@@ -145,5 +145,10 @@ export class EmployerService {
     return this.jobPostList.filter(jobPost => jobPost.employer_id === id);
   }
 
+  // MOVE TO JOB DETAILS SERVICE LATER?
+  getJobPostByJobId(id: number): JobPost | undefined {
+    return this.jobPostList.find((jobPost) => jobPost.job_post_id === id);
+  }
+
   constructor() { }
 }
