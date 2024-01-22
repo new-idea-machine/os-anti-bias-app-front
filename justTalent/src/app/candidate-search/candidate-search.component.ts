@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-// import candidates from "../data/candidateData.json"
+import { CommonModule } from '@angular/common';
+import candidateData from "../../data/candidateData.json"
 
 @Component({
   selector: 'app-candidate-search',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './candidate-search.component.html',
   styleUrl: './candidate-search.component.css'
 })
 export class CandidateSearchComponent {
+  candidates = candidateData
+
 
 }

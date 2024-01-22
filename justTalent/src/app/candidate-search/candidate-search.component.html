@@ -1,13 +1,39 @@
-<p>candidate-search works!</p>
+
 <section class="candidate_search_componenet">
+  <form class="candidate_search_form" action="">
+<div>
 
+  <input type="text" placeholder="Country">
+  <input type="text" placeholder="Work Settign Preference">
+</div>
+<div>
 
-    <div class="candidate_list_header">
-      <p class="header_label_sm">Candidate ID</p>
-      <p class="header_label_lg">Skills</p>
-      <p class="header_label_sm">Location</p>
-      <p class="header_label_sm">Work Setting</p>
-      <p class="header_label_sm">Profile</p>
+  <input type="text" placeholder="Province / State">
+  <input type="text" placeholder="Language">
+</div>
+    <input type="text" placeholder="Skills">
+    <button>SEARCH </button>
+  </form>
+
+  <div class="candidate_list_header">
+    <p class="header_label_sm">Candidate ID</p>
+    <p class="header_label_lg">Skills</p>
+    <p class="header_label_sm">Location</p>
+    <p class="header_label_sm">Work Setting</p>
+    <p class="header_label_sm">Profile</p>
+  </div>
+  <div *ngFor="let candidate of candidates" >
+    <div class="candidate">
+      <p class="candidate_sm">{{candidate.id}}</p>
+      <p class="candidate_lg">{{candidate.skills[0]}}</p>
+      <p class="candidate_sm">{{candidate.county}}</p>
+      <p class="candidate_sm">{{candidate.work_settings[0]}}</p>
+      <p class="candidate_sm">Profile</p>
     </div>
+
+  
+  </div>
+    
+    
 
 </section>
