@@ -1,0 +1,100 @@
+.home_component{
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+}
+
+.home_section{
+height: 600px;
+width: 1440px;
+background-color: aqua;
+border: solid;
+}
+.home_section_2{
+display: flex;
+height: 600px;
+width: 1440px;
+
+}
+.hero_banner_text{
+  font-weight: bold;
+  font-size: 42pt;
+  font-family: sans-serif;
+  color: white;
+}
+.hero_banner{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-color: darkgray;
+  height: 600px;
+  width: 1440px;
+}
+
+.home_hero_2{
+  width: 720px;
+  object-fit: cover;
+}
+.home_section_2_info{
+  background-color: #C6AC8F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 720px;
+  height: 600px;
+}
+.home_section_2_header {
+  color: #0A0908;
+  font-size: 40pt;
+  font-weight: 700;
+  font-family: sans-serif;
+  margin: 1rem; 
+  text-shadow: 0px 2px 2px rgb(44, 43, 43);
+}
+.home_section_2_text{
+  font-size: 22pt;
+  font-weight: 400;
+  color: #0A0908;
+  margin: 2rem;
+}
+
+.home_section_3{
+display: flex;
+background-color: #EAE0D5;
+align-items: center;
+justify-content: space-evenly;
+height: 600px;
+width: 1440px;
+
+}
+
+.home_section_info_card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  height: 462px;
+  background-color: #5E503F;
+}
+.home_section_info_card_number{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EAE0D5;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  font-size: 22pt;
+  font-weight: 600;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 1em;
+  
+}
+.home_section_info_card_label{
+  font-size: 22pt;
+  font-weight: 400;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 1em;
+
+}
