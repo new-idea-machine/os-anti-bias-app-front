@@ -1,0 +1,9 @@
+.job-list-item {
+  display: flex;
+  border: 1px solid #ddd;
+}
+
+.cell {
+  flex: 1;
+  padding: 8px;
+}

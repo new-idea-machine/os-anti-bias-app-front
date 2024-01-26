@@ -1,0 +1,23 @@
+<div class="job-table">
+  <div class="header-row">
+    <div class="cell">Job Title</div>
+    <div class="cell">Location</div>
+    <div class="cell">Type</div>
+    <div class="cell">Details</div>
+    <!-- Add more header cells as needed -->
+  </div>
+
+  <!--
+  OLD SYNTAX WITH ngFor
+  <div *ngFor="let jobPost of jobPosts">
+    <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
+  </div>
+  -->
+  <!-- NEW SYNTAX WITH @for -->
+  @for (jobPost of jobPosts; track jobPost) {
+    <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
+  }
+  <!-- <div *ngFor="let jobPost of jobPosts" class="data-row">
+    <app-job-list-item [jobPost]="jobPost"></app-job-list-item>
+  </div> -->
+</div>
