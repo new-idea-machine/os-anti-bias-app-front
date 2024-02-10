@@ -29,7 +29,8 @@ export class RegisterComponent {
         user: this.form.getRawValue(),
       }
     ).subscribe(response => {
-      console.log('response',response)
+      console.log('response',response);
+      localStorage.setItem('token', response.user.token)
     })
   }
 }
