@@ -5,5 +5,6 @@ import { User } from "../interfaces/user";
   providedIn: 'root'
 })
 export class AuthService {
+  //signal is used as a state management?
   currentUserSignal = signal<User | undefined | null>(undefined)
 }
