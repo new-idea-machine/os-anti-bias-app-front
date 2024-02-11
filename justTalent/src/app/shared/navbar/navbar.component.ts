@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../interfaces/user';
-import { response } from 'express';
+
 
 @Component({
   selector: 'app-navbar',
@@ -17,13 +17,23 @@ export class NavbarComponent {
   http = inject(HttpClient);
 
   ngOnInit(): void {
-    this.http.get<{user: User}>('https://api.realworld.io/api/user').subscribe(response => {
-        console.log('response', response)
-      }
-    )
+    //Keep the code below here or move to app.component.ts?
+    this.http
+      .get<{user: User}>('https://api.realworld.io/api/user')
+      .subscribe({
+        next: (response) => {
+          console.log('response', response);
+          this.authService.currentUserSignal.set(response.user);
+        },
+        error: () => {
+          this.authService.currentUserSignal.set(null);
+        }
+      })
   }
 
   logout(): void {
-    console.log('logout')
+    console.log('logout');
+    localStorage.setItem('token', '');
+    this.authService.currentUserSignal.set(null);
   }
 }
