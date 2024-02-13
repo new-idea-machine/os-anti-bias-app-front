@@ -19,13 +19,15 @@ export class LoginComponent {
   router = inject(Router)
 
   form = this.fb.nonNullable.group({
-    email: ['', Validators.required],
+    username: ['', Validators.required],
     password: ['', Validators.required],
   });
 
+  endpoint = 'http://localhost:3000/api/users/login';
+
   onSubmit(): void{
     this.http.post< { user: User }>(
-      'https://api.realworld.io/api/users/login',
+      this.endpoint,
       {
         user: this.form.getRawValue(),
       }

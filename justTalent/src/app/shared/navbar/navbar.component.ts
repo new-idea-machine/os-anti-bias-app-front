@@ -16,10 +16,13 @@ export class NavbarComponent {
   authService = inject(AuthService);
   http = inject(HttpClient);
 
+  endpoint = 'http://localhost:3000/api/users';
+  // endpoint = 'https://api.realworld.io/api/users';
+
   ngOnInit(): void {
     //Keep the code below here or move to app.component.ts?
     this.http
-      .get<{user: User}>('https://api.realworld.io/api/user')
+      .get<{user: User}>(this.endpoint)
       .subscribe({
         next: (response) => {
           console.log('response', response);

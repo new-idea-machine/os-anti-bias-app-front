@@ -26,12 +26,15 @@ export class RegisterComponent {
     password: ['', Validators.required],
   });
 
+  endpoint = 'http://localhost:3000/api/users';
+  // endpoint = 'https://api.realworld.io/api/users';
+
   onSubmit(): void{
     this.http.post< { user: User }>(
-      'https://api.realworld.io/api/users',
+      this.endpoint,
       {
         user: this.form.getRawValue(),
-      }
+      },
     ).subscribe(response => {
       console.log('response',response);
       //Store a user token in local storage
