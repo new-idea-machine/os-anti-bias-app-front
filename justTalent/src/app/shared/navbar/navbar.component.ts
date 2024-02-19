@@ -16,7 +16,7 @@ export class NavbarComponent {
   authService = inject(AuthService);
   http = inject(HttpClient);
 
-  endpoint = 'http://localhost:3000/api/users';
+  endpoint = 'http://localhost:3000/api/users/current';
   // endpoint = 'https://api.realworld.io/api/users';
 
   ngOnInit(): void {
