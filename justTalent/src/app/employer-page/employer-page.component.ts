@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EmployerService } from '../employer.service';
+import { EmployerService } from '../services/employer.service';
 import { JobPost } from '../interfaces/job-post';
 import { Employer } from '../interfaces/employer';
 import { JobListComponent } from '../job-list/job-list.component';

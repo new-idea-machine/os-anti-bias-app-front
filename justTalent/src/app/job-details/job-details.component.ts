@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobPost } from '../interfaces/job-post';
 import { ActivatedRoute } from '@angular/router';
-import { EmployerService } from '../employer.service';
+import { EmployerService } from '../services/employer.service';
 
 @Component({
   selector: 'app-job-details',
