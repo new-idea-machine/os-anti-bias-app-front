@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Employer } from './interfaces/employer';
-import { JobPost } from './interfaces/job-post';
+import { Employer } from '../interfaces/employer';
+import { JobPost } from '../interfaces/job-post';
 
 @Injectable({
   providedIn: 'root'

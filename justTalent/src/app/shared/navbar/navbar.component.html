@@ -9,11 +9,20 @@
   </div>
   <div class="navbar-links">
     <a routerLink="/">Home</a>
-    <a routerLink="/registration">Registration</a>
+    @if (authService.currentUserSignal() == null) {
+      <a routerLink="/register">Registration</a>
+    }
     <a routerLink="/user-profile">User Profile</a>
     <a routerLink="/employer-page">Employers</a>
     <a routerLink="/candidate-search">Candidates</a>
-    <a routerLink="/jobs">Jobs</a>
-    <a routerLink="/login">Log In</a>
+    <a routerLink="/job-search">Jobs</a>
+    @if (authService.currentUserSignal() == null) {
+      <a routerLink="/login">Log In</a>
+    }
+    @if (authService.currentUserSignal()) {
+      <span>{{ authService.currentUserSignal()?.username}}</span>
+      <span (click)="logout()">Log out</span>
+    }
+
   </div>
 </div>
