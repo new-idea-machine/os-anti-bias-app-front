@@ -20,15 +20,14 @@
     <p class="header_label_lg">Job Title</p>
     <p class="header_label_sm">Location</p>
     <p class="header_label_sm">Work Setting</p>
-    <p class="header_label_sm">Job Description</p>
+    <!-- <p class="header_label_sm">Job Description</p> -->
   </div>
-  <div *ngFor="let candidate of candidates" >
-    <div class="candidate">
-      <p class="candidate_sm">{{candidate.id}}</p>
-      <p class="candidate_lg">{{candidate.skills[0]}}</p>
-      <p class="candidate_sm">{{candidate.county}}</p>
-      <p class="candidate_sm">{{candidate.work_settings[0]}}</p>
-      <p class="candidate_sm">Profile</p>
+  <div  *ngFor="let job of jobs" >
+    <div (click)="redirectToJobDetails(job.job_post_id)" class="candidate">
+      <p class="candidate_sm">{{job.job_post_id}}</p>
+      <p class="candidate_lg">{{job.type_of_work}} {{job.job_title}}</p>
+      <p class="candidate_sm">{{job.city}}, {{job.country}}</p>
+      <p class="candidate_sm">{{job.location}}</p>
     </div>
 
   

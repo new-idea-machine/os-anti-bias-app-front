@@ -149,6 +149,9 @@ export class EmployerService {
   getJobPostByJobId(id: number): JobPost | undefined {
     return this.jobPostList.find((jobPost) => jobPost.job_post_id === id);
   }
+  getAllJobPosts(): any {
+    return this.jobPostList;
+  }
 
   constructor() { }
 }
