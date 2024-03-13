@@ -1,0 +1,36 @@
+.footerComponent {
+  display: flex;
+  justify-content: center;
+  height: 600px;
+  width: screen;
+  
+  }
+  .footerBody {
+    height: 600px;
+    width: 1440px;
+    background-color: #C6AC8F;
+
+    }
+
+    .footerContent {
+display: flex;
+justify-content: space-evenly;
+
+    }
+    .footerColumn{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 450px;
+      height: 550px;
+
+    }
+    .footerLegal {
+      text-align: center;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: space-evenly;
+      width: 200px;
+    }
