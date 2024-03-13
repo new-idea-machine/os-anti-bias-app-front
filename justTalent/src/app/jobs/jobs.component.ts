@@ -17,7 +17,11 @@ export class JobsComponent {
     private router: Router,
     private employerService: EmployerService
   ) {}
-  jobs = this.employerService.getAllJobPosts()
+  jobs: any = {}
+
+  searchJobs()  {
+    this.jobs = this.employerService.getAllJobPosts()
+  }
 
   redirectToJobDetails(id: string) {
     this.router.navigate(['/job-details', id]);
