@@ -1,5 +1,5 @@
 export interface JobPost {
-  job_post_id: number;
+  job_post_id: string;
   employer_id: number;
   start_date: string;
   end_date: string;

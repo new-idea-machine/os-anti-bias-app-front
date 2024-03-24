@@ -1,5 +1,5 @@
 export interface Employer {
-  employer_id: number;
+  employer_id: string;
   employer_name: string;
   username: string;
   password: string;
