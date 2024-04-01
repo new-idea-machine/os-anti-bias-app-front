@@ -1,18 +1,20 @@
 <section class="job_search_componenet">
   <div class="job_search_area">
 
-    <form class="job_search_form" action="">
+    <form class="job_search_form"  #filter="ngForm" (ngSubmit)="updateFilters()">
       <div>
 
-        <input type="text" placeholder="Country">
+        <input  type="text"  [(ngModel)]="filters.country" name="country" >
         <input type="text" placeholder="Work Setting Preference">
       </div>
       <div>
+      
 
         <input type="text" placeholder="Province / State">
         <input type="text" placeholder="Language">
       </div>
       <input type="text" placeholder="Skills">
+      <button type="submit" >Submit </button>
       <button type="button" (click)="searchJobs()">SEARCH </button>
     </form>
 
