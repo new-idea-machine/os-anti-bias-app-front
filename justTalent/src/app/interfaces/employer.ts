@@ -1,5 +1,5 @@
 export interface Employer {
-  employer_id: number;
+  employer_id: string;
   employer_name: string;
   username: string;
   password: string;
@@ -7,9 +7,9 @@ export interface Employer {
   number_of_employees: number;
   contact_name: string;
   contact_email: string;
-  established_date: string;
-  created_at: string;
-  modified_at: string;
+  established_date: Date;
+  created_at: Date;
+  modified_at: Date;
 }
 
 // data type above are for testing purpose. It will be modified once a backend API is built.
