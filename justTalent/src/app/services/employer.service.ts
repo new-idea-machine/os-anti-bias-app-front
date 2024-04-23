@@ -153,5 +153,17 @@ export class EmployerService {
     return this.jobPostList;
   }
 
+  filterJobs(filters: Partial<JobPost>): JobPost[] {
+   
+    return this.jobPostList.filter(job => {
+        return (Object.keys(filters) as (keyof JobPost)[])
+                  .every(key => {
+                      
+                          return filters[key] === undefined || job[key] === filters[key];
+                      
+                  });
+    });
+  }
+
   constructor() { }
 }
