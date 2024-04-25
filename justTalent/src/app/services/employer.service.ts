@@ -135,6 +135,23 @@ export class EmployerService {
       created_at: '2023-03-05T11:45:00',
       modified_at: '2023-03-08T16:20:00',
     },
+    {
+      job_post_id: 6,
+      employer_id: 1,
+      start_date: '2023-03-10',
+      end_date: '2023-04-05',
+      job_title: 'Marketing Specialist',
+      description: 'Developing and executing marketing strategies',
+      requirements: 'Bachelor\'s degree in Marketing, 3+ years of marketing experience',
+      salary: 75000,
+      type_of_salary: 'Annual',
+      country: 'Germany',
+      city: 'Berlin',
+      type_of_work: 'Remote',
+      location: 'Anywhere',
+      created_at: '2023-03-05T11:45:00',
+      modified_at: '2023-03-08T16:20:00',
+    },
   ]
 
   getEmployerById(id: number): Employer | undefined {
@@ -159,6 +176,7 @@ export class EmployerService {
         return (Object.keys(filters) as (keyof JobPost)[])
                   .every(key => {
                       
+
                           return filters[key] === undefined || job[key] === filters[key];
                       
                   });

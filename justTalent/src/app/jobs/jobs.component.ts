@@ -21,7 +21,8 @@ export class JobsComponent {
   ) {}
   jobs: any = {}
   filters: any = {
-    country:"Germany"
+    country:"Germany",
+    type_of_work: "Remote"
 
   }
 updateFilters(): void {
