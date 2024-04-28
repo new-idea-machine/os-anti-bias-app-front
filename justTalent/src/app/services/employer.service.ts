@@ -1,59 +1,24 @@
 import { Injectable } from '@angular/core';
+// IMPORT HttpClient from @angular/common/http to make HTTP Requests
+import { HttpClient } from '@angular/common/http';
+// Observal and subscribe is a set
+import { Observable } from 'rxjs';
 import { Employer } from '../interfaces/employer';
 import { JobPost } from '../interfaces/job-post';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployerService {
 
-  protected employerList: Employer[] = [
-    {
-      employer_id: 1,
-      employer_name: 'ABC Company',
-      username: 'abc_company',
-      password: 'password123',
-      description: 'A leading company in the industry',
-      number_of_employees: 100,
-      contact_name: 'John Doe',
-      contact_email: 'john.doe@abccompany.com',
-      established_date: '2020-01-01',
-      created_at: '2023-01-01T12:00:00',
-      modified_at: '2023-01-02T08:30:00',
-    },
-    {
-      employer_id: 2,
-      employer_name: 'XYZ Corporation',
-      username: 'xyz_corp',
-      password: 'securepassword456',
-      description: 'Innovative solutions for a changing world',
-      number_of_employees: 500,
-      contact_name: 'Jane Smith',
-      contact_email: 'jane.smith@xyzcorp.com',
-      established_date: '2015-03-20',
-      created_at: '2023-02-01T09:15:00',
-      modified_at: '2023-02-05T11:20:00',
-    },
-    {
-      employer_id: 3,
-      employer_name: 'Tech Innovators Ltd',
-      username: 'tech_innovators',
-      password: 'innovate2023',
-      description: 'Pioneering technology solutions for the future',
-      number_of_employees: 200,
-      contact_name: 'Mark Johnson',
-      contact_email: 'mark.johnson@techinnovators.com',
-      established_date: '2018-07-10',
-      created_at: '2023-02-10T14:00:00',
-      modified_at: '2023-02-12T16:45:00',
-    },
-  ]
+  private apiUrl = 'http://localhost:3000/api';
 
   protected jobPostList: JobPost[] =[
     {
       job_post_id: 1,
       employer_id: 1,
-      start_date: '2023-01-10',
+      start_date: "2023-01-10",
       end_date: '2023-01-31',
       job_title: 'Software Developer',
       description: 'Seeking a skilled software developer for exciting projects',
@@ -153,37 +118,36 @@ export class EmployerService {
       modified_at: '2023-03-08T16:20:00',
     },
   ]
+  constructor(private http: HttpClient) { }
 
-  getEmployerById(id: number): Employer | undefined {
-    return this.employerList.find((employer) => employer.employer_id === id);
+  getEmployerById(id: string): Observable<Employer> {
+    return this.http.get<Employer>(`${this.apiUrl}/employers/${id}`);
   }
 
-  getJobPostsByEmployerId(id: number): JobPost[] | undefined {
-    return this.jobPostList.filter(jobPost => jobPost.employer_id === id);
+  getJobPostsByEmployerId(id: string): Observable<JobPost[]> {
+    return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/by-employer/${id}`);
   }
 
   // MOVE TO JOB DETAILS SERVICE LATER?
-  getJobPostByJobId(id: number): JobPost | undefined {
-    return this.jobPostList.find((jobPost) => jobPost.job_post_id === id);
+  getJobPostByJobId(id: string): Observable<JobPost> {
+    return this.http.get<JobPost>(`${this.apiUrl}/jobPosts/${id}`);
   }
   getAllJobPosts(): any {
-    return this.jobPostList;
+    // return this.jobPostList;
+    const list = this.http.get(`${this.apiUrl}/jobPosts/`);
+    console.log(list)
+    return list 
   }
 
   filterJobs(filters: Partial<JobPost>): JobPost[] {
    
     return this.jobPostList.filter(job => {
         return (Object.keys(filters) as (keyof JobPost)[])
-                  .every(key => {
-                      
-                 
-                      return filters[key] === undefined || job[key] === filters[key];
-
-                    
-                      
+                  .every(key => {              
+                      return filters[key] === undefined || job[key] === filters[key];          
                   });
     });
   }
 
-  constructor() { }
+
 }

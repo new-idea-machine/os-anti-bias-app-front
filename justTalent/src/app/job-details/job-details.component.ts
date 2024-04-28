@@ -11,7 +11,7 @@ import { EmployerService } from '../services/employer.service';
   styleUrl: './job-details.component.css'
 })
 export class JobDetailsComponent implements OnInit {
-  jobPostId: number = -1;
+  jobPostId: string = '';
   jobPost: JobPost | undefined;
 
   constructor(
@@ -20,7 +20,15 @@ export class JobDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.jobPostId = Number(this.route.snapshot.params['id']);
-      this.jobPost = this.employerService.getJobPostByJobId(this.jobPostId);
+      this.jobPostId = this.route.snapshot.params['id'];
+      this.getJobPostDetails(this.jobPostId);
+      console.log(this.jobPostId)
+  }
+
+  getJobPostDetails(id: string): void {
+    this.employerService.getJobPostByJobId(id)
+      .subscribe((jobPost: JobPost) => {
+        this.jobPost = jobPost;
+      })
   }
 }

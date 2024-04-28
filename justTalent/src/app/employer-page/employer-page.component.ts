@@ -13,7 +13,7 @@ import { JobListComponent } from '../job-list/job-list.component';
   styleUrls: ['./employer-page.component.css']
 })
 export class EmployerPageComponent implements OnInit {
-  employerId: number = -1;
+  employerId: string = '';
   employer: Employer | undefined;
   jobPosts: JobPost[] | undefined;
 
@@ -24,9 +24,23 @@ export class EmployerPageComponent implements OnInit {
 
   //ngOnInit is to initialize a component such making initial API calls, setting default values and so on.
   ngOnInit(): void {
-    this.employerId = Number(this.route.snapshot.params['id']);
-    this.employer = this.employerService.getEmployerById(this.employerId)
-    this.jobPosts = this.employerService.getJobPostsByEmployerId(this.employerId)
+    this.employerId = this.route.snapshot.paramMap.get('id') || '';
+    this.getEmployerDetails(this.employerId);
+    this.getJobPosts(this.employerId);
+  }
+
+  getEmployerDetails(id: string): void {
+    this.employerService.getEmployerById(id)
+      .subscribe((employer: Employer) => {
+        this.employer = employer;
+      });
+  }
+
+  getJobPosts(id: string): void {
+    this.employerService.getJobPostsByEmployerId(id)
+      .subscribe((jobPosts: JobPost[]) => {
+        this.jobPosts = jobPosts;
+      });
   }
 
 
