@@ -21,8 +21,8 @@ export class JobsComponent {
   ) {}
   jobs: any = {}
   filters: any = {
-    country:"Germany",
-    type_of_work: "Remote"
+    country:"",
+    type_of_work: ""
 
   }
 updateFilters(): void {
@@ -34,7 +34,20 @@ updateFilters(): void {
     console.log(this.jobs)
   }
   filteredSearch() {
-    this.jobs = this.employerService.filterJobs(this.filters)
+    const verifiedFilters: any = {
+      
+    } 
+    Object.keys(this.filters).forEach( key => {
+      if (this.filters[key].length > 0 ){
+        verifiedFilters[key] = this.filters[key]
+      }
+    }
+      
+    )
+
+console.log("filters: " + JSON.stringify(this.filters))
+console.log("Verified filters: " + JSON.stringify(verifiedFilters))
+    this.jobs = this.employerService.filterJobs(verifiedFilters)
     console.log(this.jobs)
   }
 
@@ -44,49 +57,3 @@ updateFilters(): void {
 
   
 }
-//Test///
-// interface Person {
-//   name: string;
-//   country: string;
-//   language: string;
-//   skills: string[];
-// }
-
-// function filterObjects(array: Person[], filters: Partial<Person>): Person[] {
-//   return array.filter(person => {
-//       return (Object.keys(filters) as (keyof Person)[])
-//                 .every(key => {
-//                     if (key === "skills") {
-//                         // Check if filters[key] is indeed an array and not undefined
-//                         if (Array.isArray(filters[key])) {
-//                             // Now it's safe to assume filters[key] is string[], perform the check
-//                             return (filters[key] as string[]).every(skill => person.skills.includes(skill));
-//                         }
-//                         // If filters[key] is not an array, skip this filter
-//                         return true;
-//                     } else {
-//                         // For other keys, just compare directly; ensure the filter's key value isn't undefined
-//                         return filters[key] === undefined || person[key] === filters[key];
-//                     }
-//                 });
-//   });
-// }
-
-// // Example usage:
-// const data: Person[] = [
-//     { name: 'John', country: 'USA', language: 'English', skills: ['JavaScript', 'HTML', 'CSS'] },
-//     { name: 'Alice', country: 'Canada', language: 'English', skills: ['Python', 'Java', 'C++'] },
-//     { name: 'Bob', country: 'USA', language: 'Spanish', skills: ['JavaScript', 'Python'] },
-//     { name: 'Emily', country: 'UK', language: 'English', skills: ['JavaScript', 'Ruby'] }
-// ];
-
-// const filters: Partial<Person> = {
-    
-//   country:"Germany",
- 
-
-
-// };
-
-// const filteredObjects = filterObjects(data, filters);
-// console.log(filteredObjects);

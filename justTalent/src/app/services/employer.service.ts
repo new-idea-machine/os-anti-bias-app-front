@@ -176,8 +176,10 @@ export class EmployerService {
         return (Object.keys(filters) as (keyof JobPost)[])
                   .every(key => {
                       
+                 
+                      return filters[key] === undefined || job[key] === filters[key];
 
-                          return filters[key] === undefined || job[key] === filters[key];
+                    
                       
                   });
     });
