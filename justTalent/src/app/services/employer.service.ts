@@ -130,14 +130,12 @@ export class EmployerService {
 
   // MOVE TO JOB DETAILS SERVICE LATER?
   getJobPostByJobId(id: string): Observable<JobPost> {
+    console.log(this.http.get<JobPost>(`${this.apiUrl}/jobPosts/${id}`));
     return this.http.get<JobPost>(`${this.apiUrl}/jobPosts/${id}`);
   }
-  getAllJobPosts(): any {
-    // return this.jobPostList;
-    const list = this.http.get(`${this.apiUrl}/jobPosts/`);
-    console.log(list)
-    return list 
-  }
+  getAllJobPosts(): Observable<JobPost[]> {
+    return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/`);
+}
 
   filterJobs(filters: Partial<JobPost>): JobPost[] {
    
