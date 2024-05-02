@@ -10,6 +10,17 @@
   margin-top: 30px;
   
 }
+.candidate_search_area{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(105, 105, 105);
+  width: 1440px;
+  min-height: 500px ;
+  border-radius: 25px;
+  margin: 40px;
+  padding: 20px 0px;
+}
 .candidate_list_header{
   display: flex;
   flex-direction: row;
@@ -27,8 +38,13 @@
 .candidate{
   display: flex;
   flex-direction: row;
-  background-color: rgb(197, 194, 189);
-  margin-bottom: 2px;
+  background-color: #EAE0D5;
+  margin-bottom: 4px;
+  box-shadow: 2px 2px 2px #9a9595b6;
+  border-radius: 5px;
+  min-width: 900px;
+  padding-left: 10px;
+  cursor: pointer;
 }
 .candidate_sm {
   width: 150px;

@@ -23,7 +23,8 @@ export class JobsComponent {
   jobs: JobPost[] = []
   filters: any = {
     country:"",
-    type_of_work: ""
+    type_of_work: "",
+    
 
   }
 updateFilters(): void {
@@ -52,11 +53,13 @@ updateFilters(): void {
 
 console.log("filters: " + JSON.stringify(this.filters))
 console.log("Verified filters: " + JSON.stringify(verifiedFilters))
-    this.jobs = this.employerService.filterJobs(verifiedFilters)
+    this.employerService.filterJobs(verifiedFilters).subscribe(filteredJobs => {
+      this.jobs = filteredJobs;
+    })
     console.log(this.jobs)
   }
 
-  redirectToJobDetails(id: string) {
+  redirectToJobDetails(id: any) {
     this.router.navigate(['/job-details', id]);
   }
 

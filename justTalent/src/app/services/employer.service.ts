@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // Observal and subscribe is a set
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Employer } from '../interfaces/employer';
 import { JobPost } from '../interfaces/job-post';
 
@@ -137,15 +138,15 @@ export class EmployerService {
     return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/`);
 }
 
-  filterJobs(filters: Partial<JobPost>): JobPost[] {
-   
-    return this.jobPostList.filter(job => {
-        return (Object.keys(filters) as (keyof JobPost)[])
-                  .every(key => {              
-                      return filters[key] === undefined || job[key] === filters[key];          
-                  });
-    });
-  }
-
+filterJobs(filters: Partial<JobPost>): Observable<JobPost[]> {
+  return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/`).pipe(
+      map(jobs => jobs.filter(job => 
+          (Object.keys(filters) as (keyof JobPost)[]).every(key => 
+              filters[key] === undefined || job[key] === filters[key]
+          )
+      ))
+  );
+}
+    
 
 }
