@@ -1,41 +1,55 @@
-
 <section class="candidate_search_componenet">
-  <form class="candidate_search_form" action="">
-    <div>
+  <div class="candidate_search_area">
 
-      <input  type="text"  [(ngModel)]="filters.country" name="country" >
-      <input  type="text"  [(ngModel)]="filters.type_of_work" name="Work Setting Preference" >
+    <form class="candidate_search_form" action="">
+      <div>
+
+        <input type="text" [(ngModel)]="filters.country " name="country" placeholder="Country">
+        <input type="text" [(ngModel)]="filters.type_of_work" name="Work Setting Preference" placeholder="Work Type">
+      </div>
+      <div>
+
+
+      </div>
+      <input type="text" placeholder="Skills">
+
+      <button type="button" (click)="filteredSearch()">SEARCH </button>
+    </form>
+
+    <div class="candidate_list_header">
+
+      <p class="header_label_lg">Title</p>
+      <p class="header_label_sm">Skill</p>
+      <p class="header_label_sm">Certification</p>
+
     </div>
-    <div>
-    
+    <div class="candidates">
 
-      <input type="text" placeholder="Province / State">
-      <input type="text" placeholder="Language">
+      <div *ngFor="let candidate of candidates">
+        <div class="candidate">
+
+          <h1 class="header">{{candidate.title}}</h1>
+          <p>{{candidate.summary}} </p>
+          <h2>Skills</h2>
+          <div class="resume_skills">
+
+            <div  *ngFor="let skill of candidate.skills">
+              <p class="resume_skill"> {{skill}} | </p>
+            </div>
+          </div>
+          <h2>Certifications</h2>
+          <div *ngFor="let cert of candidate.certifications">
+            <p>{{cert.certificationName}} </p>
+          </div>
+         
+
+        </div>
+      </div>
+
+
     </div>
-    <input type="text" placeholder="Skills">
-
-    <button type="button" (click)="filteredSearch()">SEARCH </button>
-  </form>
-
-  <div class="candidate_list_header">
-    <p class="header_label_sm">Candidate ID</p>
-    <p class="header_label_lg">Title</p>
-    <p class="header_label_sm">Skill</p>
-    <p class="header_label_sm">Certification</p>
-    
   </div>
-  <div *ngFor="let candidate of candidates" >
-    <div class="candidate">
-      <p class="candidate_sm">{{candidate.id}}</p>
-      <p class="candidate_sm">{{candidate.title}}</p>
-      <p class="candidate_lg">{{candidate.skills[0]}}</p>
-      <p class="candidate_sm">{{candidate.certifications[0].certificationName}}</p>
-     
-    </div>
 
-  
-  </div>
-    
-    
+
 
 </section>
