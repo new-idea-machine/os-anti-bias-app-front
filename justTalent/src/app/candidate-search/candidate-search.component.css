@@ -41,7 +41,7 @@ flex-direction: row;
 flex-wrap: wrap;
 
 width: 960px;
-background-color: aqua;
+/* background-color: aqua; */
 }
 .candidate{
   display: flex;
@@ -68,7 +68,7 @@ background-color: aqua;
   flex-wrap: wrap;
 }
 .resume_skills {
-margin: 5px;
+margin: 10px;
 }
 
 .candidate_sm {
