@@ -1,0 +1,49 @@
+<section class="candidate_search_componenet">
+  <div class="candidate_search_area">
+
+    <form class="candidate_search_form" action="">
+      <div>
+
+        <input type="text" [(ngModel)]="filters.country " name="country" placeholder="Country">
+        <input type="text" [(ngModel)]="filters.type_of_work" name="Work Setting Preference" placeholder="Work Type">
+      </div>
+      <div>
+
+
+      </div>
+      <input type="text" placeholder="Skills">
+
+      <button type="button" (click)="filteredSearch()">SEARCH </button>
+    </form>
+
+
+    <div class="candidates">
+
+      <div *ngFor="let candidate of candidates">
+        <div class="candidate">
+
+          <h1 class="header">{{candidate.title}}</h1>
+          <p>{{candidate.summary}} </p>
+          <h2>Skills</h2>
+          <div class="resume_skills">
+
+            <div  *ngFor="let skill of candidate.skills">
+              <p class="resume_skill"> {{skill}} | </p>
+            </div>
+          </div>
+          <h2>Certifications</h2>
+          <div *ngFor="let cert of candidate.certifications">
+            <p>{{cert.certificationName}} </p>
+          </div>
+         
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</section>

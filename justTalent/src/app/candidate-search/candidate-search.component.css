@@ -1,0 +1,89 @@
+.candidate_search_form{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.candidate_search_componenet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  
+}
+.candidate_search_area{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(105, 105, 105);
+  width: 1440px;
+  min-height: 500px ;
+  border-radius: 25px;
+  margin: 40px;
+  padding: 20px 0px;
+}
+.candidate_list_header{
+  display: flex;
+  flex-direction: row;
+}
+.header_label_sm {
+  width: 150px;
+  height: 30px;
+  
+}
+.header_label_lg {
+  width: 300px;
+  height: 30px;
+
+}
+.candidates{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+
+width: 960px;
+/* background-color: aqua; */
+}
+.candidate{
+  display: flex;
+  flex-direction: column;
+ align-items: space-evenly;
+  background-color: #EAE0D5;
+  margin-bottom: 4px;
+  box-shadow: 2px 2px 2px #9a9595b6;
+  border-radius: 5px;
+  width: 450px;
+  height: 582px;
+  padding-left: 10px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.header{
+  text-align: center;
+  width: 100%;
+}
+.resume_skills {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.resume_skills {
+margin: 10px;
+}
+
+.candidate_sm {
+  width: 150px;
+  height: 30px;
+  
+}
+.candidate_lg {
+  width: 300px;
+  height: 30px;
+  
+}
+
+.candidates_list{
+background-color: beige;
+width: 900px;
+height: 50px;
+}

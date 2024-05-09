@@ -1,0 +1,42 @@
+<section class="job_search_componenet">
+  <div class="job_search_area">
+
+    <form class="job_search_form"  #filter="ngForm" (ngSubmit)="updateFilters()">
+      <div>
+
+        <input  type="text"  [(ngModel)]="filters.country" name="country" >
+        <input  type="text"  [(ngModel)]="filters.type_of_work" name="Work Setting Preference" >
+      </div>
+      <div>
+      
+
+        <input type="text" placeholder="Province / State">
+        <input type="text" placeholder="Language">
+      </div>
+      <input type="text" placeholder="Skills">
+
+      <button type="button" (click)="filteredSearch()">SEARCH </button>
+    </form>
+
+    <div class="job_list_header">
+      <p class="header_label_sm">Company</p>
+      <p class="header_label_lg">Job Title</p>
+      <p class="header_label_sm">Location</p>
+      <p class="header_label_sm">Work Setting</p>
+      <!-- <p class="header_label_sm">Job Description</p> -->
+    </div>
+    <div *ngFor="let job of jobs">
+      <div (click)="redirectToJobDetails(job.job_post_id)" class="job">
+        <p class="job_sm">{{job.job_post_id}}</p>
+        <p class="job_lg">{{job.type_of_work}} {{job.job_title}}</p>
+        <p class="job_sm">{{job.city}}, {{job.country}}</p>
+        <p class="job_sm">{{job.location}}</p>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</section>
