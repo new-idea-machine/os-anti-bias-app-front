@@ -1,8 +1,8 @@
 export interface JobPost {
-  job_post_id: number;
-  employer_id: number;
-  start_date: string;
-  end_date: string;
+  job_post_id: string;
+  employer_id: string;
+  start_date: Date;
+  end_date: Date;
   job_title: string;
   description: string;
   requirements: string;
@@ -12,8 +12,8 @@ export interface JobPost {
   city: string;
   type_of_work: string;
   location: string;
-  created_at: string;
-  modified_at: string;
+  created_at: Date;
+  modified_at: Date;
 }
 
 // data type above are for testing purpose. It will be modified once a backend API is built.
