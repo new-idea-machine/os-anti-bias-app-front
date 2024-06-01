@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
+import { Resume } from '../interfaces/resume';
+import { ResumeService } from '../services/resume.services';
 
 
 @Component({
@@ -12,14 +14,16 @@ import { UserService } from '../services/user.service';
 })
 export class CandidateComponent implements OnInit{
   user: any | undefined;
+  resume: Resume | undefined;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private resumeService: ResumeService
   ) {}
 
   ngOnInit(): void {
     this.getCurrentUserDetails();
-
+    this.getCurrentUserResume();
   }
 
   getCurrentUserDetails(): void {
@@ -27,5 +31,13 @@ export class CandidateComponent implements OnInit{
       .subscribe((user: any) => {
       this.user= user.user;
     })
+  }
+
+  getCurrentUserResume(): void {
+    this.resumeService.getCurrentUserResume()
+      .subscribe((resume: Resume) => {
+        this.resume = resume;
+        console.log(resume, '🚨')
+      })
   }
 }
