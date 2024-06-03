@@ -28,8 +28,6 @@ export class CandidateSearchComponent {
 
   };
 
-
-
   filteredSearch() {
     const verifiedFilters: any = {
     };
