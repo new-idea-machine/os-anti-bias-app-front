@@ -39,7 +39,7 @@
         <div>
           <h3>{{ work?.jobTitle }} at {{ work?.company }}</h3>
           <p>{{ work?.location }}</p>
-          <!-- <p>{{ work?.startDate | date:'yyyy-MM-dd' }} - {{ work?.endDate | date:'yyyy-MM-dd' }}</p> -->
+          <p>{{ work?.startDate | date:'yyyy-MM-dd' }} - {{ work?.endDate | date:'yyyy-MM-dd' }}</p>
           <h4>Responsibilities:</h4>
           <ul>
             @for (responsibility of work?.responsibilities; track responsibility) {
@@ -83,7 +83,7 @@
       @for (cert of resume?.certifications; track cert) {
         <div>
           <h3>{{ cert?.certificationName }}</h3>
-          <!-- <p>{{ cert?.issuingOrganization }} ({{ cert?.dateEarned | date:'yyyy-MM-dd' }})</p> -->
+          <p>{{ cert?.issuingOrganization }} ({{ cert?.dateEarned | date:'yyyy-MM-dd' }})</p>
         </div>
       }
     </section>
