@@ -4,108 +4,129 @@
     <h1>{{ resume?.title }}</h1>
     <p>{{ resume?.summary }}</p>
 
-    <section>
-      <h2>Contact Information</h2>
-      <ul>
-        <li>Phone: {{ resume?.contactInformation?.phoneNumber }}</li>
-        <li>Email: <a href="mailto:{{ resume?.contactInformation?.emailAddress }}">{{ resume?.contactInformation?.emailAddress }}</a></li>
-        <li>LinkedIn: <a href="{{ resume?.contactInformation?.linkedInProfile }}" target="_blank">{{ resume?.contactInformation?.linkedInProfile }}</a></li>
-        <li>Other: <a href="{{ resume?.contactInformation?.otherSocialMedia }}" target="_blank">{{ resume?.contactInformation?.otherSocialMedia }}</a></li>
-      </ul>
-    </section>
 
-    <section>
-      <h2>Skills</h2>
-      <ul>
-        @for (skill of resume?.skills; track skill) {
-          <li>{{ skill }}</li>
-        }
-      </ul>
-    </section>
+    <button (click)="toggleEditMode()">Edit</button>
+    @if(isEditMode) {
+      <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" type="text">
 
-    <section>
-      <h2>Education</h2>
-      @for (edu of resume?.education; track edu) {
-        <div>
-          <h3>{{ edu?.degree }} in {{ edu?.major }}</h3>
-          <p>{{ edu?.school }} ({{ edu?.graduationYear }})</p>
-        </div>
-      }
-    </section>
+        <label for="summary">Summary</label>
+        <textarea id="summary" formControlName="summary"></textarea>
 
-    <section>
-      <h2>Work Experience</h2>
-      @for (work of resume?.workExperience; track work) {
-        <div>
-          <h3>{{ work?.jobTitle }} at {{ work?.company }}</h3>
-          <p>{{ work?.location }}</p>
-          <p>{{ work?.startDate | date:'yyyy-MM-dd' }} - {{ work?.endDate | date:'yyyy-MM-dd' }}</p>
-          <h4>Responsibilities:</h4>
+
+
+        <!-- Update and Cancel buttons -->
+        <button type="submit">Update</button>
+        <button type="button" (click)="toggleEditMode()">Cancel</button>
+      </form>
+    } @else if (!isEditMode) {
+      <div>
+        <section>
+          <h2>Contact Information</h2>
           <ul>
-            @for (responsibility of work?.responsibilities; track responsibility) {
-              <li>{{ responsibility }}</li>
+            <li>Phone: {{ resume?.contactInformation?.phoneNumber }}</li>
+            <li>Email: <a href="mailto:{{ resume?.contactInformation?.emailAddress }}">{{ resume?.contactInformation?.emailAddress }}</a></li>
+            <li>LinkedIn: <a href="{{ resume?.contactInformation?.linkedInProfile }}" target="_blank">{{ resume?.contactInformation?.linkedInProfile }}</a></li>
+            <li>Other: <a href="{{ resume?.contactInformation?.otherSocialMedia }}" target="_blank">{{ resume?.contactInformation?.otherSocialMedia }}</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Skills</h2>
+          <ul>
+            @for (skill of resume?.skills; track skill) {
+              <li>{{ skill }}</li>
             }
           </ul>
-          <h4>Achievements:</h4>
+        </section>
+
+        <section>
+          <h2>Education</h2>
+          @for (edu of resume?.education; track edu) {
+            <div>
+              <h3>{{ edu?.degree }} in {{ edu?.major }}</h3>
+              <p>{{ edu?.school }} ({{ edu?.graduationYear }})</p>
+            </div>
+          }
+        </section>
+
+        <section>
+          <h2>Work Experience</h2>
+          @for (work of resume?.workExperience; track work) {
+            <div>
+              <h3>{{ work?.jobTitle }} at {{ work?.company }}</h3>
+              <p>{{ work?.location }}</p>
+              <p>{{ work?.startDate | date:'yyyy-MM-dd' }} - {{ work?.endDate | date:'yyyy-MM-dd' }}</p>
+              <h4>Responsibilities:</h4>
+              <ul>
+                @for (responsibility of work?.responsibilities; track responsibility) {
+                  <li>{{ responsibility }}</li>
+                }
+              </ul>
+              <h4>Achievements:</h4>
+              <ul>
+                @for (achievement of work.achievements; track achievement) {
+                  <li>{{ achievement }}</li>
+                }
+              </ul>
+            </div>
+          }
+        </section>
+
+        <section>
+          <h2>Projects</h2>
+          @for (project of resume?.projects; track project) {
+            <div>
+              <h3>{{ project?.projectName }}</h3>
+              <p>{{ project?.description }}</p>
+              <h4>Roles & Responsibilities:</h4>
+              <ul>
+                @for (role of project?.rolesResponsibilities; track role) {
+                  <li>{{ role }}</li>
+                }
+              </ul>
+              <h4>Technologies Used:</h4>
+              <ul>
+                @for (tech of project?.technologiesUsed; track tech) {
+                  <li>{{ tech }}</li>
+                }
+              </ul>
+            </div>
+          }
+        </section>
+
+        <section>
+          <h2>Certifications</h2>
+          @for (cert of resume?.certifications; track cert) {
+            <div>
+              <h3>{{ cert?.certificationName }}</h3>
+              <p>{{ cert?.issuingOrganization }} ({{ cert?.dateEarned | date:'yyyy-MM-dd' }})</p>
+            </div>
+          }
+        </section>
+
+        <section>
+          <h2>Languages</h2>
           <ul>
-            @for (achievement of work.achievements; track achievement) {
-              <li>{{ achievement }}</li>
+            @for (lang of resume?.languages; track lang) {
+              <li>{{ lang?.languageName }}: {{ lang?.proficiencyLevel }}</li>
             }
           </ul>
-        </div>
-      }
-    </section>
+        </section>
 
-    <section>
-      <h2>Projects</h2>
-      @for (project of resume?.projects; track project) {
-        <div>
-          <h3>{{ project?.projectName }}</h3>
-          <p>{{ project?.description }}</p>
-          <h4>Roles & Responsibilities:</h4>
-          <ul>
-            @for (role of project?.rolesResponsibilities; track role) {
-              <li>{{ role }}</li>
-            }
-          </ul>
-          <h4>Technologies Used:</h4>
-          <ul>
-            @for (tech of project?.technologiesUsed; track tech) {
-              <li>{{ tech }}</li>
-            }
-          </ul>
-        </div>
-      }
-    </section>
+        <section>
+          <h2>References</h2>
+          @for (reference of resume?.references; track reference) {
+            <div>
+              <p>{{ reference?.referenceName }} ({{ reference?.relationship }})</p>
+              <p>Contact: {{ reference?.contactInformation }}</p>
+            </div>
+          }
+        </section>
+      </div>
+    }
 
-    <section>
-      <h2>Certifications</h2>
-      @for (cert of resume?.certifications; track cert) {
-        <div>
-          <h3>{{ cert?.certificationName }}</h3>
-          <p>{{ cert?.issuingOrganization }} ({{ cert?.dateEarned | date:'yyyy-MM-dd' }})</p>
-        </div>
-      }
-    </section>
-
-    <section>
-      <h2>Languages</h2>
-      <ul>
-        @for (lang of resume?.languages; track lang) {
-          <li>{{ lang?.languageName }}: {{ lang?.proficiencyLevel }}</li>
-        }
-      </ul>
-    </section>
-
-    <section>
-      <h2>References</h2>
-      @for (reference of resume?.references; track reference) {
-        <div>
-          <p>{{ reference?.referenceName }} ({{ reference?.relationship }})</p>
-          <p>Contact: {{ reference?.contactInformation }}</p>
-        </div>
-      }
-    </section>
   </div>
 
 
