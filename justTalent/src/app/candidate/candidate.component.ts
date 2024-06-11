@@ -60,12 +60,15 @@ export class CandidateComponent implements OnInit{
     // Check if the form is valid before proceeding
     if (this.resumeForm.valid) {
       // Update the resume object with form values
-      this.resume = {
+      const updatedResume= {
         ...this.resume,
         ...this.resumeForm.value
       };
-      // Exit edit mode
-      this.toggleEditMode();
+      this.resumeService.updateResume(updatedResume).subscribe(()=>{
+        this.resume = updatedResume;
+        this.toggleEditMode();
+      })
+
     }
   }
 

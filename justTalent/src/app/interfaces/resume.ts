@@ -1,6 +1,6 @@
 export interface Resume {
 
-  id:string;
+  resume_id:string;
   title:string;
   summary: String;
   skills: [String];

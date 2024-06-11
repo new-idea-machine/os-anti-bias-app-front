@@ -42,5 +42,9 @@ export class ResumeService {
     return this.http.get<Resume>(`${this.apiUrl}/resume/current-user`);
   }
 
+  updateResume(resume: Resume): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/resume/${resume.resume_id}`, resume)
+  }
+
 
 }
