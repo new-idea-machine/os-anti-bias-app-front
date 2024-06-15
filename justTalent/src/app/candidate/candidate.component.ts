@@ -5,11 +5,12 @@ import { Resume } from '../interfaces/resume';
 import { ResumeService } from '../services/resume.services';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { ResumeComponent } from '../resume/resume.component';
 
 @Component({
   selector: 'app-candidate',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ResumeComponent],
   templateUrl: './candidate.component.html',
   styleUrl: './candidate.component.css'
 })
