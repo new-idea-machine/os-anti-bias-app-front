@@ -7,6 +7,7 @@
 
     <button (click)="toggleEditMode()">Edit</button>
     @if(isEditMode) {
+      <!-- FORM START -->
       <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
         <label for="title">Title</label>
         <input id="title" formControlName="title" type="text">
@@ -20,7 +21,9 @@
         <button type="submit">Update</button>
         <button type="button" (click)="toggleEditMode()">Cancel</button>
       </form>
+      <!-- FORM END -->
     } @else if (!isEditMode) {
+      <!-- RESUME START -->
       <div>
         <section>
           <h2>Contact Information</h2>
@@ -125,6 +128,7 @@
           }
         </section>
       </div>
+      <!-- RESUME END -->
     }
 
   </div>
