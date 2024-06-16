@@ -1,24 +1,13 @@
 <div>
-
-
-
     <button (click)="toggleEditMode()">Edit</button>
+
+
     @if(isEditMode) {
-      <!-- FORM START -->
-      <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
-        <label for="title">Title</label>
-        <input id="title" formControlName="title" type="text">
-
-        <label for="summary">Summary</label>
-        <textarea id="summary" formControlName="summary"></textarea>
-
-
-
-        <!-- Update and Cancel buttons -->
-        <button type="submit">Update</button>
-        <button type="button" (click)="toggleEditMode()">Cancel</button>
-      </form>
-      <!-- FORM END -->
+      <app-resume-form
+        [resume]="resume"
+        (formSubmitted)="handleFormSubmit($event)"
+        (cancelEdit)="toggleEditMode()"
+      ></app-resume-form>
     } @else if (!isEditMode) {
       <app-resume></app-resume>
     }
