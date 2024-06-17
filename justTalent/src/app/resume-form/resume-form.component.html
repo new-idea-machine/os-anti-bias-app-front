@@ -5,6 +5,12 @@
   <label for="summary">Summary</label>
   <textarea id="summary" formControlName="summary"></textarea>
 
+  <app-contact-information-form
+    [contactInformationForm]="$any(resumeForm.get('contactInformation'))"
+  ></app-contact-information-form>
+
+
+
   <button type="submit">Update</button>
   <button type="button" (click)="cancelEditMode()">Cancel</button>
 </form>

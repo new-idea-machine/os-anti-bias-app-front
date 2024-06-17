@@ -3,11 +3,16 @@ import { Component, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
+import { ContactInformationFormComponent } from './contact-information-form/contact-information-form.component';
 
 @Component({
   selector: 'app-resume-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ContactInformationFormComponent
+  ],
   templateUrl: './resume-form.component.html',
   styleUrl: './resume-form.component.css'
 })
@@ -32,6 +37,12 @@ export class ResumeFormComponent implements OnInit {
     this.resumeForm = this.fb.group({
       title: [this.resume?.title || ''],
       summary: [this.resume?.summary || ''],
+      contactInformation: this.fb.group({
+        phoneNumber: [''],
+        emailAddress: [''],
+        linkedInProfile: [''],
+        otherSocialMedia: ['']
+      }),
 
     });
   }
@@ -41,7 +52,7 @@ export class ResumeFormComponent implements OnInit {
     this.resumeForm.patchValue({
       title: resume.title,
       summary: resume.summary,
-
+      contactInformation: resume.contactInformation,
     });
   }
 
