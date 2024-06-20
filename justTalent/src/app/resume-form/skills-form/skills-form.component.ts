@@ -16,10 +16,7 @@ export class SkillsFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // for(let i = 0; i<this.skillsForm.value.length; i++) {
-    //   this.skillsForm.at(i).patchValue(this.skillsForm.value[i])
-    //   console.log('🚨',this.skillsForm.value[i])
-    // }
+
   }
 
   addSkill(): void {

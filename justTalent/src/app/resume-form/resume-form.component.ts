@@ -65,10 +65,7 @@ export class ResumeFormComponent implements OnInit {
   setFormArray(key: string, items: any[]): void {
     const formArray = this.resumeForm.get(key) as FormArray;
     formArray.clear();
-    items.forEach((item, index) => {
-      formArray.push(this.createFormGroup(key, item))
-      // formArray.at(index).patchValue(item)
-    });
+    items.forEach(item => {formArray.push(this.createFormGroup(key, item))});
     console.log('🔑',key, items)
   }
 
@@ -84,6 +81,9 @@ export class ResumeFormComponent implements OnInit {
   //FORM SUBMIT HANDLER
   onSubmit(): void {
     // Check if the form is valid before proceeding
+    // Skills Array - remove empty string
+
+
     if (this.resumeForm.valid) {
       // Update the resume object with form values
       const updatedResume= {
