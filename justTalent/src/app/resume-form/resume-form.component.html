@@ -4,11 +4,10 @@
 
   <label for="summary">Summary</label>
   <textarea id="summary" formControlName="summary"></textarea>
-
-  <app-contact-information-form
-    [contactInformationForm]="$any(resumeForm.get('contactInformation'))"
-  ></app-contact-information-form>
-
+  <!-- CONTACT INFO FORM -->
+  <app-contact-information-form [contactInformationForm]="$any(resumeForm.get('contactInformation'))"></app-contact-information-form>
+  <!-- SKILLS FORM -->
+  <app-skills-form [skillsForm]="$any(resumeForm.get('skills'))"></app-skills-form>
 
 
   <button type="submit">Update</button>

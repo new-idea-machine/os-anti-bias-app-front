@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormArray, FormControl} from '@angular/forms';
 import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
 import { ContactInformationFormComponent } from './contact-information-form/contact-information-form.component';
+import { SkillsFormComponent } from './skills-form/skills-form.component';
 
 @Component({
   selector: 'app-resume-form',
@@ -11,7 +12,8 @@ import { ContactInformationFormComponent } from './contact-information-form/cont
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ContactInformationFormComponent
+    ContactInformationFormComponent,
+    SkillsFormComponent
   ],
   templateUrl: './resume-form.component.html',
   styleUrl: './resume-form.component.css'
@@ -44,6 +46,8 @@ export class ResumeFormComponent implements OnInit {
         otherSocialMedia: ['']
       }),
 
+      skills: this.fb.array([]),
+
     });
   }
 
@@ -54,6 +58,27 @@ export class ResumeFormComponent implements OnInit {
       summary: resume.summary,
       contactInformation: resume.contactInformation,
     });
+
+    this.setFormArray('skills', resume.skills);
+  }
+
+  setFormArray(key: string, items: any[]): void {
+    const formArray = this.resumeForm.get(key) as FormArray;
+    formArray.clear();
+    items.forEach((item, index) => {
+      formArray.push(this.createFormGroup(key, item))
+      // formArray.at(index).patchValue(item)
+    });
+    console.log('🔑',key, items)
+  }
+
+  createFormGroup(key: string, item: any): FormGroup | FormControl {
+    switch (key) {
+      case 'skills':
+        return this.fb.control(item); // Use fb.control instead of new FormControl(item)
+      default:
+        return this.fb.group({}); // Provide a default form group if necessary
+    }
   }
 
   //FORM SUBMIT HANDLER

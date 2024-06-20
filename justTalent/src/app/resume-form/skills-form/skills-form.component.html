@@ -1,1 +1,13 @@
-<p>skills-form works!</p>
+
+<div formArrayName="skills">
+  <label>Skills</label>
+  <div [formGroup]="$any(skillsForm)">
+  @for(skill of skillsForm.controls; track skill; let i = $index ) {
+    <input [formControlName]="i" type="text">
+    <button type="button" (click)="removeSkill(i)">Remove</button>
+  }
+  <button type="button" (click)="addSkill()">Add Skill</button>
+</div>
+
+
+</div>
