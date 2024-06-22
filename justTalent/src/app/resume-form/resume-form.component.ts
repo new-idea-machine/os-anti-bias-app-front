@@ -5,6 +5,7 @@ import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
 import { ContactInformationFormComponent } from './contact-information-form/contact-information-form.component';
 import { SkillsFormComponent } from './skills-form/skills-form.component';
+import { EducationFormComponent } from './education-form/education-form.component';
 
 @Component({
   selector: 'app-resume-form',
@@ -13,7 +14,8 @@ import { SkillsFormComponent } from './skills-form/skills-form.component';
     CommonModule,
     ReactiveFormsModule,
     ContactInformationFormComponent,
-    SkillsFormComponent
+    SkillsFormComponent,
+    EducationFormComponent
   ],
   templateUrl: './resume-form.component.html',
   styleUrl: './resume-form.component.css'

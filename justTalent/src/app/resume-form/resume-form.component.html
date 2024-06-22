@@ -8,7 +8,8 @@
   <app-contact-information-form [contactInformationForm]="$any(resumeForm.get('contactInformation'))"></app-contact-information-form>
   <!-- SKILLS FORM -->
   <app-skills-form [skillsForm]="$any(resumeForm.get('skills'))"></app-skills-form>
-
+  <!-- Education History Form -->
+  <app-education-form></app-education-form>
 
   <button type="submit">Update</button>
   <button type="button" (click)="cancelEditMode()">Cancel</button>
