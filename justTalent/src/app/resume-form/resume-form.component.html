@@ -1,16 +1,50 @@
 <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
-  <label for="title">Title</label>
-  <input id="title" formControlName="title" type="text">
+  <div>
+    <label for="resume_id">Resume ID:</label>
+    <input id="resume_id" formControlName="resume_id">
+  </div>
 
-  <label for="summary">Summary</label>
-  <textarea id="summary" formControlName="summary"></textarea>
-  <!-- CONTACT INFO FORM -->
-  <app-contact-information-form [contactInformationForm]="$any(resumeForm.get('contactInformation'))"></app-contact-information-form>
-  <!-- SKILLS FORM -->
-  <app-skills-form [skillsForm]="$any(resumeForm.get('skills'))"></app-skills-form>
-  <!-- Education History Form -->
-  <app-education-form></app-education-form>
+  <div>
+    <label for="title">Title:</label>
+    <input id="title" formControlName="title">
+  </div>
 
-  <button type="submit">Update</button>
+  <div>
+    <label for="summary">Summary:</label>
+    <textarea id="summary" formControlName="summary"></textarea>
+  </div>
+
+  <div formArrayName="skills">
+    <h3>Skills</h3>
+    @for(skill of skills.controls; track skill; let i = $index) {
+      <input [formControlName]="i">
+      <button (click)="skills.removeAt(i)">Remove</button>
+    }
+    <button (click)="addSkill()">Add Skill</button>
+  </div>
+
+  <div formArrayName="education">
+    <h3>Education</h3>
+    <div *ngFor="let edu of education.controls; let i=index" [formGroupName]="i">
+      <label for="degree">Degree:</label>
+      <input id="degree" formControlName="degree">
+
+      <label for="school">School:</label>
+      <input id="school" formControlName="school">
+
+      <label for="major">Major:</label>
+      <input id="major" formControlName="major">
+
+      <label for="graduationYear">Graduation Year:</label>
+      <input id="graduationYear" type="number" formControlName="graduationYear">
+
+      <button (click)="education.removeAt(i)">Remove</button>
+    </div>
+    <button (click)="addEducation()">Add Education</button>
+  </div>
+
+
+  <button type="submit">Submit</button>
   <button type="button" (click)="cancelEditMode()">Cancel</button>
 </form>
+

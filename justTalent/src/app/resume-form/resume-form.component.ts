@@ -1,83 +1,87 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Output, Input } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, FormArray, FormControl} from '@angular/forms';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
-import { ContactInformationFormComponent } from './contact-information-form/contact-information-form.component';
-import { SkillsFormComponent } from './skills-form/skills-form.component';
-import { EducationFormComponent } from './education-form/education-form.component';
 
 @Component({
-  selector: 'app-resume-form',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ContactInformationFormComponent,
-    SkillsFormComponent,
-    EducationFormComponent
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
+  selector: 'app-resume-form',
   templateUrl: './resume-form.component.html',
-  styleUrl: './resume-form.component.css'
+  styleUrls: ['./resume-form.component.css']
 })
+
+
 export class ResumeFormComponent implements OnInit {
   @Input() resume: Resume | undefined;
   @Output() formSubmitted = new EventEmitter();
   @Output() cancelEdit = new EventEmitter();
-  // Non-null assertion operator used here
-  resumeForm!: FormGroup;
+  resumeForm: FormGroup;
 
-  constructor(private fb:FormBuilder){}
-
-  ngOnInit(): void {
-    this.initializeForm();
-    if(this.resume){
-      this.populateForm(this.resume);
-    }
-  }
-
-  // Initialize the form with default values
-  initializeForm(): void {
+  constructor(private fb: FormBuilder) {
     this.resumeForm = this.fb.group({
-      title: [this.resume?.title || ''],
-      summary: [this.resume?.summary || ''],
+      resume_id: [''],
+      title: [''],
+      summary: [''],
+      skills: this.fb.array([]),
+      education: this.fb.array([]),
       contactInformation: this.fb.group({
         phoneNumber: [''],
         emailAddress: [''],
         linkedInProfile: [''],
         otherSocialMedia: ['']
-      }),
-
-      skills: this.fb.array([]),
-
+      })
     });
   }
 
-  // Populate form with resume data
-  populateForm(resume: Resume): void {
+  ngOnInit() {
+    if (this.resume) {
+      this.populateForm(this.resume);
+    } else {
+      this.addSkill();
+      this.addEducation();
+    }
+
+  }
+
+  populateForm(resume: Resume) {
     this.resumeForm.patchValue({
+      resume_id: resume.resume_id,
       title: resume.title,
       summary: resume.summary,
-      contactInformation: resume.contactInformation,
+      contactInformation: resume.contactInformation
     });
 
-    this.setFormArray('skills', resume.skills);
+    resume.skills.forEach(skill => this.skills.push(this.fb.control(skill)));
+    resume.education.forEach(edu => this.education.push(this.fb.group({
+      degree: [edu.degree, Validators.required],
+      school: [edu.school, Validators.required],
+      major: [edu.major, Validators.required],
+      graduationYear: [edu.graduationYear, Validators.required]
+    })));
   }
 
-  setFormArray(key: string, items: any[]): void {
-    const formArray = this.resumeForm.get(key) as FormArray;
-    formArray.clear();
-    items.forEach(item => {formArray.push(this.createFormGroup(key, item))});
-    console.log('🔑',key, items)
+  get skills(): FormArray {
+    return this.resumeForm.get('skills') as FormArray;
   }
 
-  createFormGroup(key: string, item: any): FormGroup | FormControl {
-    switch (key) {
-      case 'skills':
-        return this.fb.control(item); // Use fb.control instead of new FormControl(item)
-      default:
-        return this.fb.group({}); // Provide a default form group if necessary
-    }
+  get education(): FormArray {
+    return this.resumeForm.get('education') as FormArray;
+  }
+
+
+  addSkill() {
+    this.skills.push(this.fb.control('', Validators.required));
+  }
+
+  addEducation() {
+    this.education.push(this.fb.group({
+      degree: ['', Validators.required],
+      school: ['', Validators.required],
+      major: ['', Validators.required],
+      graduationYear: [null, Validators.required]
+    }));
   }
 
   //FORM SUBMIT HANDLER
@@ -101,5 +105,10 @@ export class ResumeFormComponent implements OnInit {
     this.cancelEdit.emit();
   }
 
-
 }
+
+
+
+
+
+
