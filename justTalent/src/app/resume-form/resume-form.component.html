@@ -57,6 +57,46 @@
   </div>
 
   <!-- WORK HISTORY -->
+  <div formArrayName="workExperience">
+    <h3>Work Experience</h3>
+    <div *ngFor="let work of workExperience.controls; let i=index" [formGroupName]="i">
+      <label for="jobTitle">Job Title:</label>
+      <input id="jobTitle" formControlName="jobTitle">
+
+      <label for="company">Company:</label>
+      <input id="company" formControlName="company">
+
+      <label for="location">Location:</label>
+      <input id="location" formControlName="location">
+
+      <label for="startDate">Start Date:</label>
+      <input id="startDate" type="date" formControlName="startDate">
+
+      <label for="endDate">End Date:</label>
+      <input id="endDate" type="date" formControlName="endDate">
+
+      <div formArrayName="responsibilities">
+        <label>Responsibilities:</label>
+        <div *ngFor="let resp of getWorkExperienceResponsibilities(i).controls; let j=index">
+          <input [formControlName]="j">
+          <button type="button" (click)="getWorkExperienceResponsibilities(i).removeAt(j)">Remove</button>
+        </div>
+        <button type="button" (click)="addResponsibility(i)">Add Responsibility</button>
+      </div>
+
+      <div formArrayName="achievements">
+        <label>Achievements:</label>
+        <div *ngFor="let ach of getWorkExperienceAchievements(i).controls; let j=index">
+          <input [formControlName]="j">
+          <button type="button" (click)="getWorkExperienceAchievements(i).removeAt(j)">Remove</button>
+        </div>
+        <button type="button" (click)="addAchievement(i)">Add Achievement</button>
+      </div>
+
+      <button type="button" (click)="workExperience.removeAt(i)">Remove Work Experience</button>
+    </div>
+    <button type="button" (click)="addWorkExperience()">Add Work Experience</button>
+  </div>
   <!-- PROJECTS -->
   <!-- CERTIFICATIONS -->
   <!-- LANGUAGES -->

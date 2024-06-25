@@ -25,6 +25,7 @@ export class ResumeFormComponent implements OnInit {
       summary: [''],
       skills: this.fb.array([]),
       education: this.fb.array([]),
+      workExperience: this.fb.array([]),
       contactInformation: this.fb.group({
         phoneNumber: [''],
         emailAddress: [''],
@@ -40,6 +41,7 @@ export class ResumeFormComponent implements OnInit {
     } else {
       this.addSkill();
       this.addEducation();
+      this.addWorkExperience();
     }
 
   }
@@ -59,6 +61,16 @@ export class ResumeFormComponent implements OnInit {
       major: [edu.major, Validators.required],
       graduationYear: [edu.graduationYear, Validators.required]
     })));
+
+    resume.workExperience.forEach(work => this.workExperience.push(this.fb.group({
+      jobTitle: [work.jobTitle, Validators.required],
+      company: [work.company, Validators.required],
+      location: [work.location, Validators.required],
+      startDate: [work.startDate, Validators.required],
+      endDate: [work.endDate, Validators.required],
+      responsibilities: this.fb.array(work.responsibilities.map(res => this.fb.control(res))),
+      achievements: this.fb.array(work.achievements.map(ach => this.fb.control(ach)))
+    })));
   }
 
   get skills(): FormArray {
@@ -69,6 +81,17 @@ export class ResumeFormComponent implements OnInit {
     return this.resumeForm.get('education') as FormArray;
   }
 
+  get workExperience(): FormArray {
+    return this.resumeForm.get('workExperience') as FormArray;
+  }
+
+  getWorkExperienceResponsibilities(workIndex: number): FormArray {
+    return this.workExperience.at(workIndex).get('responsibilities') as FormArray;
+  }
+
+  getWorkExperienceAchievements(workIndex: number): FormArray {
+    return this.workExperience.at(workIndex).get('achievements') as FormArray;
+  }
 
 
   addSkill() {
@@ -83,6 +106,27 @@ export class ResumeFormComponent implements OnInit {
       graduationYear: [null, Validators.required]
     }));
   }
+
+  addWorkExperience() {
+    this.workExperience.push(this.fb.group({
+      jobTitle: ['', Validators.required],
+      company: ['', Validators.required],
+      location: ['', Validators.required],
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required],
+      responsibilities: this.fb.array([]),
+      achievements: this.fb.array([])
+    }));
+  }
+
+  addResponsibility(workIndex: number) {
+    this.getWorkExperienceResponsibilities(workIndex).push(this.fb.control(''));
+  }
+
+  addAchievement(workIndex: number) {
+    this.getWorkExperienceAchievements(workIndex).push(this.fb.control(''));
+  }
+
 
   //FORM SUBMIT HANDLER
   onSubmit(): void {
