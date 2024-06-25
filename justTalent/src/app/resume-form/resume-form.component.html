@@ -1,9 +1,5 @@
 <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="resume_id">Resume ID:</label>
-    <input id="resume_id" formControlName="resume_id">
-  </div>
-
+  <!-- BASIC INFO -->
   <div>
     <label for="title">Title:</label>
     <input id="title" formControlName="title">
@@ -14,6 +10,23 @@
     <textarea id="summary" formControlName="summary"></textarea>
   </div>
 
+  <!-- CONTACT INFO -->
+  <div formGroupName="contactInformation">
+    <h3>Contact Information</h3>
+    <label for="phoneNumber">Phone Number:</label>
+    <input id="phoneNumber" formControlName="phoneNumber">
+
+    <label for="emailAddress">Email Address:</label>
+    <input id="emailAddress" formControlName="emailAddress">
+
+    <label for="linkedInProfile">LinkedIn Profile:</label>
+    <input id="linkedInProfile" formControlName="linkedInProfile">
+
+    <label for="otherSocialMedia">Other Social Media:</label>
+    <input id="otherSocialMedia" formControlName="otherSocialMedia">
+  </div>
+
+  <!-- SKILLS -->
   <div formArrayName="skills">
     <h3>Skills</h3>
     @for(skill of skills.controls; track skill; let i = $index) {
@@ -22,7 +35,7 @@
     }
     <button (click)="addSkill()">Add Skill</button>
   </div>
-
+  <!-- EDUCATION -->
   <div formArrayName="education">
     <h3>Education</h3>
     <div *ngFor="let edu of education.controls; let i=index" [formGroupName]="i">
@@ -43,6 +56,10 @@
     <button (click)="addEducation()">Add Education</button>
   </div>
 
+  <!-- WORK HISTORY -->
+  <!-- PROJECTS -->
+  <!-- CERTIFICATIONS -->
+  <!-- LANGUAGES -->
 
   <button type="submit">Submit</button>
   <button type="button" (click)="cancelEditMode()">Cancel</button>

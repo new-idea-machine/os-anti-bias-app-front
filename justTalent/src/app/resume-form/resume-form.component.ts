@@ -21,7 +21,6 @@ export class ResumeFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.resumeForm = this.fb.group({
-      resume_id: [''],
       title: [''],
       summary: [''],
       skills: this.fb.array([]),
@@ -69,6 +68,7 @@ export class ResumeFormComponent implements OnInit {
   get education(): FormArray {
     return this.resumeForm.get('education') as FormArray;
   }
+
 
 
   addSkill() {
