@@ -31,7 +31,8 @@ export class ResumeFormComponent implements OnInit {
         emailAddress: [''],
         linkedInProfile: [''],
         otherSocialMedia: ['']
-      })
+      }),
+      projects: this.fb.array([]),
     });
   }
 
@@ -42,6 +43,7 @@ export class ResumeFormComponent implements OnInit {
       this.addSkill();
       this.addEducation();
       this.addWorkExperience();
+      this.addProject();
     }
 
   }
@@ -71,6 +73,14 @@ export class ResumeFormComponent implements OnInit {
       responsibilities: this.fb.array(work.responsibilities.map(res => this.fb.control(res))),
       achievements: this.fb.array(work.achievements.map(ach => this.fb.control(ach)))
     })));
+
+    resume.projects.forEach(project => this.projects.push(this.fb.group({
+      projectName: [project.projectName, Validators.required],
+      description: [project.description, Validators.required],
+      rolesResponsibilities: this.fb.array(project.rolesResponsibilities.map(role => this.fb.control(role))),
+      technologiesUsed: this.fb.array(project.technologiesUsed.map(tech => this.fb.control(tech)))
+    })));
+
   }
 
   get skills(): FormArray {
@@ -91,6 +101,18 @@ export class ResumeFormComponent implements OnInit {
 
   getWorkExperienceAchievements(workIndex: number): FormArray {
     return this.workExperience.at(workIndex).get('achievements') as FormArray;
+  }
+
+  get projects(): FormArray {
+    return this.resumeForm.get('projects') as FormArray;
+  }
+
+  getProjectRolesResponsibilties(projectIndex: number): FormArray {
+    return this.projects.at(projectIndex).get('rolesResponsibilities') as FormArray;
+  }
+
+  getProjectTechnologiesUsed(projectIndex: number): FormArray {
+    return this.projects.at(projectIndex).get('technologiesUsed') as FormArray;
   }
 
 
@@ -125,6 +147,23 @@ export class ResumeFormComponent implements OnInit {
 
   addAchievement(workIndex: number) {
     this.getWorkExperienceAchievements(workIndex).push(this.fb.control(''));
+  }
+
+  addProject() {
+    this.projects.push(this.fb.group({
+      projectName: ['', Validators.required],
+      description: ['', Validators.required],
+      rolesResponsibilities: this.fb.array([]),
+      technologiesUsed: this.fb.array([])
+    }));
+  }
+
+  addRoleResponsibility(projectIndex: number) {
+    this.getProjectRolesResponsibilties(projectIndex).push(this.fb.control(''));
+  }
+
+  addTechnology(projectIndex: number) {
+    this.getProjectTechnologiesUsed(projectIndex).push(this.fb.control(''));
   }
 
 

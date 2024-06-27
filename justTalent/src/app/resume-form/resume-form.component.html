@@ -97,7 +97,40 @@
     </div>
     <button type="button" (click)="addWorkExperience()">Add Work Experience</button>
   </div>
+
   <!-- PROJECTS -->
+  <div formArrayName="projects">
+    <h3>Projects</h3>
+    <div *ngFor="let project of projects.controls; let i=index" [formGroupName]="i">
+      <label for="projectName">Project Name:</label>
+      <input id="projectName" formControlName="projectName">
+
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+
+      <div formArrayName="rolesResponsibilities">
+        <label>Roles and Responsibilities:</label>
+        <div *ngFor="let role of getProjectRolesResponsibilties(i).controls; let j=index">
+          <input [formControlName]="j">
+          <button type="button" (click)="getProjectRolesResponsibilties(i).removeAt(j)">Remove</button>
+        </div>
+        <button type="button" (click)="addRoleResponsibility(i)">Add Role/Responsibility</button>
+      </div>
+
+      <div formArrayName="technologiesUsed">
+        <label>Technologies Used:</label>
+        <div *ngFor="let tech of getProjectTechnologiesUsed(i).controls; let j=index">
+          <input [formControlName]="j">
+          <button type="button" (click)="getProjectTechnologiesUsed(i).removeAt(j)">Remove</button>
+        </div>
+        <button type="button" (click)="addTechnology(i)">Add Technology</button>
+      </div>
+
+      <button type="button" (click)="projects.removeAt(i)">Remove Project</button>
+    </div>
+    <button type="button" (click)="addProject()">Add Project</button>
+  </div>
+
   <!-- CERTIFICATIONS -->
   <!-- LANGUAGES -->
 
