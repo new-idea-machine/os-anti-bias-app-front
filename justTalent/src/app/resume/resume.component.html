@@ -99,13 +99,4 @@
     </ul>
   </section>
 
-  <section>
-    <h2>References</h2>
-    @for (reference of resume?.references; track reference) {
-      <div>
-        <p>{{ reference?.referenceName }} ({{ reference?.relationship }})</p>
-        <p>Contact: {{ reference?.contactInformation }}</p>
-      </div>
-    }
-  </section>
 </div>
