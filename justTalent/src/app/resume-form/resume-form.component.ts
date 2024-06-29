@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
+import { Certificate } from 'crypto';
 
 @Component({
   standalone: true,
@@ -33,6 +34,8 @@ export class ResumeFormComponent implements OnInit {
         otherSocialMedia: ['']
       }),
       projects: this.fb.array([]),
+      certifications: this.fb.array([]),
+      languages: this.fb.array([]),
     });
   }
 
@@ -44,6 +47,8 @@ export class ResumeFormComponent implements OnInit {
       this.addEducation();
       this.addWorkExperience();
       this.addProject();
+      this.addCertification();
+
     }
 
   }
@@ -81,6 +86,17 @@ export class ResumeFormComponent implements OnInit {
       technologiesUsed: this.fb.array(project.technologiesUsed.map(tech => this.fb.control(tech)))
     })));
 
+    resume.certifications.forEach(cert => this.certifications.push(this.fb.group({
+      certificationName: [cert.certificationName, Validators.required],
+      issuingOrganization: [cert.issuingOrganization, Validators.required],
+      dateEarned: [cert.dateEarned, Validators.required]
+    })));
+
+    resume.languages.forEach(lang => this.languages.push(this.fb.group({
+      languageName: [lang.languageName, Validators.required],
+      proficiencyLevel: [lang.proficiencyLevel, Validators.required]
+    })));
+
   }
 
   get skills(): FormArray {
@@ -114,6 +130,15 @@ export class ResumeFormComponent implements OnInit {
   getProjectTechnologiesUsed(projectIndex: number): FormArray {
     return this.projects.at(projectIndex).get('technologiesUsed') as FormArray;
   }
+
+  get certifications(): FormArray {
+    return this.resumeForm.get('certifications') as FormArray;
+  }
+
+  get languages(): FormArray {
+    return this.resumeForm.get('languages') as FormArray;
+  }
+
 
 
   addSkill() {
@@ -166,6 +191,20 @@ export class ResumeFormComponent implements OnInit {
     this.getProjectTechnologiesUsed(projectIndex).push(this.fb.control(''));
   }
 
+  addCertification() {
+    this.certifications.push(this.fb.group({
+      certificationName: ['', Validators.required],
+      issuingOrganization: ['', Validators.required],
+      dateEarned: [null, Validators.required]
+    }));
+  }
+
+  addLanguage() {
+    this.languages.push(this.fb.group({
+      languageName: ['', Validators.required],
+      proficiencyLevel: ['', Validators.required]
+    }));
+  }
 
   //FORM SUBMIT HANDLER
   onSubmit(): void {

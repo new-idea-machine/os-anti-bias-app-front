@@ -139,7 +139,40 @@
   </div>
 
   <!-- CERTIFICATIONS -->
+  <div formArrayName="certifications">
+    <h3>Certifications</h3>
+    @for(cert of certifications.controls; track cert; let i = $index) {
+      <div [formGroupName]="i">
+        <label for="certificationName">Certification Name:</label>
+        <input id="certificationName" formControlName="certificationName">
+
+        <label for="issuingOrganization">Issuing Organization:</label>
+        <input id="issuingOrganization" formControlName="issuingOrganization">
+
+        <label for="dateEarned">Date Earned:</label>
+        <input id="dateEarned" type="date" formControlName="dateEarned">
+
+        <button type="button" (click)="certifications.removeAt(i)">Remove Certification</button>
+      </div>
+    }
+    <button type="button" (click)="addCertification()">Add Certification</button>
+  </div>
   <!-- LANGUAGES -->
+  <div formArrayName="languages">
+    <h3>Languages</h3>
+    @for(lang of languages.controls; track lang; let i = $index) {
+      <div [formGroupName]="i">
+        <label for="languageName">Language Name:</label>
+        <input id="languageName" formControlName="languageName">
+
+        <label for="proficiencyLevel">Proficiency Level:</label>
+        <input id="proficiencyLevel" formControlName="proficiencyLevel">
+
+        <button type="button" (click)="languages.removeAt(i)">Remove Language</button>
+      </div>
+    }
+    <button type="button" (click)="addLanguage()">Add Language</button>
+  </div>
 
   <button type="submit">Submit</button>
   <button type="button" (click)="cancelEditMode()">Cancel</button>
