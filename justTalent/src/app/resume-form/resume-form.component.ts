@@ -1,9 +1,8 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate} from '@angular/common';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
-import { Certificate } from 'crypto';
 
 @Component({
   standalone: true,
@@ -73,8 +72,8 @@ export class ResumeFormComponent implements OnInit {
       jobTitle: [work.jobTitle, Validators.required],
       company: [work.company, Validators.required],
       location: [work.location, Validators.required],
-      startDate: [work.startDate, Validators.required],
-      endDate: [work.endDate, Validators.required],
+      startDate: [formatDate(work.startDate, 'yyyy-MM-dd', 'en'), Validators.required],
+      endDate: [formatDate(work.endDate, 'yyyy-MM-dd', 'en'), Validators.required],
       responsibilities: this.fb.array(work.responsibilities.map(res => this.fb.control(res))),
       achievements: this.fb.array(work.achievements.map(ach => this.fb.control(ach)))
     })));
@@ -89,7 +88,7 @@ export class ResumeFormComponent implements OnInit {
     resume.certifications.forEach(cert => this.certifications.push(this.fb.group({
       certificationName: [cert.certificationName, Validators.required],
       issuingOrganization: [cert.issuingOrganization, Validators.required],
-      dateEarned: [cert.dateEarned, Validators.required]
+      dateEarned:[formatDate(cert.dateEarned, 'yyyy-MM-dd', 'en'), Validators.required],
     })));
 
     resume.languages.forEach(lang => this.languages.push(this.fb.group({
