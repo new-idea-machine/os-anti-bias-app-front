@@ -17,7 +17,20 @@
     <input id="phoneNumber" formControlName="phoneNumber">
 
     <label for="emailAddress">Email Address:</label>
-    <input id="emailAddress" formControlName="emailAddress">
+    <input id="emailAddress" formControlName="emailAddress"
+      [class.invalid]="
+        resumeForm.get('contactInformation.emailAddress')?.invalid &&
+        (resumeForm.get('contactInformation.emailAddress')?.dirty ||
+        resumeForm.get('contactInformation.emailAddress')?.touched)
+      "
+    >
+    @if(resumeForm.get('contactInformation.emailAddress')?.touched && resumeForm.get('contactInformation.emailAddress')?.invalid){
+      <div class="error">
+        <small *ngIf="resumeForm.get('contactInformation.emailAddress')?.hasError('required')">Email address is required.</small>
+        <small *ngIf="resumeForm.get('contactInformation.emailAddress')?.hasError('email')">Email address is invalid.</small>
+      </div>
+    }
+
 
     <label for="linkedInProfile">LinkedIn Profile:</label>
     <input id="linkedInProfile" formControlName="linkedInProfile">

@@ -28,7 +28,7 @@ export class ResumeFormComponent implements OnInit {
       workExperience: this.fb.array([]),
       contactInformation: this.fb.group({
         phoneNumber: [''],
-        emailAddress: [''],
+        emailAddress: ['', [Validators.required, Validators.email]],
         linkedInProfile: [''],
         otherSocialMedia: ['']
       }),
@@ -97,6 +97,7 @@ export class ResumeFormComponent implements OnInit {
     })));
 
   }
+
 
   get skills(): FormArray {
     return this.resumeForm.get('skills') as FormArray;
@@ -218,7 +219,8 @@ export class ResumeFormComponent implements OnInit {
         ...this.resumeForm.value
       };
       this.formSubmitted.emit(updatedResume);
-
+    } else {
+      this.resumeForm.markAllAsTouched();
     }
   }
 
