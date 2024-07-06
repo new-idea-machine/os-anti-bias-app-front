@@ -1,7 +1,11 @@
 <div>
-    <button (click)="toggleEditMode()">Edit</button>
-
-
+    <button (click)="toggleEditMode()">
+     @if(!isEditMode) {
+      Edit
+     } @else if (isEditMode){
+      cancel
+     }
+    </button>
     @if(isEditMode) {
       <app-resume-form
         [resume]="resume"
@@ -11,7 +15,4 @@
     } @else if (!isEditMode) {
       <app-resume></app-resume>
     }
-
-
-
 </div>
