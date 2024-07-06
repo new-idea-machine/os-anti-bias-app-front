@@ -20,6 +20,7 @@ export class ResumeFormComponent implements OnInit {
   resumeForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
+    //INITIALIZE THE FORM GROUP WITH DEFAULT EMPTY CONTROLS AND VALIDATORS
     this.resumeForm = this.fb.group({
       title: [''],
       summary: [''],
@@ -39,19 +40,20 @@ export class ResumeFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    //IF RESUME DATA IS PROVIDED, POPULATE THE FROM WITH EXISTING DATA
     if (this.resume) {
       this.populateForm(this.resume);
     } else {
+      //IF NO RESUME DATA, ADD EMPTY FORM CONTROL
       this.addSkill();
       this.addEducation();
       this.addWorkExperience();
       this.addProject();
       this.addCertification();
-
     }
-
   }
 
+  //POPULATE THE FORM WITH RESUME DATA
   populateForm(resume: Resume) {
     this.resumeForm.patchValue({
       resume_id: resume.resume_id,
@@ -98,7 +100,7 @@ export class ResumeFormComponent implements OnInit {
 
   }
 
-
+  //GETTERS FOR FORM ARRAYS - THIS IS BETTER FOR REUSABILITY AND READABLITY
   get skills(): FormArray {
     return this.resumeForm.get('skills') as FormArray;
   }
@@ -140,7 +142,7 @@ export class ResumeFormComponent implements OnInit {
   }
 
 
-
+  //METHODS TO ADD NEW FORM CONTROLS
   addSkill() {
     this.skills.push(this.fb.control('', Validators.required));
   }
