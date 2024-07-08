@@ -21,11 +21,11 @@ export class JobsComponent {
     private employerService: EmployerService
   ) {}
   jobs: JobPost[] = []
+  search: any = ""
   filters: any = {
-    country:"",
-    type_of_work: "",
+      country:"",
+      type_of_work: "",
     
-
   }
 updateFilters(): void {
  console.log(this.filters)
@@ -40,6 +40,7 @@ updateFilters(): void {
     console.log(this.jobs)
   }
   filteredSearch() {
+    const searchString = this.search
     const verifiedFilters: any = {
       
     } 
@@ -51,9 +52,8 @@ updateFilters(): void {
       
     )
 
-console.log("filters: " + JSON.stringify(this.filters))
-console.log("Verified filters: " + JSON.stringify(verifiedFilters))
-    this.employerService.filterJobs(verifiedFilters).subscribe(filteredJobs => {
+
+    this.employerService.filterJobs2(verifiedFilters, searchString).subscribe(filteredJobs => {
       this.jobs = filteredJobs;
     })
     console.log(this.jobs)

@@ -2,18 +2,14 @@
   <div class="job_search_area">
 
     <form class="job_search_form"  #filter="ngForm" (ngSubmit)="updateFilters()">
+      <input  type="text"  [(ngModel)]="search" name="Search" placeholder="Search" >
+      <h5>Filters</h5>
       <div>
 
-        <input  type="text"  [(ngModel)]="filters.country" name="country" >
-        <input  type="text"  [(ngModel)]="filters.type_of_work" name="Work Setting Preference" >
+        <input  type="text"  [(ngModel)]="filters.country" name="country" placeholder="Country" >
+        <input  type="text"  [(ngModel)]="filters.type_of_work" name="Work Setting Preference" placeholder="work setting" >
       </div>
-      <div>
-      
-
-        <input type="text" placeholder="Province / State">
-        <input type="text" placeholder="Language">
-      </div>
-      <input type="text" placeholder="Skills">
+ 
 
       <button type="button" (click)="filteredSearch()">SEARCH </button>
     </form>

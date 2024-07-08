@@ -148,5 +148,19 @@ filterJobs(filters: Partial<JobPost>): Observable<JobPost[]> {
   );
 }
     
+filterJobs2(filters: Partial<JobPost>, searchString: string): Observable<JobPost[]> {
+  return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/`).pipe(
+      map(jobs => 
+        jobs
+        .filter(job => job.description.toLowerCase().includes(searchString.toLowerCase()) || job.job_title.toLowerCase().includes(searchString.toLowerCase()) )
+        .filter(job => 
+          (Object.keys(filters) as (keyof JobPost)[]).every(key => 
+              filters[key] === undefined || job[key] === filters[key]
+          )
+      )
+    )
+  );
+}
+    
 
 }
