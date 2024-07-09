@@ -2,7 +2,10 @@
   <div class="candidate_search_area">
 
     <form class="candidate_search_form" action="">
+      <input type="text" [(ngModel)]="search" name="Search" placeholder="Search">
+      <h2>Filters</h2>
       <div>
+
 
         <input type="text" [(ngModel)]="filters.country " name="country" placeholder="Country">
         <input type="text" [(ngModel)]="filters.type_of_work" name="Work Setting Preference" placeholder="Work Type">
@@ -11,7 +14,7 @@
 
 
       </div>
-      <input type="text" placeholder="Skills">
+      <!-- <input type="text" placeholder="Skills"> -->
 
       <button type="button" (click)="filteredSearch()">SEARCH </button>
     </form>

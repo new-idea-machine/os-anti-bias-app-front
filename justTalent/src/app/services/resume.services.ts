@@ -36,6 +36,29 @@ filterResumes(filters: Partial<Resume>): Observable<Resume[]> {
       ))
   );
 }
+
+filterResumes2(filters: Partial<Resume>, searchString: string): Observable<Resume[]> {
+  return this.http.get<Resume[]>(`${this.apiUrl}/resume/`).pipe(
+      map(jobs => 
+        jobs
+        .filter(job => job.summary.toLowerCase().includes(searchString.toLowerCase()) || job.title.toLowerCase().includes(searchString.toLowerCase()) )
+        .filter(job => 
+          (Object.keys(filters) as (keyof Resume)[]).every(key => 
+              filters[key] === undefined || job[key] === filters[key]
+          )
+      ))
+  );
+}
+    
+
     
 
 }
+
+
+
+    
+
+
+
+
