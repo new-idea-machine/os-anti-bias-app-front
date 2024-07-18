@@ -17,10 +17,6 @@ class MockEmployerService {
   }
 }
 
-class MockRouter {
-  navigate = jasmine.createSpy('navigate');
-}
-
 describe('JobsComponent', () => {
   let component: JobsComponent;
   let fixture: ComponentFixture<JobsComponent>;
@@ -29,11 +25,10 @@ describe('JobsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [JobsComponent],
-      imports: [CommonModule, RouterLink, FormsModule],
+      imports: [CommonModule, RouterLink, FormsModule, JobsComponent], // Import JobsComponent as standalone
       providers: [
         { provide: EmployerService, useClass: MockEmployerService },
-        { provide: Router, useClass: MockRouter }
+        { provide: Router, useValue: { navigate: jest.fn() } }
       ]
     }).compileComponents();
   });
@@ -78,7 +73,7 @@ describe('JobsComponent', () => {
       created_at: '2024-01-01T00:00:00Z',
       modified_at: '2024-01-01T00:00:00Z'
     }];
-    spyOn(employerService, 'getAllJobPosts').and.returnValue(of(jobs));
+    jest.spyOn(employerService, 'getAllJobPosts').mockReturnValue(of(jobs));
 
     component.searchJobs();
 
@@ -107,7 +102,7 @@ describe('JobsComponent', () => {
       created_at: '2024-02-01T00:00:00Z',
       modified_at: '2024-02-01T00:00:00Z'
     }];
-    spyOn(employerService, 'filterJobs').and.returnValue(of(filteredJobs));
+    jest.spyOn(employerService, 'filterJobs').mockReturnValue(of(filteredJobs));
 
     component.filteredSearch();
 
