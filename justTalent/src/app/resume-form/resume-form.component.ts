@@ -22,13 +22,13 @@ export class ResumeFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     //INITIALIZE THE FORM GROUP WITH DEFAULT EMPTY CONTROLS AND VALIDATORS
     this.resumeForm = this.fb.group({
-      title: [''],
-      summary: [''],
+      title: ['', Validators.required],
+      summary: ['', Validators.required],
       skills: this.fb.array([]),
       education: this.fb.array([]),
       workExperience: this.fb.array([]),
       contactInformation: this.fb.group({
-        phoneNumber: [''],
+        phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
         emailAddress: ['', [Validators.required, Validators.email]],
         linkedInProfile: [''],
         otherSocialMedia: ['']

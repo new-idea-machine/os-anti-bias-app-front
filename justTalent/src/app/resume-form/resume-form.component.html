@@ -2,7 +2,18 @@
   <!-- BASIC INFO -->
   <div>
     <label for="title">Title:</label>
-    <input id="title" formControlName="title">
+    <input
+      id="title"
+      formControlName="title"
+      [class.invalid]="
+        resumeForm.get('title')?.invalid &&
+        (resumeForm.get('title')?.dirty ||
+        resumeForm.get('title')?.touched)
+      "
+    >
+    @if(resumeForm.get('title')?.touched && resumeForm.get('title')?.invalid){
+      <small *ngIf="resumeForm.get('title')?.hasError('required')"  class="error">Title is required.</small>
+    }
   </div>
 
   <div>
@@ -14,8 +25,21 @@
   <div formGroupName="contactInformation">
     <h3>Contact Information</h3>
     <label for="phoneNumber">Phone Number:</label>
-    <input id="phoneNumber" formControlName="phoneNumber">
-
+    <input
+      id="phoneNumber"
+      formControlName="phoneNumber"
+      [class.invalid]="
+        resumeForm.get('contactInformation.phoneNumber')?.invalid &&
+        (resumeForm.get('contactInformation.phoneNumber')?.dirty ||
+        resumeForm.get('contactInformation.phoneNumber')?.touched)
+      "
+    >
+    @if(resumeForm.get('contactInformation.phoneNumber')?.touched && resumeForm.get('contactInformation.phoneNumber')?.invalid){
+      <div class="error">
+        <small *ngIf="resumeForm.get('contactInformation.phoneNumber')?.hasError('required')">Phone Number is required.</small>
+        <small *ngIf="resumeForm.get('contactInformation.phoneNumber')?.hasError('pattern')">Phone Number is invalid.</small>
+      </div>
+    }
     <label for="emailAddress">Email Address:</label>
     <input id="emailAddress" formControlName="emailAddress"
       [class.invalid]="
