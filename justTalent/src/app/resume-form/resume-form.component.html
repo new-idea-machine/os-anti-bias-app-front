@@ -1,0 +1,221 @@
+<form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
+  <!-- BASIC INFO -->
+  <div>
+    <label for="title">Title:</label>
+    <input
+      id="title"
+      formControlName="title"
+      [class.invalid]="
+        resumeForm.get('title')?.invalid &&
+        (resumeForm.get('title')?.dirty ||
+        resumeForm.get('title')?.touched)
+      "
+    >
+    @if(resumeForm.get('title')?.touched && resumeForm.get('title')?.invalid){
+      <small *ngIf="resumeForm.get('title')?.hasError('required')"  class="error">Title is required.</small>
+    }
+  </div>
+
+  <div>
+    <label for="summary">Summary:</label>
+    <textarea id="summary" formControlName="summary"></textarea>
+  </div>
+
+  <!-- CONTACT INFO -->
+  <div formGroupName="contactInformation">
+    <h3>Contact Information</h3>
+    <label for="phoneNumber">Phone Number:</label>
+    <input
+      id="phoneNumber"
+      formControlName="phoneNumber"
+      [class.invalid]="
+        resumeForm.get('contactInformation.phoneNumber')?.invalid &&
+        (resumeForm.get('contactInformation.phoneNumber')?.dirty ||
+        resumeForm.get('contactInformation.phoneNumber')?.touched)
+      "
+    >
+    @if(resumeForm.get('contactInformation.phoneNumber')?.touched && resumeForm.get('contactInformation.phoneNumber')?.invalid){
+      <div class="error">
+        <small *ngIf="resumeForm.get('contactInformation.phoneNumber')?.hasError('required')">Phone Number is required.</small>
+        <small *ngIf="resumeForm.get('contactInformation.phoneNumber')?.hasError('pattern')">Phone Number is invalid.</small>
+      </div>
+    }
+    <label for="emailAddress">Email Address:</label>
+    <input id="emailAddress" formControlName="emailAddress"
+      [class.invalid]="
+        resumeForm.get('contactInformation.emailAddress')?.invalid &&
+        (resumeForm.get('contactInformation.emailAddress')?.dirty ||
+        resumeForm.get('contactInformation.emailAddress')?.touched)
+      "
+    >
+    @if(resumeForm.get('contactInformation.emailAddress')?.touched && resumeForm.get('contactInformation.emailAddress')?.invalid){
+      <div class="error">
+        <small *ngIf="resumeForm.get('contactInformation.emailAddress')?.hasError('required')">Email address is required.</small>
+        <small *ngIf="resumeForm.get('contactInformation.emailAddress')?.hasError('email')">Email address is invalid.</small>
+      </div>
+    }
+
+
+    <label for="linkedInProfile">LinkedIn Profile:</label>
+    <input id="linkedInProfile" formControlName="linkedInProfile">
+
+    <label for="otherSocialMedia">Other Social Media:</label>
+    <input id="otherSocialMedia" formControlName="otherSocialMedia">
+  </div>
+
+  <!-- SKILLS -->
+  <div formArrayName="skills">
+    <h3>Skills</h3>
+    @for(skill of skills.controls; track skill; let i = $index) {
+      <input [formControlName]="i">
+      <button (click)="skills.removeAt(i)">Remove</button>
+    }
+    <button (click)="addSkill()">Add Skill</button>
+  </div>
+  <!-- EDUCATION -->
+  <div formArrayName="education">
+    <h3>Education</h3>
+    @for(edu of education.controls; track edu; let i = $index) {
+      <div [formGroupName]="i">
+        <label for="degree">Degree:</label>
+        <input id="degree" formControlName="degree">
+
+        <label for="school">School:</label>
+        <input id="school" formControlName="school">
+
+        <label for="major">Major:</label>
+        <input id="major" formControlName="major">
+
+        <label for="graduationYear">Graduation Year:</label>
+        <input id="graduationYear" type="number" formControlName="graduationYear">
+
+        <button (click)="education.removeAt(i)">Remove</button>
+      </div>
+    }
+    <button (click)="addEducation()">Add Education</button>
+  </div>
+
+  <!-- WORK HISTORY -->
+  <div formArrayName="workExperience">
+    <h3>Work Experience</h3>
+    @for(work of workExperience.controls; track work; let i = $index) {
+      <div [formGroupName]="i">
+        <label for="jobTitle">Job Title:</label>
+        <input id="jobTitle" formControlName="jobTitle">
+
+        <label for="company">Company:</label>
+        <input id="company" formControlName="company">
+
+        <label for="location">Location:</label>
+        <input id="location" formControlName="location">
+
+        <label for="startDate">Start Date:</label>
+        <input id="startDate" type="date" formControlName="startDate">
+
+        <label for="endDate">End Date:</label>
+        <input id="endDate" type="date" formControlName="endDate">
+
+        <div formArrayName="responsibilities">
+          <label>Responsibilities:</label>
+          @for(resp of getWorkExperienceResponsibilities(i).controls; track resp; let j = $index) {
+            <input [formControlName]="j">
+            <button type="button" (click)="getWorkExperienceResponsibilities(i).removeAt(j)">Remove</button>
+          }
+          <button type="button" (click)="addResponsibility(i)">Add Responsibility</button>
+        </div>
+
+        <div formArrayName="achievements">
+          <label>Achievements:</label>
+          @for(ach of getWorkExperienceAchievements(i).controls; track ach; let j = $index) {
+            <input [formControlName]="j">
+            <button type="button" (click)="getWorkExperienceAchievements(i).removeAt(j)">Remove</button>
+          }
+          <button type="button" (click)="addAchievement(i)">Add Achievement</button>
+        </div>
+        <button type="button" (click)="workExperience.removeAt(i)">Remove Work Experience</button>
+      </div>
+    }
+
+    <button type="button" (click)="addWorkExperience()">Add Work Experience</button>
+  </div>
+
+  <!-- PROJECTS -->
+  <div formArrayName="projects">
+    <h3>Projects</h3>
+    @for(project of projects.controls; track project; let i = $index) {
+      <div [formGroupName]="i">
+        <label for="projectName">Project Name:</label>
+        <input id="projectName" formControlName="projectName">
+
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description"></textarea>
+
+        <div formArrayName="rolesResponsibilities">
+          <label>Roles and Responsibilities:</label>
+          @for(role of getProjectRolesResponsibilties(i).controls; track role; let j = $index) {
+            <input [formControlName]="j">
+            <button type="button" (click)="getProjectRolesResponsibilties(i).removeAt(j)">Remove</button>
+          }
+          <button type="button" (click)="addRoleResponsibility(i)">Add Role/Responsibility</button>
+        </div>
+
+        <div formArrayName="technologiesUsed">
+          <label>Technologies Used:</label>
+          @for(tech of getProjectTechnologiesUsed(i).controls; track tech; let j = $index) {
+            <input [formControlName]="j">
+            <button type="button" (click)="getProjectTechnologiesUsed(i).removeAt(j)">Remove</button>
+          }
+          <button type="button" (click)="addTechnology(i)">Add Technology</button>
+        </div>
+
+        <button type="button" (click)="projects.removeAt(i)">Remove Project</button>
+      </div>
+    }
+
+    <button type="button" (click)="addProject()">Add Project</button>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div formArrayName="certifications">
+    <h3>Certifications</h3>
+    @for(cert of certifications.controls; track cert; let i = $index) {
+      <div [formGroupName]="i">
+        <label for="certificationName">Certification Name:</label>
+        <input id="certificationName" formControlName="certificationName">
+
+        <label for="issuingOrganization">Issuing Organization:</label>
+        <input id="issuingOrganization" formControlName="issuingOrganization">
+
+        <label for="dateEarned">Date Earned:</label>
+        <input id="dateEarned" type="date" formControlName="dateEarned">
+
+        <button type="button" (click)="certifications.removeAt(i)">Remove Certification</button>
+      </div>
+    }
+    <button type="button" (click)="addCertification()">Add Certification</button>
+  </div>
+  <!-- LANGUAGES -->
+  <div formArrayName="languages">
+    <h3>Languages</h3>
+    @for(lang of languages.controls; track lang; let i = $index) {
+      <div [formGroupName]="i">
+        <label for="languageName">Language Name:</label>
+        <input id="languageName" formControlName="languageName">
+
+        <label for="proficiencyLevel">Proficiency Level:</label>
+        <select id="proficiencyLevel" formControlName="proficiencyLevel">
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+
+        <button type="button" (click)="languages.removeAt(i)">Remove Language</button>
+      </div>
+    }
+    <button type="button" (click)="addLanguage()">Add Language</button>
+  </div>
+
+  <button type="submit">Submit</button>
+  <button type="button" (click)="cancelEditMode()">Cancel</button>
+</form>
+
