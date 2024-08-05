@@ -4,12 +4,13 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { EmployerRegisterationFormComponent } from './employer-registeration-form/employer-registeration-form.component';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, EmployerRegisterationFormComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -19,6 +20,7 @@ export class RegisterComponent {
   http = inject(HttpClient);
   authService = inject(AuthService)
   router = inject(Router)
+  isEmployer:boolean = false;
 
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
@@ -42,5 +44,9 @@ export class RegisterComponent {
       this.authService.currentUserSignal.set(response.user);
       this.router.navigateByUrl('/');
     })
+  }
+
+  toggleFormType(): void {
+    this.isEmployer = !this.isEmployer;
   }
 }
