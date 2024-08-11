@@ -12,4 +12,5 @@ export interface User {
   created_at: Date;
   modified_at: Date;
   token: string;
+  role: string;
 }

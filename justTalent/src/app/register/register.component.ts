@@ -20,12 +20,13 @@ export class RegisterComponent {
   http = inject(HttpClient);
   authService = inject(AuthService)
   router = inject(Router)
-  isEmployer:boolean = false;
+
 
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
+    role: [''],
   });
 
   endpoint = 'http://localhost:3000/api/users';
@@ -42,11 +43,10 @@ export class RegisterComponent {
       //Store a user token in local storage
       localStorage.setItem('token', response.user.token);
       this.authService.currentUserSignal.set(response.user);
+      //ONLY REDIRECT WHEN STATUS IS SUCCESS
       this.router.navigateByUrl('/');
     })
   }
 
-  toggleFormType(): void {
-    this.isEmployer = !this.isEmployer;
-  }
+
 }

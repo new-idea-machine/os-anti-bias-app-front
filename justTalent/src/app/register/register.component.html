@@ -1,8 +1,6 @@
 <h1>Register</h1>
-<button (click)="toggleFormType()">isEmployer</button>
-@if(isEmployer) {
-  <app-employer-registeration-form/>
-} @else if (!isEmployer) {
+
+
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
       <input type="text" placeholder="Username" formControlName="username"/>
@@ -14,8 +12,22 @@
       <input type="password" placeholder="Password" formControlName="password"/>
     </div>
     <div>
+      <input
+        type="radio"
+        formControlName="role"
+        value="candidate"
+      />
+      <label for="candidate">I am a job seeker</label>
+      <input
+        type="radio"
+        formControlName="role"
+        value="employer"
+      />
+      <label for="employer">I am an employer</label>
+    </div>
+    <div>
       <button type="submit">Sign In</button>
     </div>
   </form>
-}
+
 
