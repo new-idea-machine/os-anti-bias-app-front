@@ -44,11 +44,14 @@ export class CandidateSearchComponent {
 
     this.resumeService.filterResumes2(verifiedFilters, searchString).subscribe(filteredResumes => {
       this.candidates = filteredResumes;
+      console.log(this.candidates)
     });
     
   }
 
-
+  redirectToResume(id: any) {
+    this.router.navigate(['/resume', id]);
+  }
 
 
 

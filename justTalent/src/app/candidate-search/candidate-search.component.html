@@ -23,7 +23,7 @@
     <div class="candidates">
 
       <div *ngFor="let candidate of candidates">
-        <div class="candidate">
+        <div class="candidate" (click)="redirectToResume(candidate.id)">
 
           <h1 class="header">{{candidate.title}}</h1>
           <p>{{candidate.summary}} </p>

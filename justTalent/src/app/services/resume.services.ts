@@ -27,6 +27,11 @@ export class ResumeService {
     return this.http.get<Resume[]>(`${this.apiUrl}/Resumes/`);
 }
 
+getResumeById(id: string): Observable<Resume> {
+  console.log(this.http.get<Resume>(`${this.apiUrl}/resume/${id}`));
+  return this.http.get<Resume>(`${this.apiUrl}/resume/${id}`);
+}
+
 filterResumes(filters: Partial<Resume>): Observable<Resume[]> {
   return this.http.get<Resume[]>(`${this.apiUrl}/resume/`).pipe(
       map(jobs => jobs.filter(job => 

@@ -1,0 +1,19 @@
+.skills{ 
+  width: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.skill{
+  background-color: cadetblue;
+  width: fit-content;
+  padding: 5px;
+  margin: 3px;
+
+}
+
+.experience{
+  background-color: beige;
+  width: fit-content;
+  padding: 3px;
+}

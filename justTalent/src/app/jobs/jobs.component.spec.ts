@@ -57,21 +57,21 @@ describe('JobsComponent', () => {
 
   it('should call getAllJobPosts and update jobs on searchJobs', () => {
     const jobs: JobPost[] = [{
-      job_post_id: 1,
-      employer_id: 1,
-      start_date: '2024-01-01',
-      end_date: '2024-12-31',
-      job_title: 'Job 1',
-      description: 'Job 1 Description',
-      requirements: 'Requirements',
-      salary: 50000,
-      type_of_salary: 'Annual',
-      country: 'USA',
-      city: 'New York',
-      type_of_work: 'Remote',
-      location: 'Home',
-      created_at: '2024-01-01T00:00:00Z',
-      modified_at: '2024-01-01T00:00:00Z'
+      job_post_id: '3360d95d-a3ae-4acb-ac20-880d5f692854',
+      employer_id: employerId,
+      start_date: new Date('2023-02-09T12:20:00.000Z'),
+      end_date: new Date('2023-02-09T12:20:00.000Z'),
+      job_title: "Data Scientist",
+      description: "Analyzing and interpreting complex data sets",
+      requirements: "Master's degree in Data Science, Python expertise",
+      salary: 95000,
+      type_of_salary: "Annual",
+      country: "Canada",
+      city: "Toronto",
+      type_of_work: "Remote",
+      location: "Anywhere",
+      created_at: new Date('2023-02-09T12:20:00.000Z'),
+      modified_at: new Date('2023-02-10T16:25:00.000Z'),
     }];
     jest.spyOn(employerService, 'getAllJobPosts').mockReturnValue(of(jobs));
 

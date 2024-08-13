@@ -1,0 +1,38 @@
+<div class="container job-details-container">
+  @if (resume) {
+    <div>
+      <h2>{{ resume.title}}</h2>
+      <p>{{ resume.id }}</p>
+      <p>{{ resume.summary }}</p>
+      <div class="skills" *ngFor="let skill of resume.skills">
+        <div class="skill">
+          {{skill}}
+        </div>
+      </div>
+      <div class="experience_list" *ngFor="let experience of resume.workExperience">
+        <div class="experience">
+          <h3>{{experience.jobTitle}}</h3>
+          <h4>{{experience.company}}</h4>
+          <ul class="responsibilities" *ngFor="let responsibility of experience.responsibilities">
+
+            <li>{{responsibility}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="certifications" *ngFor="let cert of resume.certifications">
+        <div class="certification">
+          {{cert.certificationName}}
+        </div>
+      </div>
+      <div class="certifications" *ngFor="let cert of resume.certifications">
+        <div class="certification">
+          {{cert.certificationName}}
+        </div>
+      </div>
+
+
+    </div>
+  } @else {
+    <p>Loading...</p>
+  }
+</div>
