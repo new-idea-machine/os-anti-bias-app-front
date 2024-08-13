@@ -5,7 +5,8 @@
 
 <div class="navbar">
   <div class="navbar-brand">
-    <a href="/">JustTalent</a>
+    <a href="/"><img class="navbar-img-logo" src="assets/images/justTALENT (1).png" alt="">
+    </a>
   </div>
   <div class="navbar-links">
     <a routerLink="/">Home</a>
@@ -17,11 +18,11 @@
     <a routerLink="/candidate-search">Candidates</a>
     <a routerLink="/jobPosts">Jobs</a>
     @if (authService.currentUserSignal() == null) {
-      <a routerLink="/login">Log In</a>
+      <button class="navbar-button-login"><a routerLink="/login">Log In</a></button>
     }
     @if (authService.currentUserSignal()) {
       <span>{{ authService.currentUserSignal()?.username}}</span>
-      <span (click)="logout()">Log out</span>
+      <button><span (click)="logout()">Log out</span></button>
     }
 
   </div>

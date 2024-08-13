@@ -1,17 +1,28 @@
 
 
 .navbar {
-  background-color: #5E503F;
+  background-color: #565264;
   color: white;
   padding: 15px;
   display: flex;
   justify-content: space-between;
 }
 
+.navbar-img-logo {
+  height: 150px;
+  padding-left: 20px;
+}
+
+.navbar-links {
+  margin-top: 40px;
+  padding-right: 30px;
+}
+
 .navbar a {
   color: white;
   text-decoration: none;
-  margin: 0 15px;
+  margin: 0 18px;
+  font-size: 18px;
 }
 
 .navbar a:hover {
@@ -25,3 +36,14 @@
 .content {
   padding: 20px;
 }
+
+.navbar-button-login {
+  padding: 10px;
+  background-color: #A6808C;
+  border-radius: 20px;
+  border-color: transparent}
+
+.navbar-button-login a {
+  font-size: 17px;
+  font-weight: 700;
+  }
