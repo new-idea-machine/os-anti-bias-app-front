@@ -27,6 +27,9 @@
 
 .navbar a:hover {
   text-decoration: underline;
+  /* border: 2px; */
+  color: #cf9eae;
+  font-weight: 600;
 }
 
 .navbar-brand {
