@@ -121,22 +121,31 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 height: 513px;
-width: 1440px;
-background-image: url("../../assets/images/mountains.png")
+width: 100%;
+background-image: url("../../assets/images/mountains.png");
+background-repeat: no-repeat;
+background-size: cover;
 }
+
 .home_call_to_action_heading{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 55px;
-  font-weight: 400;
+  color: #fff;
+  font-weight: 600;
 }
 .register{
-  height: 74px;
+  height: 77px;
   width: 260px;
   color: #0A0908;
   font-size: 28pt;
-  font-weight: 400;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
   border-radius: 15px;
   background-color: #EAE0D5;
+}
 
+.register a{
+  text-decoration: none;
+  color: #000;
 }
 
