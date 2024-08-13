@@ -41,19 +41,28 @@ height: 600px;
 width: 1440px;
 
 }
-.hero_banner_text{
-  font-weight: bold;
-  font-size: 42pt;
-  font-family: sans-serif;
-  color: white;
-}
+
 .hero_banner{
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  background-image: url("/assets/images/Rectangle 2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: darkgray;
   height: 600px;
-  width: 1440px;
+  width: 100%;
+}
+
+.hero_banner_text{
+  font-weight: bold;
+  font-size: 50pt;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  padding-right: 180px;
+  padding-bottom: 30px;
+  text-shadow: 2px 2px 5px #0A0908;
+  width: 700px;
 }
 
 .home_hero_2{
@@ -73,7 +82,7 @@ width: 1440px;
   font-size: 40pt;
   font-weight: 700;
   font-family: sans-serif;
-  margin: 1rem; 
+  margin: 1rem;
   text-shadow: 0px 2px 2px rgb(44, 43, 43);
 }
 .home_section_2_text{
@@ -113,7 +122,7 @@ width: 1440px;
   font-weight: 600;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   margin: 1em;
-  
+
 }
 .home_section_info_card_label{
   font-size: 22pt;
