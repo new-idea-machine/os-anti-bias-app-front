@@ -68,6 +68,53 @@ align-items: center;
   margin: 20px 40px 20px 40px;
 }
 
+.home_section_3{
+  display: flex;
+  background-color: #A6808C;
+  flex-direction: column;
+  height: 760px;
+  width: 100%;
+}
+
+.home_section_3_header{
+  color: #fff;
+  text-align: center;
+  font-size: 40pt;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.home_section_3_cards{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.home_section_info_card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  height: 462px;
+  background-color: #565264;
+}
+
+.home_section_info_card_number_img{
+  height: 75px;
+  padding-top: 20px;
+}
+
+.home_section_info_card_label{
+  font-size: 18pt;
+  font-weight: 400;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  margin: 1em;
+}
+
 .home_call_to_action{
 display: flex;
 flex-direction: column;
@@ -93,43 +140,3 @@ background-image: url("../../assets/images/mountains.png")
 
 }
 
-
-.home_section_3{
-display: flex;
-background-color: #EAE0D5;
-align-items: center;
-justify-content: space-evenly;
-height: 600px;
-width: 1440px;
-
-}
-
-.home_section_info_card{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 360px;
-  height: 462px;
-  background-color: #5E503F;
-}
-.home_section_info_card_number{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #EAE0D5;
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  font-size: 22pt;
-  font-weight: 600;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin: 1em;
-
-}
-.home_section_info_card_label{
-  font-size: 22pt;
-  font-weight: 400;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin: 1em;
-
-}
