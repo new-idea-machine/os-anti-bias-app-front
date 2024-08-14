@@ -26,7 +26,7 @@ export class RegisterComponent {
     username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
-    role: [''],
+    role: ['', Validators.required],
   });
 
   endpoint = 'http://localhost:3000/api/users';
