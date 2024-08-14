@@ -4,13 +4,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { EmployerRegisterationFormComponent } from './employer-registeration-form/employer-registeration-form.component';
-
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, EmployerRegisterationFormComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
