@@ -46,4 +46,16 @@ export class EmployerService {
   }
 
 
+
+  getCurrentUserEmployerInfo(): Observable<Employer> {
+    return this.http.get<Employer>(`${this.apiUrl}/employers/current-user`);
+  }
+
+
+
+
+
+
+
+
 }
