@@ -3,20 +3,60 @@
   justify-content: center;
   height: 600px;
   width: screen;
-  
-  }
-  .footerBody {
-    height: 600px;
-    width: 1440px;
-    background-color: #C6AC8F;
 
-    }
+}
 
-    .footerContent {
-display: flex;
-justify-content: space-evenly;
+.footerBody {
+  height: 600px;
+  width: 1440px;
+}
 
-    }
+.footerContent {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer_logo_column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 450px;
+  height: 550px;
+  padding-top: 30px;
+}
+
+.footer-img-logo{
+  height: 160px;
+}
+
+.socials{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.footer_socal_img{
+  height: 45px;
+}
+
+.footer_menu_column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 450px;
+  height: 550px;
+  padding-top: 50px;
+}
+
+.footer_menu_column a{
+  padding: 5px;
+  font-weight: 400;
+  font-size: 20px;
+  text-decoration: none;
+  color: #000;
+
+}
+
     .footerColumn{
       display: flex;
       flex-direction: column;
