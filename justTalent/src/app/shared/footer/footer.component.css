@@ -1,13 +1,13 @@
 .footerComponent {
   display: flex;
   justify-content: center;
-  height: 600px;
+  /* height: 400px; */
   width: screen;
 
 }
 
 .footerBody {
-  height: 600px;
+  height: 450px;
   width: 1440px;
 }
 
@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   width: 450px;
-  height: 550px;
+  height: 350px;
   padding-top: 30px;
 }
 
@@ -31,8 +31,12 @@
 
 .socials{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+}
+
+.socials a{
+  padding-right: 12px;
 }
 
 .footer_socal_img{
@@ -44,7 +48,7 @@
   flex-direction: column;
   align-items: center;
   width: 450px;
-  height: 550px;
+  height: 350px;
   padding-top: 50px;
 }
 
@@ -57,20 +61,59 @@
 
 }
 
-    .footerColumn{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 450px;
-      height: 550px;
+.footer_email_column{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 450px;
+  height: 350px;
+}
 
-    }
-    .footerLegal {
-      text-align: center;
-    }
+.email_box_header{
+  font-weight: 600;
+  font-size: 35px;
+}
 
-    .socials {
-      display: flex;
-      justify-content: space-evenly;
-      width: 200px;
-    }
+.email_input_field{
+  height: 45px;
+  width: 400px;
+  background-color: transparent;
+  border: 2px solid black;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  color: #000;
+  font-weight: 400;
+  padding-left: 10px;
+}
+
+
+.email_input_field:focus{
+  outline-color: #cf9eae;
+}
+
+.email_input_label{
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.email_box_button{
+  padding: 10px;
+  margin-top: 15px;
+  /* background-color: #A6808C; */
+  background-color: #565264;
+  color: #fff;
+  border-radius: 20px;
+  border-color: transparent;
+  width: 130px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.footerLegal {
+  text-align: center;
+  padding-bottom: 10px;
+}
+

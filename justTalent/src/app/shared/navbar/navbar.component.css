@@ -44,7 +44,8 @@
   padding: 10px;
   background-color: #A6808C;
   border-radius: 20px;
-  border-color: transparent}
+  border-color: transparent;
+}
 
 .navbar-button-login a {
   font-size: 17px;
