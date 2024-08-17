@@ -3,7 +3,6 @@ import { Employer } from '../interfaces/employer';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmployerService } from '../services/employer.service';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-employer-form',
@@ -51,13 +50,10 @@ export class EmployerFormComponent implements OnInit {
 
   getCurrentUserEmployerInfo(): void {
     this.employerService.getCurrentUserEmployerInfo()
-      .pipe(
-        tap((employer: Employer) => {
-          this.employer = employer;
-          this.populateForm(employer);
-        })
-      )
-      .subscribe();
+      .subscribe((employer: Employer) => {
+        this.employer = employer;
+        this.populateForm(employer);
+      });
   }
 
   onSubmit(): void {
