@@ -9,11 +9,12 @@ import { ResumeFormComponent } from '../resume-form/resume-form.component';
 import { EmployerFormComponent } from '../employer-form/employer-form.component';
 import { Employer } from '../interfaces/employer';
 import { EmployerService } from '../services/employer.service';
+import { EmployerInfoComponent } from '../employer-info/employer-info.component';
 
 @Component({
   selector: 'app-candidate',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ResumeComponent, ResumeFormComponent, EmployerFormComponent],
+  imports: [CommonModule, ReactiveFormsModule, ResumeComponent, ResumeFormComponent, EmployerInfoComponent, EmployerFormComponent],
   templateUrl: './candidate.component.html',
   styleUrl: './candidate.component.css'
 })
