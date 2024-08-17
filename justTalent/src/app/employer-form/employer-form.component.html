@@ -1,1 +1,55 @@
-<p>employer-form works!</p>
+<form [formGroup]="employerForm" (ngSubmit)="onSubmit()">
+  <!-- EMPLOYER DETAILS -->
+
+
+  <div>
+    <label for="employer_name">Employer Name:</label>
+    <input id="employer_name" formControlName="employer_name" [class.invalid]="employerForm.get('employer_name')?.invalid && (employerForm.get('employer_name')?.dirty || employerForm.get('employer_name')?.touched)">
+    <small *ngIf="employerForm.get('employer_name')?.touched && employerForm.get('employer_name')?.invalid" class="error">Employer Name is required.</small>
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+  <div>
+    <label for="number_of_employees">Number of Employees:</label>
+    <input id="number_of_employees" formControlName="number_of_employees" type="number" [class.invalid]="employerForm.get('number_of_employees')?.invalid && (employerForm.get('number_of_employees')?.dirty || employerForm.get('number_of_employees')?.touched)">
+    <small *ngIf="employerForm.get('number_of_employees')?.touched && employerForm.get('number_of_employees')?.invalid" class="error">Number of Employees is required and must be greater than 0.</small>
+  </div>
+
+  <!-- CONTACT INFORMATION -->
+  <div>
+    <label for="contact_name">Contact Name:</label>
+    <input id="contact_name" formControlName="contact_name" [class.invalid]="employerForm.get('contact_name')?.invalid && (employerForm.get('contact_name')?.dirty || employerForm.get('contact_name')?.touched)">
+    <small *ngIf="employerForm.get('contact_name')?.touched && employerForm.get('contact_name')?.invalid" class="error">Contact Name is required.</small>
+  </div>
+
+  <div>
+    <label for="contact_email">Contact Email:</label>
+    <input id="contact_email" formControlName="contact_email" [class.invalid]="employerForm.get('contact_email')?.invalid && (employerForm.get('contact_email')?.dirty || employerForm.get('contact_email')?.touched)">
+    <small *ngIf="employerForm.get('contact_email')?.touched && employerForm.get('contact_email')?.invalid" class="error">Contact Email is required and must be a valid email address.</small>
+  </div>
+
+  <div>
+    <label for="established_date">Established Date:</label>
+    <input id="established_date" formControlName="established_date" type="date" [class.invalid]="employerForm.get('established_date')?.invalid && (employerForm.get('established_date')?.dirty || employerForm.get('established_date')?.touched)">
+    <small *ngIf="employerForm.get('established_date')?.touched && employerForm.get('established_date')?.invalid" class="error">Established Date is required.</small>
+  </div>
+
+  <div>
+    <label for="created_at">Created At:</label>
+    <input id="created_at" formControlName="created_at" type="date" [class.invalid]="employerForm.get('created_at')?.invalid && (employerForm.get('created_at')?.dirty || employerForm.get('created_at')?.touched)">
+    <small *ngIf="employerForm.get('created_at')?.touched && employerForm.get('created_at')?.invalid" class="error">Created At is required.</small>
+  </div>
+
+  <div>
+    <label for="modified_at">Modified At:</label>
+    <input id="modified_at" formControlName="modified_at" type="date" [class.invalid]="employerForm.get('modified_at')?.invalid && (employerForm.get('modified_at')?.dirty || employerForm.get('modified_at')?.touched)">
+    <small *ngIf="employerForm.get('modified_at')?.touched && employerForm.get('modified_at')?.invalid" class="error">Modified At is required.</small>
+  </div>
+
+  <button type="submit">Submit</button>
+  <button type="button" (click)="cancelEditMode()">Cancel</button>
+</form>
