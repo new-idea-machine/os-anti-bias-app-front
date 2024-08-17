@@ -1,2 +1,24 @@
-<p>employer-info works!</p>
-<h1>{{employer?.employer_name}}</h1>
+<div class="employer-container">
+  <div>
+    <h1>{{ employer?.employer_name }}</h1>
+    <p><strong>Description:</strong> {{ employer?.description }}</p>
+  </div>
+
+  <section>
+    <h2>Contact Information</h2>
+    <ul>
+      <li><strong>Contact Name:</strong> {{ employer?.contact_name }}</li>
+      <li><strong>Contact Email:</strong> <a href="mailto:{{ employer?.contact_email }}">{{ employer?.contact_email }}</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Details</h2>
+    <ul>
+      <li><strong>Number of Employees:</strong> {{ employer?.number_of_employees }}</li>
+      <li><strong>Established Date:</strong> {{ employer?.established_date | date:'yyyy-MM-dd' }}</li>
+      <li><strong>Created At:</strong> {{ employer?.created_at | date:'yyyy-MM-dd' }}</li>
+      <li><strong>Modified At:</strong> {{ employer?.modified_at | date:'yyyy-MM-dd' }}</li>
+    </ul>
+  </section>
+</div>
