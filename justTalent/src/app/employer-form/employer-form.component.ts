@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Employer } from '../interfaces/employer';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmployerService } from '../services/employer.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-employer-form',
@@ -14,6 +15,7 @@ import { EmployerService } from '../services/employer.service';
 export class EmployerFormComponent implements OnInit {
   employer: Employer | undefined;
   employerForm: FormGroup;
+  @Output() cancelEdit = new EventEmitter();
 
   constructor(
     private fb:FormBuilder,
@@ -63,7 +65,7 @@ export class EmployerFormComponent implements OnInit {
   }
 
   cancelEditMode(): void{
-
+    this.cancelEdit.emit();
   }
 
 }
