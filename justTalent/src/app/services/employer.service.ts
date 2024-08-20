@@ -53,7 +53,9 @@ export class EmployerService {
 
 
 
-
+  updateEmployer(employer: Employer): Observable<Employer> {
+    return this.http.put<Employer>(`${this.apiUrl}/employers/${employer.employer_id}`, employer);
+  }
 
 
 

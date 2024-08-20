@@ -58,10 +58,26 @@ export class EmployerFormComponent implements OnInit {
       });
   }
 
+  employerFormSubmit(updatedEmployer: Employer): void {
+    this.employerService.updateEmployer(updatedEmployer).subscribe(() => {
+      this.employer = updatedEmployer;
+      this.cancelEdit.emit();
+    })
+  }
+
   onSubmit(): void {
-    if (this.employerForm.valid) {
-      console.log(this.employerForm.value);
+
+    if(this.employerForm.valid){
+      const updatedEmployer = {
+        ...this.employer,
+        ...this.employerForm.value
+      };
+      this.employerFormSubmit(updatedEmployer);
+    } else {
+      this.employerForm.markAllAsTouched();
     }
+
+
   }
 
   cancelEditMode(): void{
