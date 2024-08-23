@@ -20,7 +20,9 @@
         ></app-employer-form>
 
       } @else if (!isEditMode) {
-        <app-employer-info></app-employer-info>
+        <app-employer-info
+          (openEdit)="toggleEditMode()"
+        ></app-employer-info>
       }
     } @else if (user?.role == "candidate") {
       @if(isEditMode) {

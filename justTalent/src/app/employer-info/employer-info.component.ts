@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Employer } from '../interfaces/employer';
 import { EmployerService } from '../services/employer.service';
 import { CommonModule } from '@angular/common';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-employer-info',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class EmployerInfoComponent implements OnInit {
   employer: Employer | undefined;
+  @Output() openEdit = new EventEmitter();
 
 
   constructor(
@@ -27,6 +29,10 @@ export class EmployerInfoComponent implements OnInit {
       .subscribe((employer: Employer) => {
         this.employer = employer;
       })
+  }
+
+  openEditForm(): void {
+    this.openEdit.emit();
   }
 
 }
