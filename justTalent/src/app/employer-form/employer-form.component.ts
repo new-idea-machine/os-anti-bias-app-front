@@ -53,8 +53,13 @@ export class EmployerFormComponent implements OnInit {
   getCurrentUserEmployerInfo(): void {
     this.employerService.getCurrentUserEmployerInfo()
       .subscribe((employer: Employer) => {
-        this.employer = employer;
-        this.populateForm(employer);
+        if (employer) {
+          this.employer = employer;
+          this.populateForm(employer);
+        } else {
+          console.log('No Employer Data Found')
+        }
+
       });
   }
 
@@ -65,20 +70,49 @@ export class EmployerFormComponent implements OnInit {
     })
   }
 
+  createEmployerInfo(newEmployerData: Employer): void {
+    this.employerService.createEmployerInfo(newEmployerData).subscribe(()=>{
+      this.employer = newEmployerData;
+      this.cancelEdit.emit();
+    })
+  }
+
+  // onSubmit(): void {
+
+  //   if(this.employerForm.valid){
+  //     const updatedEmployer = {
+  //       ...this.employer,
+  //       ...this.employerForm.value
+  //     };
+  //     this.employerFormSubmit(updatedEmployer);
+  //   } else {
+  //     this.employerForm.markAllAsTouched();
+  //   }
+
+  // }
+
   onSubmit(): void {
 
-    if(this.employerForm.valid){
-      const updatedEmployer = {
-        ...this.employer,
-        ...this.employerForm.value
-      };
-      this.employerFormSubmit(updatedEmployer);
+    if (this.employerForm.valid) {
+      if (this.employer) {
+        const updatedEmployer = {
+          ...this.employer,
+          ...this.employerForm.value
+        };
+        this.employerFormSubmit(updatedEmployer);
+      } else if (!this.employer) {
+        const newEmployerData = this.employerForm.value
+        this.createEmployerInfo(newEmployerData);
+
+      }
     } else {
+
       this.employerForm.markAllAsTouched();
     }
-
-
   }
+
+
+
 
   cancelEditMode(): void{
     this.cancelEdit.emit();

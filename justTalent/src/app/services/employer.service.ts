@@ -57,6 +57,13 @@ export class EmployerService {
     return this.http.put<Employer>(`${this.apiUrl}/employers/${employer.employer_id}`, employer);
   }
 
+  createEmployerInfo(employer: Employer): Observable<Employer> {
+    const token = localStorage.getItem('token');
+
+    const newEmployerData = { ...employer, user: token };
+    return this.http.post<Employer>(`${this.apiUrl}/employers/`, newEmployerData);
+  }
+
 
 
 
