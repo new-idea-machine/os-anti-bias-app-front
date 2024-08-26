@@ -32,7 +32,9 @@
           (cancelEdit)="toggleEditMode()"
         ></app-resume-form>
       } @else if (!isEditMode) {
-        <app-resume></app-resume>
+        <app-resume
+          (openEdit)="toggleEditMode()"
+        ></app-resume>
       }
     }
 
