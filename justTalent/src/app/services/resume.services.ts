@@ -46,5 +46,12 @@ export class ResumeService {
     return this.http.put<Resume>(`${this.apiUrl}/resume/${resume.resume_id}`, resume)
   }
 
+  createNewResume(resume: Resume): Observable<Resume> {
+    const token =localStorage.getItem('token');
+
+    const newResume = {...resume, user: token};
+    return this.http.post<Resume>(`${this.apiUrl}/resume/`, newResume)
+  }
+
 
 }

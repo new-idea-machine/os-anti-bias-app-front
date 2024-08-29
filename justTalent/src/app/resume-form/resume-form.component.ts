@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
+import { ResumeService } from '../services/resume.services';
 
 @Component({
   standalone: true,
@@ -19,7 +20,7 @@ export class ResumeFormComponent implements OnInit {
   @Output() cancelEdit = new EventEmitter();
   resumeForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private resumeService: ResumeService) {
     //INITIALIZE THE FORM GROUP WITH DEFAULT EMPTY CONTROLS AND VALIDATORS
     this.resumeForm = this.fb.group({
       title: ['', Validators.required],
@@ -208,22 +209,38 @@ export class ResumeFormComponent implements OnInit {
     }));
   }
 
+  createResume(newResume: Resume): void {
+    this.resumeService.createNewResume(newResume).subscribe(()=>{
+      this.resume = newResume;
+      this.cancelEdit.emit();
+    })
+  }
+
   //FORM SUBMIT HANDLER
   onSubmit(): void {
     // Check if the form is valid before proceeding
     // Skills Array - remove empty string
 
 
-    if (this.resumeForm.valid) {
-      // Update the resume object with form values
-      const updatedResume= {
-        ...this.resume,
-        ...this.resumeForm.value
-      };
-      this.formSubmitted.emit(updatedResume);
-    } else {
-      this.resumeForm.markAllAsTouched();
-    }
+    // if (this.resumeForm.valid) {
+    //   console.log('resume is valid')
+
+      if (this.resume) {
+        // Update the resume object with form values
+        const updatedResume= {
+          ...this.resume,
+          ...this.resumeForm.value
+        };
+        this.formSubmitted.emit(updatedResume);
+      } else if (!this.resume) {
+        const newResume = this.resumeForm.value;
+        this.createResume(newResume)
+      }
+
+
+    // } else {
+    //   this.resumeForm.markAllAsTouched();
+    // }
   }
 
   cancelEditMode(): void {
