@@ -3,16 +3,20 @@ import { Employer } from '../interfaces/employer';
 import { EmployerService } from '../services/employer.service';
 import { CommonModule } from '@angular/common';
 import { EventEmitter } from '@angular/core';
+import { JobListComponent } from '../job-list/job-list.component';
+import { JobPost } from '../interfaces/job-post';
 
 @Component({
   selector: 'app-employer-info',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, JobListComponent],
   templateUrl: './employer-info.component.html',
   styleUrl: './employer-info.component.css'
 })
 export class EmployerInfoComponent implements OnInit {
   employer: Employer | undefined;
+  jobPosts: JobPost[] | undefined;
+
   @Output() openEdit = new EventEmitter();
 
 
@@ -28,6 +32,16 @@ export class EmployerInfoComponent implements OnInit {
     this.employerService.getCurrentUserEmployerInfo()
       .subscribe((employer: Employer) => {
         this.employer = employer;
+        if(this.employer){
+          this.getJobPostsByEmployerId(this.employer?.employer_id);
+        }
+      })
+  }
+
+  getJobPostsByEmployerId(employerId: string): void {
+    this.employerService.getJobPostsByEmployerId(employerId)
+      .subscribe((jobPosts: JobPost[]) =>{
+        this.jobPosts = jobPosts;
       })
   }
 

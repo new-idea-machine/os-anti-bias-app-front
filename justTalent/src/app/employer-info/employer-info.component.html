@@ -23,6 +23,9 @@
       </ul>
     </section>
   </div>
+  <div>
+    <app-job-list [jobPosts]="jobPosts"></app-job-list>
+  </div>
 } @else if (!employer) {
   <button (click)="openEditForm()">Create Employer Profile</button>
 }
