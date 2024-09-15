@@ -1,18 +1,25 @@
 <div class="container job-details-container">
-  @if (jobPost) {
-    <div>
-      <h2>{{ jobPost.job_title }}</h2>
-      <p><strong>Requirements:</strong> {{ jobPost.requirements}}</p>
 
-      <p><strong>Location:</strong> {{ jobPost.location }}</p>
-      <p><strong>Type:</strong> {{ jobPost.type_of_work }}</p>
-    </div>
-  } @else {
-    <p>Loading...</p>
+
+  @if(editJobPostMode){
+    <app-edit-job-post></app-edit-job-post>
+  } @else if (!editJobPostMode) {
+    @if (jobPost) {
+      <div>
+        <h2>{{ jobPost.job_title }}</h2>
+        <p><strong>Requirements:</strong> {{ jobPost.requirements}}</p>
+
+        <p><strong>Location:</strong> {{ jobPost.location }}</p>
+        <p><strong>Type:</strong> {{ jobPost.type_of_work }}</p>
+      </div>
+    } @else {
+      <p>Loading...</p>
+    }
   }
 
   <!-- if job post user ID and a current user ID matches, render edit botton -->
    @if(canEdit){
-    <h1>booyeah!</h1>
+
+    <button (click)="toggleJobPostEditMode()">Edit</button>
    }
 </div>

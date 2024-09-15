@@ -3,12 +3,13 @@ import { JobPost } from '../interfaces/job-post';
 import { ActivatedRoute } from '@angular/router';
 import { EmployerService } from '../services/employer.service';
 import { JobPostService } from '../services/job-post.service';
+import { EditJobPostComponent } from '../edit-job-post/edit-job-post.component';
 
 
 @Component({
   selector: 'app-job-details',
   standalone: true,
-  imports: [],
+  imports: [EditJobPostComponent],
   templateUrl: './job-details.component.html',
   styleUrl: './job-details.component.css'
 })
@@ -16,6 +17,7 @@ export class JobDetailsComponent implements OnInit {
   jobPostId: string = '';
   jobPost: JobPost | undefined;
   canEdit:boolean = false;
+  editJobPostMode: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +48,10 @@ export class JobDetailsComponent implements OnInit {
         console.error('Error checking edit permission:', error);
       }
     );
+  }
+
+  toggleJobPostEditMode(): void {
+    this.editJobPostMode = !this.editJobPostMode;
   }
 
 }
