@@ -1,1 +1,47 @@
-<p>edit-job-post works!</p>
+<div>
+  <h2>Edit Job Post</h2>
+
+
+  <form [formGroup]="jobPostForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="job_title">Job Title:</label>
+      <input
+        id="job_title"
+        type="text"
+        formControlName="job_title"
+        placeholder="Job Title"
+      />
+    </div>
+
+    <div>
+      <label for="requirements">Requirements:</label>
+      <textarea
+        id="requirements"
+        formControlName="requirements"
+        placeholder="Requirements"
+      ></textarea>
+    </div>
+
+    <div>
+      <label for="location">Location:</label>
+      <input
+        id="location"
+        type="text"
+        formControlName="location"
+        placeholder="Location"
+      />
+    </div>
+
+    <div>
+      <label for="type_of_work">Type of Work:</label>
+      <select id="type_of_work" formControlName="type_of_work">
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+        <option value="Contract">Contract</option>
+        <option value="Remote">Remote</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="jobPostForm.invalid">Save Changes</button>
+  </form>
+</div>
