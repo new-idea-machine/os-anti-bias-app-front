@@ -52,6 +52,7 @@ export class JobDetailsComponent implements OnInit {
 
   toggleJobPostEditMode(): void {
     this.editJobPostMode = !this.editJobPostMode;
+    this.getJobPostDetails(this.jobPostId);
   }
 
 }

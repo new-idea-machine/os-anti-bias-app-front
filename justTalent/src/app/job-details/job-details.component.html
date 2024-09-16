@@ -2,7 +2,10 @@
 
 
   @if(editJobPostMode){
-    <app-edit-job-post [jobPost]="jobPost"></app-edit-job-post>
+    <app-edit-job-post
+      [jobPost]="jobPost"
+      (toggleEditMode)="toggleJobPostEditMode()"
+    ></app-edit-job-post>
   } @else if (!editJobPostMode) {
     @if (jobPost) {
       <div>
