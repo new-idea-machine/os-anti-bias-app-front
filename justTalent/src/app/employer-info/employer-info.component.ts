@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { EventEmitter } from '@angular/core';
 import { JobListComponent } from '../job-list/job-list.component';
 import { JobPost } from '../interfaces/job-post';
+import { AddJobPostComponent } from '../add-job-post/add-job-post.component';
 
 @Component({
   selector: 'app-employer-info',
   standalone: true,
-  imports: [CommonModule, JobListComponent],
+  imports: [CommonModule, JobListComponent, AddJobPostComponent],
   templateUrl: './employer-info.component.html',
   styleUrl: './employer-info.component.css'
 })

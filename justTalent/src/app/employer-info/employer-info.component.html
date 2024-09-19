@@ -26,6 +26,10 @@
   <div>
     <app-job-list [jobPosts]="jobPosts"></app-job-list>
   </div>
+
+  <div>
+    <app-add-job-post></app-add-job-post>
+  </div>
 } @else if (!employer) {
   <button (click)="openEditForm()">Create Employer Profile</button>
 }
