@@ -39,6 +39,83 @@
       <option value="Remote">Remote</option>
     </select>
   </div>
+
+  <div>
+    <label for="city">City:</label>
+    <input
+      id="city"
+      type="text"
+      formControlName="city"
+      placeholder="City"
+      class="wide-input"
+    />
+  </div>
+
+  <div>
+    <label for="country">Country:</label>
+    <input
+      id="country"
+      type="text"
+      formControlName="country"
+      placeholder="Country"
+      class="wide-input"
+    />
+  </div>
+
+  <div>
+    <label for="type_of_salary">Type of Salary:</label>
+    <input
+      id="type_of_salary"
+      type="text"
+      formControlName="type_of_salary"
+      placeholder="Type of Salary (e.g., Monthly, Yearly)"
+      class="wide-input"
+    />
+  </div>
+
+  <div>
+    <label for="salary">Salary:</label>
+    <input
+      id="salary"
+      type="number"
+      formControlName="salary"
+      placeholder="Salary"
+      class="wide-input"
+    />
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      placeholder="Job Description"
+      class="wide-input"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="start_date">Start Date:</label>
+    <input
+      id="start_date"
+      type="date"
+      formControlName="start_date"
+      class="wide-input"
+    />
+  </div>
+
+  <div>
+    <label for="end_date">End Date:</label>
+    <input
+      id="end_date"
+      type="date"
+      formControlName="end_date"
+      class="wide-input"
+    />
+  </div>
+
+
+
   <button (click)="cancelEdit()">Cancel</button>
   <button type="submit" [disabled]="jobPostForm.invalid">Create a Job Post</button>
 </form>
