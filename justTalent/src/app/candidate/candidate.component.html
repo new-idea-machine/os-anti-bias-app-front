@@ -1,11 +1,22 @@
 <div>
-    <button (click)="toggleEditMode()">
-     @if(!isEditMode) {
-      Edit
-     } @else if (isEditMode){
-      cancel
-     }
-    </button>
+  @if(user?.role == "employer"){
+    <h1>Employer Dashboard</h1>
+  } @else if (user?.role == "candidate") {
+    <h1>User Dashboard</h1>
+  }
+    <div>username: {{user.username}}</div>
+
+    <!-- make sure to consider edge cases for conditional rendering -->
+    @if(resume || employer){
+      <button (click)="toggleEditMode()">
+        @if(!isEditMode) {
+         Edit
+        } @else if (isEditMode){
+         cancel
+        }
+      </button>
+    }
+
 
     <!-- READ USER ROLE -->
     <!-- SHOW RESUME EDIT FORM IF THE ROLE IS CANDIDATE -->
