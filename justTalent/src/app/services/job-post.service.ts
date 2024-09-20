@@ -17,6 +17,10 @@ export class JobPostService {
     return this.http.get<boolean>(`${this.apiUrl}/jobposts/${jobPostId}/can-edit`)
   }
 
+  createJobPost(jobPost: JobPost): Observable<JobPost>{
+    return this.http.post<JobPost>(`${this.apiUrl}/jobposts/`, jobPost);
+  }
+
   updateJobPost(jobPost: JobPost): Observable<JobPost>{
     return this.http.put<JobPost>(`${this.apiUrl}/jobposts/${jobPost.job_post_id}`, jobPost);
   }
