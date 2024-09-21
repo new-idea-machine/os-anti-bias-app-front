@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JobPostService } from '../services/job-post.service';
 import { JobPost } from '../interfaces/job-post';
+
 
 @Component({
   selector: 'app-add-job-post',
@@ -12,6 +13,8 @@ import { JobPost } from '../interfaces/job-post';
 })
 export class AddJobPostComponent implements OnInit {
   jobPostForm: FormGroup;
+  @Output() jobPostAdded = new EventEmitter<JobPost>();
+
 
   constructor(
     private fb: FormBuilder,
@@ -42,10 +45,11 @@ export class AddJobPostComponent implements OnInit {
     this.jobPostForm.reset();
   }
 
-  handleFormSubmit(josPost: JobPost): void{
-    this.jobPostService.createJobPost(josPost).subscribe(()=>{
-    // Close the Form
-    this.jobPostForm.reset();
+  handleFormSubmit(jobPost: JobPost): void{
+    this.jobPostService.createJobPost(jobPost).subscribe(newJobPost => {
+      this.jobPostForm.reset();
+      this.jobPostAdded.emit(newJobPost);
+      //close the form
     });
   }
 
