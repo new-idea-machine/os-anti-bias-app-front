@@ -15,6 +15,8 @@ export class AddJobPostComponent implements OnInit {
   jobPostForm: FormGroup;
   @Output() jobPostAdded = new EventEmitter<JobPost>();
 
+  isCreateMode: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -40,8 +42,8 @@ export class AddJobPostComponent implements OnInit {
   }
 
 
-  cancelEdit():void{
-    //Close the form
+  toggleEdit():void{
+    this.isCreateMode = !this.isCreateMode;
     this.jobPostForm.reset();
   }
 
