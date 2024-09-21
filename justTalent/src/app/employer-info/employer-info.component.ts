@@ -6,6 +6,8 @@ import { EventEmitter } from '@angular/core';
 import { JobListComponent } from '../job-list/job-list.component';
 import { JobPost } from '../interfaces/job-post';
 import { AddJobPostComponent } from '../add-job-post/add-job-post.component';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employer-info',
@@ -22,6 +24,7 @@ export class EmployerInfoComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
     private employerService: EmployerService,
   ){}
 
@@ -48,6 +51,10 @@ export class EmployerInfoComponent implements OnInit {
 
   openEditForm(): void {
     this.openEdit.emit();
+  }
+
+  redirectToEmployerPage(id: string) {
+    this.router.navigate(['/employer-page', id]);
   }
 
 }
