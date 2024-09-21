@@ -28,9 +28,12 @@
   </div>
 
   <!-- only show the form if user auth is true -->
-  <div>
-    <app-add-job-post (jobPostAdded)="onJobPostAdded($event)"></app-add-job-post>
-  </div>
+   @if(canEdit) {
+    <div>
+      <app-add-job-post (jobPostAdded)="onJobPostAdded($event)"></app-add-job-post>
+    </div>
+   }
+
 }
 
 

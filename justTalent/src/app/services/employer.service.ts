@@ -65,6 +65,11 @@ export class EmployerService {
   }
 
 
+  userAuthToEditEmployerInfo(employer: Employer): Observable<boolean>{
+    return this.http.get<boolean>(`${this.apiUrl}/employers/${employer.employer_id}/auth`);
+  }
+
+
 
 
 }

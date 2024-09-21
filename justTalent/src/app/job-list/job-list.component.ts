@@ -3,6 +3,8 @@ import { JobListItemComponent } from './job-list-item/job-list-item.component';
 import { JobPost } from '../interfaces/job-post';
 import { CommonModule } from '@angular/common';
 import { AddJobPostComponent } from '../add-job-post/add-job-post.component';
+import { Employer } from '../interfaces/employer';
+import { EmployerService } from '../services/employer.service';
 
 @Component({
   selector: 'app-job-list',
@@ -13,16 +15,49 @@ import { AddJobPostComponent } from '../add-job-post/add-job-post.component';
 })
 export class JobListComponent implements OnInit {
   @Input() jobPosts: JobPost[] | undefined;
+  employer: Employer | undefined;
 
-  constructor (){
+  canEdit: boolean = false;
+
+  constructor (
+    private employerService: EmployerService
+  ){
 
   }
 
   ngOnInit(): void{
-    console.log(this.jobPosts)
+    this.getCurrentUserEmployerInfo();
+    // console.log(this.employer, 'employer')
+    // console.log(this.jobPosts)
+    // if(this.employer){
+    //   console.log(this.employer, 'employer')
+    //   this.userAuth(this.employer);
+    // }
   }
 
   onJobPostAdded(newJobPost: any): void {
     this.jobPosts?.push(newJobPost);
+  }
+
+  getCurrentUserEmployerInfo(): void {
+    this.employerService.getCurrentUserEmployerInfo()
+      .subscribe((employer: Employer) => {
+        this.employer = employer;
+        if (this.employer) {
+          console.log(this.employer);
+          this.userAuth(this.employer);
+        }
+      })
+  }
+
+  userAuth(employer: Employer):void{
+    this.employerService.userAuthToEditEmployerInfo(employer).subscribe(
+      (response: any) =>{
+      this.canEdit = response.canEdit;
+      },
+      (error) => {
+        console.error('Error checking edit permission:', error);
+      }
+    )
   }
 }
