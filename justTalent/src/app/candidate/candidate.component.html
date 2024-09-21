@@ -7,7 +7,7 @@
     <div>username: {{user.username}}</div>
 
     <!-- make sure to consider edge cases for conditional rendering -->
-    @if(resume || employer){
+    @if((resume && user.role == "candidate")|| (employer && user.role == "employer")){
       <button (click)="toggleEditMode()">
         @if(!isEditMode) {
          Edit
