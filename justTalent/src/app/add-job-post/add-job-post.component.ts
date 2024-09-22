@@ -51,7 +51,7 @@ export class AddJobPostComponent implements OnInit {
     this.jobPostService.createJobPost(jobPost).subscribe(newJobPost => {
       this.jobPostForm.reset();
       this.jobPostAdded.emit(newJobPost);
-      //close the form
+      this.toggleEdit();
     });
   }
 
