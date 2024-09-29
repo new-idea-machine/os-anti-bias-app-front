@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ResumeService } from '../services/resume.services';
 import { UserService } from '../services/user.service';
 import { Resume } from '../interfaces/resume';
@@ -14,6 +14,7 @@ import { Resume } from '../interfaces/resume';
 export class ResumeComponent implements OnInit {
   user: any | undefined;
   resume: Resume | undefined;
+  @Output() openEdit = new EventEmitter();
 
   constructor(
     private userService: UserService,
@@ -45,6 +46,9 @@ export class ResumeComponent implements OnInit {
       })
   }
 
+  openEditForm(): void {
+    this.openEdit.emit();
+  }
 
 
 }

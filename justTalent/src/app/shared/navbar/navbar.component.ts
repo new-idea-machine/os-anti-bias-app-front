@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../interfaces/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { User } from '../../interfaces/user';
 export class NavbarComponent {
   authService = inject(AuthService);
   http = inject(HttpClient);
+  router = inject(Router)
 
   endpoint = 'http://localhost:3000/api/users/current';
   // endpoint = 'https://api.realworld.io/api/users';
@@ -38,5 +40,6 @@ export class NavbarComponent {
     console.log('logout');
     localStorage.setItem('token', '');
     this.authService.currentUserSignal.set(null);
+    this.router.navigateByUrl('/');
   }
 }

@@ -1,0 +1,75 @@
+.employer-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.employer-container h1, h2, h3, h4 {
+  color: #333;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin: 15px 0 5px;
+}
+
+h4 {
+  font-size: 1em;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+p {
+  margin: 5px 0;
+}
+
+ul {
+  list-style-type: disc;
+  margin: 10px 0 10px 20px;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section {
+  margin-top: 20px;
+}
+
+div {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+p, li {
+  color: #555;
+}

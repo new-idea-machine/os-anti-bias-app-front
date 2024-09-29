@@ -46,4 +46,30 @@ export class EmployerService {
   }
 
 
+
+  getCurrentUserEmployerInfo(): Observable<Employer> {
+    return this.http.get<Employer>(`${this.apiUrl}/employers/current-user`);
+  }
+
+
+
+  updateEmployer(employer: Employer): Observable<Employer> {
+    return this.http.put<Employer>(`${this.apiUrl}/employers/${employer.employer_id}`, employer);
+  }
+
+  createEmployerInfo(employer: Employer): Observable<Employer> {
+    const token = localStorage.getItem('token');
+
+    const newEmployerData = { ...employer, user: token };
+    return this.http.post<Employer>(`${this.apiUrl}/employers/`, newEmployerData);
+  }
+
+
+  userAuthToEditEmployerInfo(employer: Employer): Observable<boolean>{
+    return this.http.get<boolean>(`${this.apiUrl}/employers/${employer.employer_id}/auth`);
+  }
+
+
+
+
 }

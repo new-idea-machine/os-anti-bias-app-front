@@ -2,7 +2,7 @@ export interface Employer {
   employer_id: string;
   employer_name: string;
   username: string;
-  password: string;
+  user: string;
   description: string;
   number_of_employees: number;
   contact_name: string;

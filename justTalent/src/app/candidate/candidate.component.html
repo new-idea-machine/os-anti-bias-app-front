@@ -1,18 +1,57 @@
 <div>
-    <button (click)="toggleEditMode()">
-     @if(!isEditMode) {
-      Edit
-     } @else if (isEditMode){
-      cancel
-     }
-    </button>
-    @if(isEditMode) {
-      <app-resume-form
-        [resume]="resume"
-        (formSubmitted)="handleFormSubmit($event)"
-        (cancelEdit)="toggleEditMode()"
-      ></app-resume-form>
-    } @else if (!isEditMode) {
-      <app-resume></app-resume>
+  @if(user?.role == "employer"){
+    <h1>Employer Dashboard</h1>
+  } @else if (user?.role == "candidate") {
+    <h1>User Dashboard</h1>
+  }
+    <div>username: {{user.username}}</div>
+
+    <!-- make sure to consider edge cases for conditional rendering -->
+    @if((resume && user.role == "candidate")|| (employer && user.role == "employer")){
+      <button (click)="toggleEditMode()">
+        @if(!isEditMode) {
+         Edit
+        } @else if (isEditMode){
+         cancel
+        }
+      </button>
     }
+
+
+    <!-- READ USER ROLE -->
+    <!-- SHOW RESUME EDIT FORM IF THE ROLE IS CANDIDATE -->
+    <!-- SHOW EMPLOYER INFO EDIT FORM IF THE ROLE IS EMPLOYER -->
+
+    <!-- IF NO DATE FOR RESUME, SHOW CREATE BUTTON -->
+    <!-- IF NO DATE FOR EMPLOYER, SHOW CREATE BUTTON -->
+    @if(user?.role == "employer"){
+      @if(isEditMode) {
+        <app-employer-form
+          (cancelEdit)="toggleEditMode()"
+        ></app-employer-form>
+
+      } @else if (!isEditMode) {
+        <app-employer-info
+          (openEdit)="toggleEditMode()"
+        ></app-employer-info>
+      }
+    } @else if (user?.role == "candidate") {
+      @if(isEditMode) {
+        <app-resume-form
+          [resume]="resume"
+          (formSubmitted)="handleFormSubmit($event)"
+          (cancelEdit)="toggleEditMode()"
+        ></app-resume-form>
+      } @else if (!isEditMode) {
+        <app-resume
+          (openEdit)="toggleEditMode()"
+        ></app-resume>
+      }
+    }
+
+
+
+
+
+
 </div>

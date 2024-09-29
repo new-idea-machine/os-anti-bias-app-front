@@ -6,17 +6,22 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResumeComponent } from '../resume/resume.component';
 import { ResumeFormComponent } from '../resume-form/resume-form.component';
+import { EmployerFormComponent } from '../employer-form/employer-form.component';
+import { Employer } from '../interfaces/employer';
+import { EmployerService } from '../services/employer.service';
+import { EmployerInfoComponent } from '../employer-info/employer-info.component';
 
 @Component({
   selector: 'app-candidate',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ResumeComponent, ResumeFormComponent],
+  imports: [CommonModule, ReactiveFormsModule, ResumeComponent, ResumeFormComponent, EmployerInfoComponent, EmployerFormComponent],
   templateUrl: './candidate.component.html',
   styleUrl: './candidate.component.css'
 })
 export class CandidateComponent implements OnInit{
   user: any | undefined;
   resume: Resume | undefined;
+  employer: Employer |undefined;
 
   isEditMode:boolean = false;
 
@@ -24,11 +29,14 @@ export class CandidateComponent implements OnInit{
   constructor(
     private userService: UserService,
     private resumeService: ResumeService,
+    private employerSerivce: EmployerService,
   ) {}
 
   ngOnInit(): void {
     this.getCurrentUserDetails();
+    // RUN ONE OF BELOW BASED ON USER ROLE?
     this.getCurrentUserResume();
+    this.getCurrentUserEmployerInfo();
 
   }
 
@@ -60,6 +68,13 @@ export class CandidateComponent implements OnInit{
     this.resumeService.getCurrentUserResume()
       .subscribe((resume: Resume) => {
         this.resume = resume;
+      })
+  }
+
+  getCurrentUserEmployerInfo(): void {
+    this.employerSerivce.getCurrentUserEmployerInfo()
+      .subscribe((employer: Employer) => {
+        this.employer = employer;
       })
   }
 }
