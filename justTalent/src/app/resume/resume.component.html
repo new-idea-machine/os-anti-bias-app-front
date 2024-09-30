@@ -1,29 +1,58 @@
 <div class="container job-details-container">
   @if (resume) {
     <div>
-      <h2>{{ resume.title}}</h2>
-      <p>{{ resume.id }}</p>
+      <div class="actions">
+        <button class="shortlist">Add to shortlist</button>
+        <button class="contact">Contact</button>
+
+      </div>
+      <h2>{{ resume.title}} - {{ resume.id }}</h2>
       <p>{{ resume.summary }}</p>
+      <h4>Skills</h4>
       <div class="skills" *ngFor="let skill of resume.skills">
         <div class="skill">
           {{skill}}
         </div>
       </div>
+      <h4>Professional experience</h4>
       <div class="experience_list" *ngFor="let experience of resume.workExperience">
         <div class="experience">
           <h3>{{experience.jobTitle}}</h3>
           <h4>{{experience.company}}</h4>
           <ul class="responsibilities" *ngFor="let responsibility of experience.responsibilities">
-
+            
             <li>{{responsibility}}</li>
           </ul>
         </div>
       </div>
-      <div class="certifications" *ngFor="let cert of resume.certifications">
-        <div class="certification">
-          {{cert.certificationName}}
+      <h4>Projects</h4>
+      <div class="projects" *ngFor="let project of resume.projects">
+        <div class="project">
+          
+          <h5>{{project.projectName}} </h5>
+          <p>{{project.description}}</p>
+          <ul *ngFor="let project_responsibility of project.rolesResponsibilities ">
+            <li>{{project_responsibility}}</li>
+          </ul>
+          <h5>Project Stack</h5>
+          <ul *ngFor="let tech of project.technologiesUsed ">
+            <li>{{tech}}</li>
+          </ul>
+          
         </div>
       </div>
+      <h4>Education</h4>
+      <div class="education" *ngFor="let education of resume.education">
+        <div class="project">
+          
+          <h5>{{education.degree}} </h5>
+          <p>{{education.major}}</p>
+          
+          
+          
+        </div>
+      </div>
+      <h4>Certifications</h4>
       <div class="certifications" *ngFor="let cert of resume.certifications">
         <div class="certification">
           {{cert.certificationName}}

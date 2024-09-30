@@ -1,19 +1,71 @@
 .skills{ 
   width: auto;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 
 .skill{
-  background-color: cadetblue;
+  background-color: #565264;
   width: fit-content;
   padding: 5px;
   margin: 3px;
-
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px gray;
+  
 }
 
 .experience{
-  background-color: beige;
-  width: fit-content;
-  padding: 3px;
+  
+  background-color: #CCB7AE;
+  width: 700px;
+  padding: 6px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px gray;
+}
+
+.project{
+  
+  background-color: #CCB7AE;
+  width: 700px;
+  padding: 6px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px gray;
+}
+
+.shortlist{
+  padding: 10px;
+  background-color: #A6808C;
+  box-shadow: 2px 2px 5px gray;
+  margin-right: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  
+}
+.shortlist:hover{
+  box-shadow: 4px 4px 5px gray;
+
+}
+.contact{
+  padding: 10px;
+  background-color: #706677;
+  box-shadow: 2px 2px 5px gray;
+  margin-right: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  
+}
+.contact:hover{
+  box-shadow: 4px 4px 5px gray;
+
+}
+
+.job-details-container{
+  background-color: #D6CFCB;
+display: flex;
+justify-content: center;
+padding: 30px;
+
 }
