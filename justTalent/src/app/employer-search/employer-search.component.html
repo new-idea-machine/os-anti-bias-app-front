@@ -1,1 +1,13 @@
-<p>employer-search works!</p>
+<div>
+  <input type="text" [formControl]="searchControl" placeholder="Search...">
+</div>
+
+<div *ngIf="results.length > 0">
+  <ul>
+    <li *ngFor="let result of results">{{ result.name }}</li> <!-- Customize result fields -->
+  </ul>
+</div>
+
+<div *ngIf="results.length === 0 && searchControl.value">
+  No results found.
+</div>
