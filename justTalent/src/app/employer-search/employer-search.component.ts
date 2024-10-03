@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Employer } from '../interfaces/employer';
+import { EmployerService } from '../services/employer.service';
 
 @Component({
   selector: 'app-employer-search',
@@ -13,31 +15,43 @@ import { CommonModule } from '@angular/common';
 })
 export class EmployerSearchComponent implements OnInit {
   searchControl = new FormControl();
+  employers: Employer[] =[];
 
-  results: any[] = [];
+  results: Employer[] =[];
 
-  constructor(){};
+  constructor(private employerService: EmployerService){
+
+  };
 
   ngOnInit(): void {
-      this.searchControl.valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        switchMap((query) => this.performSearch(query)),
-      )
-      .subscribe((data: any) => {
-        this.results = data;
-      });
+    this.getAllEmployers();
+    this.searchControl.valueChanges
+    .pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((query) => this.performSearch(query)),
+    )
+    .subscribe((data: any) => {
+      this.results = data;
+    });
   }
 
-  performSearch(query: string) {
-    const dummyData = [
-      { name: 'Angular' },
-      { name: 'React' },
-      { name: 'Vue' },
-      { name: 'Svelte' },
-    ];
-    return of(dummyData.filter(item => item.name.toLowerCase().includes(query.toLowerCase())));
+  getAllEmployers(): void {
+    this.employerService.getAllEmployers().subscribe((employers: Employer[]) => {
+      this.employers = employers;
+    });
+  }
+
+  performSearch(query: string): Observable<Employer[]> {
+    if (!query) {
+      return of(this.employers);
+    }
+
+    const filtered = this.employers.filter((employer) =>
+      employer.employer_name.toLowerCase().startsWith(query.toLowerCase())
+    );
+
+    return of(filtered);
   }
 
 

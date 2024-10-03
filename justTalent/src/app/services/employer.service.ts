@@ -69,8 +69,8 @@ export class EmployerService {
     return this.http.get<boolean>(`${this.apiUrl}/employers/${employer.employer_id}/auth`);
   }
 
-  getAllEmployer(): Observable<Employer> {
-    return this.http.get<Employer>(`${this.apiUrl}/employers}`);
+  getAllEmployers(): Observable<Employer[]> {
+    return this.http.get<Employer[]>(`${this.apiUrl}/employers`);
   }
 
 
