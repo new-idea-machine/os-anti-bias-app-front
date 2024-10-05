@@ -17,14 +17,13 @@ export class EmployerSearchComponent implements OnInit {
   searchControl = new FormControl();
   employers: Employer[] =[];
 
-  results: Employer[] =[];
 
   constructor(private employerService: EmployerService){
 
   };
 
   ngOnInit(): void {
-    this.getAllEmployers();
+    // this.getAllEmployers();
     this.searchControl.valueChanges
     .pipe(
       debounceTime(300),
@@ -32,26 +31,23 @@ export class EmployerSearchComponent implements OnInit {
       switchMap((query) => this.performSearch(query)),
     )
     .subscribe((data: any) => {
-      this.results = data;
+      console.log(data)
+      this.employers = data;
     });
   }
 
-  getAllEmployers(): void {
-    this.employerService.getAllEmployers().subscribe((employers: Employer[]) => {
-      this.employers = employers;
-    });
-  }
+  // getAllEmployers(): void {
+  //   this.employerService.getAllEmployers().subscribe((employers: Employer[]) => {
+  //     this.employers = employers;
+  //   });
+  // }
 
   performSearch(query: string): Observable<Employer[]> {
-    if (!query) {
-      return of(this.employers);
+    if (query) {
+      return this.employerService.searchEmployerByName(query);
+    } else {
+      return this.employerService.getAllEmployers();
     }
-
-    const filtered = this.employers.filter((employer) =>
-      employer.employer_name.toLowerCase().startsWith(query.toLowerCase())
-    );
-
-    return of(filtered);
   }
 
 

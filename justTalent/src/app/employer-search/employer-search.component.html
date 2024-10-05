@@ -2,12 +2,12 @@
   <input type="text" [formControl]="searchControl" placeholder="Search...">
 </div>
 
-<div *ngIf="results.length > 0">
+<div *ngIf="employers.length > 0">
   <ul>
-    <li *ngFor="let result of results">{{ result.employer_name }}</li> <!-- Customize result fields -->
+    <li *ngFor="let result of employers">{{ result.employer_name }}</li> <!-- Customize result fields -->
   </ul>
 </div>
 
-<div *ngIf="results.length === 0 && searchControl.value">
+<div *ngIf="employers.length === 0 && searchControl.value">
   No results found.
 </div>
