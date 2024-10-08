@@ -5,11 +5,12 @@ import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Employer } from '../interfaces/employer';
 import { EmployerService } from '../services/employer.service';
+import { EmployerCardComponent } from '../employer-card/employer-card.component';
 
 @Component({
   selector: 'app-employer-search',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, EmployerCardComponent],
   templateUrl: './employer-search.component.html',
   styleUrl: './employer-search.component.css'
 })

@@ -3,11 +3,11 @@
 </div>
 
 @if(employers.length > 0) {
-  <ul>
+
     @for(employer of employers; track employers ) {
-        <li >{{ employer.employer_name }}</li>
+        <app-employer-card [employer]="employer"></app-employer-card>
     }
-  </ul>
+
 } @else if (employers.length === 0 && searchControl.value) {
   <p>No results found.</p>
 }
