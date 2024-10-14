@@ -24,7 +24,7 @@ export class EmployerSearchComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // this.getAllEmployers();
+    this.getAllEmployers();
     this.searchControl.valueChanges
     .pipe(
       debounceTime(300),
@@ -37,11 +37,11 @@ export class EmployerSearchComponent implements OnInit {
     });
   }
 
-  // getAllEmployers(): void {
-  //   this.employerService.getAllEmployers().subscribe((employers: Employer[]) => {
-  //     this.employers = employers;
-  //   });
-  // }
+  getAllEmployers(): void {
+    this.employerService.getAllEmployers().subscribe((employers: Employer[]) => {
+      this.employers = employers;
+    });
+  }
 
   performSearch(query: string): Observable<Employer[]> {
     if (query) {
