@@ -6,7 +6,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ResumeComponent } from './resume/resume.component';
+import { ResumeComponent } from './candidate-resume/candidate-resume.component';
 
 export const routes: Routes = [
   {'path':'', component:HomeComponent},

@@ -12,8 +12,8 @@ import { Resume } from '../interfaces/resume';
   selector: 'app-resume',
   standalone: true,
   imports: [CommonModule, RouterLink, FormsModule],
-  templateUrl: './resume.component.html',
-  styleUrl: './resume.component.css'
+  templateUrl: './candidate-resume.component.html',
+  styleUrl: './candidate-resume.component.css'
 })
 export class ResumeComponent implements OnInit {
   ResumeId: string = '';  

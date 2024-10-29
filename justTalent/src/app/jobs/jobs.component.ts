@@ -28,7 +28,7 @@ export class JobsComponent {
     
   }
 updateFilters(): void {
- console.log(this.filters)
+//  console.log(this.filters)
 }
 
   searchJobs()  {
@@ -37,7 +37,7 @@ updateFilters(): void {
         this.jobs = jobs
       }
     )
-    console.log(this.jobs)
+    // console.log(this.jobs)
   }
   filteredSearch() {
     const searchString = this.search
@@ -56,7 +56,7 @@ updateFilters(): void {
     this.employerService.filterJobs2(verifiedFilters, searchString).subscribe(filteredJobs => {
       this.jobs = filteredJobs;
     })
-    console.log(this.jobs)
+    // console.log(this.jobs)
   }
 
   redirectToJobDetails(id: any) {
