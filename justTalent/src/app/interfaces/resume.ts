@@ -1,5 +1,6 @@
 export interface Resume {
 
+  resume_id:string;
   id:string;
   title:string;
   summary: String;

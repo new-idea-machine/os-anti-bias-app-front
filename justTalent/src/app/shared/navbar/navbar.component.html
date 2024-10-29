@@ -1,28 +1,31 @@
-<nav class="navbar">
-
-</nav>
-
+<nav class="navbar"></nav>
 
 <div class="navbar">
   <div class="navbar-brand">
-    <a href="/">JustTalent</a>
+    <a href="/"
+      ><img
+        class="navbar-img-logo"
+        src="assets/images/justTALENT (1).png"
+        alt=""
+      />
+    </a>
   </div>
   <div class="navbar-links">
     <a routerLink="/">Home</a>
     @if (authService.currentUserSignal() == null) {
-      <a routerLink="/register">Registration</a>
+    <a routerLink="/register">Registration</a>
     }
     <a routerLink="/user-profile">User Profile</a>
     <a routerLink="/employer-page">Employers</a>
     <a routerLink="/candidate-search">Candidates</a>
     <a routerLink="/jobPosts">Jobs</a>
     @if (authService.currentUserSignal() == null) {
+    <button class="navbar-button-login">
       <a routerLink="/login">Log In</a>
+    </button>
+    } @if (authService.currentUserSignal()) {
+    <span>{{ authService.currentUserSignal()?.username }}</span>
+    <button><span (click)="logout()">Log out</span></button>
     }
-    @if (authService.currentUserSignal()) {
-      <span>{{ authService.currentUserSignal()?.username}}</span>
-      <span (click)="logout()">Log out</span>
-    }
-
   </div>
 </div>

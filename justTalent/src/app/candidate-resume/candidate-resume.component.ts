@@ -25,15 +25,18 @@ export class ResumeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.ResumeId = this.route.snapshot.params['id'];
-      console.log(this.ResumeId)
-      this.getResumeDetails(this.ResumeId);
+
+    this.ResumeId = this.route.snapshot.params['id'];
+    console.log(this.ResumeId)
+    this.getResumeDetails(this.ResumeId);
+
   }
 
   getResumeDetails(id: string): void {
     this.resumeService.getResumeById(id)
       .subscribe((Resume: Resume) => {
         this.resume = Resume;
+        console.log("resume " + JSON.stringify(this.resume))
       })
   }
 

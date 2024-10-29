@@ -34,9 +34,14 @@ export class LoginComponent {
     ).subscribe(response => {
       console.log('response',response);
       //Store a user token in local storage
-      localStorage.setItem('token', response.user.token);
-      this.authService.currentUserSignal.set(response.user);
-      this.router.navigateByUrl('/');
+      if (response.user.username) {
+        localStorage.setItem('token', response.user.token);
+        this.authService.currentUserSignal.set(response.user);
+        this.router.navigateByUrl('/');
+      } else if (!response.user.username){
+        console.log('Loggin Failed!')
+      }
+
     })
   }
 }

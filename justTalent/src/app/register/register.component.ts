@@ -5,7 +5,6 @@ import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -20,10 +19,12 @@ export class RegisterComponent {
   authService = inject(AuthService)
   router = inject(Router)
 
+
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
+    role: ['', Validators.required],
   });
 
   endpoint = 'http://localhost:3000/api/users';
@@ -40,7 +41,10 @@ export class RegisterComponent {
       //Store a user token in local storage
       localStorage.setItem('token', response.user.token);
       this.authService.currentUserSignal.set(response.user);
+      //ONLY REDIRECT WHEN STATUS IS SUCCESS
       this.router.navigateByUrl('/');
     })
   }
+
+
 }

@@ -22,6 +22,7 @@ export class CandidateSearchComponent {
   ) { }
   candidates: Resume[] = [];
   search: any = ""
+  test_id: string = "66e241d58bcc98457a44a058"
   filters: any = {
     country: "",
     type_of_work: "",
@@ -33,6 +34,7 @@ export class CandidateSearchComponent {
     const searchString = this.search
     const verifiedFilters: any = {
     };
+    console.log("Candidates: " + this.candidates)
     Object.keys(this.filters).forEach(key => {
       if (this.filters[key].length > 0) {
         verifiedFilters[key] = this.filters[key];
@@ -44,7 +46,7 @@ export class CandidateSearchComponent {
 
     this.resumeService.filterResumes2(verifiedFilters, searchString).subscribe(filteredResumes => {
       this.candidates = filteredResumes;
-      console.log(this.candidates)
+      console.log(this.candidates[0])
     });
     
   }
