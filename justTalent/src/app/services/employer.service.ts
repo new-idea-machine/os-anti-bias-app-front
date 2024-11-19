@@ -69,7 +69,13 @@ export class EmployerService {
     return this.http.get<boolean>(`${this.apiUrl}/employers/${employer.employer_id}/auth`);
   }
 
+  getAllEmployers(): Observable<Employer[]> {
+    return this.http.get<Employer[]>(`${this.apiUrl}/employers`);
+  }
 
+  searchEmployerByName(employerName: string): Observable<Employer[]> {
+    return this.http.get<Employer[]>(`${this.apiUrl}/employers/search`, { params: { employer_name: employerName }});
+  }
 
 
 }
