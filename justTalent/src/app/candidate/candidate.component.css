@@ -9,6 +9,8 @@ div {
 .candidate-welcome-h1{
   color: #565264;
   padding-top: 30px;
+  font-size: 45px;
+  text-shadow: 2px 1px 7px #fff;
 }
 
 .candidate-edit-button {
