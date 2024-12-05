@@ -9,7 +9,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
-
     "serve:ssr:justTalent": "node dist/just-talent/server/server.mjs"
   },
   "private": true,
@@ -25,6 +24,7 @@
     "@angular/router": "^17.0.0",
     "@angular/ssr": "^17.0.6",
     "express": "^4.18.2",
+    "mongodb": "^6.10.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
