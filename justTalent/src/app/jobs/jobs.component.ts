@@ -53,7 +53,7 @@ updateFilters(): void {
     )
 
 
-    this.employerService.filterJobs2(verifiedFilters, searchString).subscribe(filteredJobs => {
+    this.employerService.filterJobs3(verifiedFilters, searchString).subscribe(filteredJobs => {
       this.jobs = filteredJobs;
     })
     // console.log(this.jobs)

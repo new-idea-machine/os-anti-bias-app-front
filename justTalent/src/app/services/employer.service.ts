@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // IMPORT HttpClient from @angular/common/http to make HTTP Requests
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 // Observal and subscribe is a set
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -94,6 +94,12 @@ filterJobs2(filters: Partial<JobPost>, searchString: string): Observable<JobPost
     )
   );
 }
-    
 
+filterJobs3(filters: Partial<JobPost>, searchString: string): Observable<JobPost[]> {
+  
+const params = new HttpParams()
+    .set('searchString', searchString)
+    .set('filters', JSON.stringify(filters));
+    return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/filtered`, { params });
+}
 }
