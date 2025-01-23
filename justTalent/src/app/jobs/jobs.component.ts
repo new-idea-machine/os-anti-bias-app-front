@@ -21,14 +21,14 @@ export class JobsComponent {
     private employerService: EmployerService
   ) {}
   jobs: JobPost[] = []
+  search: any = ""
   filters: any = {
-    country:"",
-    type_of_work: "",
+      country:"",
+      type_of_work: "",
     
-
   }
 updateFilters(): void {
- console.log(this.filters)
+//  console.log(this.filters)
 }
 
   searchJobs()  {
@@ -37,9 +37,10 @@ updateFilters(): void {
         this.jobs = jobs
       }
     )
-    console.log(this.jobs)
+    // console.log(this.jobs)
   }
   filteredSearch() {
+    const searchString = this.search
     const verifiedFilters: any = {
       
     } 
@@ -51,12 +52,11 @@ updateFilters(): void {
       
     )
 
-console.log("filters: " + JSON.stringify(this.filters))
-console.log("Verified filters: " + JSON.stringify(verifiedFilters))
-    this.employerService.filterJobs(verifiedFilters).subscribe(filteredJobs => {
+
+    this.employerService.filterJobs3(verifiedFilters, searchString).subscribe(filteredJobs => {
       this.jobs = filteredJobs;
     })
-    console.log(this.jobs)
+    // console.log(this.jobs)
   }
 
   redirectToJobDetails(id: any) {
