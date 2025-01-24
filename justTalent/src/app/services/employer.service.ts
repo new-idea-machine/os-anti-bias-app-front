@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // IMPORT HttpClient from @angular/common/http to make HTTP Requests
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 // Observal and subscribe is a set
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -77,5 +77,35 @@ export class EmployerService {
     return this.http.get<Employer[]>(`${this.apiUrl}/employers/search`, { params: { employer_name: employerName }});
   }
 
+filterJobs1(filters: Partial<JobPost>): Observable<JobPost[]> {
+  return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/`).pipe(
+      map(jobs => jobs.filter(job => 
+          (Object.keys(filters) as (keyof JobPost)[]).every(key => 
+              filters[key] === undefined || job[key] === filters[key]
+          )
+      ))
+  );
+}
+    
+filterJobs2(filters: Partial<JobPost>, searchString: string): Observable<JobPost[]> {
+  return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/`).pipe(
+      map(jobs => 
+        jobs
+        .filter(job => job.description.toLowerCase().includes(searchString.toLowerCase()) || job.job_title.toLowerCase().includes(searchString.toLowerCase()) )
+        .filter(job => 
+          (Object.keys(filters) as (keyof JobPost)[]).every(key => 
+              filters[key] === undefined || job[key] === filters[key]
+          )
+      )
+    )
+  );
+}
 
+filterJobs3(filters: Partial<JobPost>, searchString: string): Observable<JobPost[]> {
+  
+const params = new HttpParams()
+    .set('searchString', searchString)
+    .set('filters', JSON.stringify(filters));
+    return this.http.get<JobPost[]>(`${this.apiUrl}/jobPosts/filtered`, { params });
+}
 }

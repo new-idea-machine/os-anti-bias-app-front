@@ -6,6 +6,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ResumeComponent } from './candidate-resume/candidate-resume.component';
 import { CandidateComponent } from './candidate/candidate.component';
 import { EmployerSearchComponent } from './employer-search/employer-search.component';
 
@@ -17,6 +18,7 @@ export const routes: Routes = [
   {'path':'login', component:LoginComponent},
   {'path':'candidate-search', component:CandidateSearchComponent},
   {'path':'jobPosts', component:JobsComponent},
+  {'path':'resume/:id', component:ResumeComponent},
   {'path':'user-profile', component:CandidateComponent},
   {'path':'employer-search', component:EmployerSearchComponent},
 ];
