@@ -3,7 +3,6 @@
 
     <form class="candidate_search_form" action="">
       <div>
-
         <input type="text" [(ngModel)]="filters.country " name="country" placeholder="Country">
         <input type="text" [(ngModel)]="filters.type_of_work" name="Work Setting Preference" placeholder="Work Type">
       </div>
@@ -22,21 +21,21 @@
       <div *ngFor="let candidate of candidates">
         <div class="candidate">
 
-          <h1 class="header">{{candidate.title}}</h1>
-          <p>{{candidate.summary}} </p>
-          <h2>Skills</h2>
+          <h1 class="candidate-header">{{candidate.title}}</h1>
+          <p class="candidate-summary">{{candidate.summary}} </p>
+          <h2 class="skills-header">Skills</h2>
           <div class="resume_skills">
 
             <div  *ngFor="let skill of candidate.skills">
-              <p class="resume_skill"> {{skill}} | </p>
+            <p class="resume_skill"> &nbsp; {{skill}} | </p>
             </div>
           </div>
-          <h2>Certifications</h2>
+          <h2 class="certification-header">Certifications</h2>
           <div *ngFor="let cert of candidate.certifications">
-            <p>{{cert.certificationName}} </p>
+            <p class="certification-name">{{cert.certificationName}} </p>
           </div>
-         
 
+          <button class="candidate-profile-button" type="button">View Profile </button>
         </div>
       </div>
 
