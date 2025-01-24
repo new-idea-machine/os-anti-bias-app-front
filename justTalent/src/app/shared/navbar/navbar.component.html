@@ -24,8 +24,8 @@
       <a routerLink="/login">Log In</a>
     </button>
     } @if (authService.currentUserSignal()) {
-    <span>{{ authService.currentUserSignal()?.username }}</span>
-    <button><span (click)="logout()">Log out</span></button>
+    <!-- <span>{{ authService.currentUserSignal()?.username }}</span> -->
+    <button class="navbar-button-logout"><span (click)="logout()">Log out</span></button>
     }
   </div>
 </div>

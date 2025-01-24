@@ -1,13 +1,16 @@
-<div>
-  <input type="text" [formControl]="searchControl" placeholder="Search...">
+<div class="employer-search-container">
+  <input class="employer-search-box" type="text" [formControl]="searchControl" placeholder="Type to search...">
 </div>
 
-@if(employers.length > 0) {
+<div class="employer-card-container">
 
-    @for(employer of employers; track employers ) {
-        <app-employer-card [employer]="employer"></app-employer-card>
-    }
+  @if(employers.length > 0) {
 
-} @else if (employers.length === 0 && searchControl.value) {
-  <p>No results found.</p>
-}
+      @for(employer of employers; track employers ) {
+          <app-employer-card [employer]="employer"></app-employer-card>
+      }
+
+  } @else if (employers.length === 0 && searchControl.value) {
+    <p>No results found.</p>
+  }
+</div>

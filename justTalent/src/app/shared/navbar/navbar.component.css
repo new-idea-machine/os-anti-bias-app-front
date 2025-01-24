@@ -29,7 +29,7 @@
   text-decoration: underline;
   /* border: 2px; */
   color: #cf9eae;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .navbar-brand {
@@ -51,3 +51,16 @@
   font-size: 17px;
   font-weight: 700;
   }
+
+  .navbar-button-logout {
+    padding: 15px;
+    background-color: #A6808C;
+    border-radius: 20px;
+    border-color: transparent;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+  }
+
+

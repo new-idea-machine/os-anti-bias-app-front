@@ -1,18 +1,20 @@
-<div>
+<div class="candidate-profile">
   @if(user?.role == "employer"){
     <h1>Employer Dashboard</h1>
   } @else if (user?.role == "candidate") {
-    <h1>User Dashboard</h1>
+    <h1 class="candidate-welcome-h1">Welcome to your User Profile!</h1>
   }
-    <div>username: {{user.username}}</div>
+    <!-- <div>username: {{user.username}}</div> -->
 
     <!-- make sure to consider edge cases for conditional rendering -->
     @if((resume && user.role == "candidate")|| (employer && user.role == "employer")){
-      <button (click)="toggleEditMode()">
+      <button
+      class="candidate-edit-button"
+      (click)="toggleEditMode()">
         @if(!isEditMode) {
          Edit
         } @else if (isEditMode){
-         cancel
+         Cancel
         }
       </button>
     }

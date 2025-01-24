@@ -1,15 +1,25 @@
-.card {
-  border: 1px solid #ccc;
+.employer-card {
+  border: 1px solid #fff;
+  background-color: #565264;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* color: #fff; */
 }
 
-.card h3 {
+.inner-employer-card-box {
+  /* margin-bottom: 15px; */
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
+}
+
+.employer-card h3 {
   margin-bottom: 8px;
 }
 
-.card p {
+.employer-card p {
   margin: 4px 0;
 }
