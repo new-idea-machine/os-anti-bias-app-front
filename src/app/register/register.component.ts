@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,7 @@ export class RegisterComponent {
     role: ['', Validators.required],
   });
 
-  endpoint = 'http://localhost:3000/api/users';
+  endpoint = `${environment.apiUrl}/users`;
   // endpoint = 'https://api.realworld.io/api/users';
 
   onSubmit(): void{
