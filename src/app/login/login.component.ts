@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
-  endpoint = 'http://localhost:3000/api/users/login';
+  endpoint = `${environment.apiUrl}/users/login`;
 
   onSubmit(): void{
     this.http.post< { user: User }>(

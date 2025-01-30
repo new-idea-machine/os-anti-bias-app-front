@@ -8,13 +8,14 @@ import { map } from 'rxjs/operators';
 
 import { Resume } from '../interfaces/resume';
 
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResumeService {
 
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = environment.apiUrl;
 
 
   constructor(private http: HttpClient) { }
@@ -60,8 +61,8 @@ getResumeById(id: string): Observable<Resume> {
 
 // filterResumes1(filters: Partial<Resume>): Observable<Resume[]> {
 //   return this.http.get<Resume[]>(`${this.apiUrl}/resume/`).pipe(
-//       map(jobs => jobs.filter(job => 
-//           (Object.keys(filters) as (keyof Resume)[]).every(key => 
+//       map(jobs => jobs.filter(job =>
+//           (Object.keys(filters) as (keyof Resume)[]).every(key =>
 //               filters[key] === undefined || job[key] === filters[key]
 //           )
 //       ))
@@ -70,23 +71,23 @@ getResumeById(id: string): Observable<Resume> {
 
 filterResumes2(filters: Partial<Resume>, searchString: string): Observable<Resume[]> {
   return this.http.get<Resume[]>(`${this.apiUrl}/resume/`).pipe(
-      map(jobs => 
+      map(jobs =>
         jobs
         .filter(job => job.summary.toLowerCase().includes(searchString.toLowerCase()) || job.title.toLowerCase().includes(searchString.toLowerCase()) )
-        .filter(job => 
-          (Object.keys(filters) as (keyof Resume)[]).every(key => 
+        .filter(job =>
+          (Object.keys(filters) as (keyof Resume)[]).every(key =>
               filters[key] === undefined || job[key] === filters[key]
           )
       ))
   );
 }
-    
 
-    
+
+
 
 
 filterResumes3(filters: Partial<Resume>, searchString: string): Observable<Resume[]> {
-  
+
   const params = new HttpParams()
   .set('searchString', searchString)
   .set('filters', JSON.stringify(filters));
@@ -96,7 +97,7 @@ filterResumes3(filters: Partial<Resume>, searchString: string): Observable<Resum
 }
 
 
-    
+
 
 
 

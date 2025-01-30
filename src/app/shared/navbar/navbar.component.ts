@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../interfaces/user';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class NavbarComponent {
   http = inject(HttpClient);
   router = inject(Router)
 
-  endpoint = 'http://localhost:3000/api/users/current';
+  endpoint = `${environment.apiUrl}/users/current`;
   // endpoint = 'https://api.realworld.io/api/users';
 
   ngOnInit(): void {
