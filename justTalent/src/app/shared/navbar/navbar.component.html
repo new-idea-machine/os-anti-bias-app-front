@@ -15,7 +15,6 @@
     @if (authService.currentUserSignal() == null) {
     <a routerLink="/register">Registration</a>
     }
-    <a routerLink="/user-profile">User Profile</a>
     <a routerLink="/employer-search">Employers</a>
     <a routerLink="/candidate-search">Candidates</a>
     <a routerLink="/jobPosts">Jobs</a>
@@ -24,6 +23,8 @@
       <a routerLink="/login">Log In</a>
     </button>
     } @if (authService.currentUserSignal()) {
+      <a routerLink="/user-profile" class="nav-user-icon"><i class="fas fa-user-circle"></i>
+      </a>
     <!-- <span>{{ authService.currentUserSignal()?.username }}</span> -->
     <button class="navbar-button-logout"><span (click)="logout()">Log out</span></button>
     }

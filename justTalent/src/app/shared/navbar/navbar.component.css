@@ -6,11 +6,16 @@
   padding: 15px;
   display: flex;
   justify-content: space-between;
+  align-content: center;
 }
 
 .navbar-img-logo {
   height: 130px;
   padding-left: 20px;
+}
+
+.nav-user-icon i {
+  font-size: 30px;
 }
 
 .navbar-links {
@@ -61,6 +66,8 @@
     font-size: 17px;
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
+    align-content: center;
+    /* margin-bottom: 10px; */
   }
 
 
