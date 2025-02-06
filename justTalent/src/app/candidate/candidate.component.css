@@ -1,4 +1,4 @@
-div {
+.candidate-profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
