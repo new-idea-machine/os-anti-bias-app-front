@@ -50,7 +50,7 @@ export class ResumeService {
   createNewResume(resume: Resume): Observable<Resume> {
     const token =localStorage.getItem('token');
 
-    const newResume = {...resume, user: token};
+    const newResume = {...resume, token};
     return this.http.post<Resume>(`${this.apiUrl}/resume/`, newResume)
   }
 
