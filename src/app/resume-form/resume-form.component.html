@@ -70,7 +70,7 @@
       <input [formControlName]="i">
       <button (click)="skills.removeAt(i)">Remove</button>
     }
-    <button (click)="addSkill()">Add Skill</button>
+    <button type="button" (click)="addSkill()">Add Skill</button>
   </div>
   <!-- EDUCATION -->
   <div formArrayName="education">
@@ -92,7 +92,7 @@
         <button (click)="education.removeAt(i)">Remove</button>
       </div>
     }
-    <button (click)="addEducation()">Add Education</button>
+    <button type="button" (click)="addEducation()">Add Education</button>
   </div>
 
   <!-- WORK HISTORY -->
