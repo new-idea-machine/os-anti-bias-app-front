@@ -1,6 +1,6 @@
 import { CommonModule, formatDate} from '@angular/common';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Resume } from '../interfaces/resume';
 import { EventEmitter } from '@angular/core';
 import { ResumeService } from '../services/resume.services';
@@ -216,6 +216,30 @@ export class ResumeFormComponent implements OnInit {
     })
   }
 
+  private removeEmptyFormArrayItems(formArrayName: string) {
+    const formArray = this.resumeForm.get(formArrayName) as FormArray;
+    if (!formArray) return;
+
+    // Iterate in reverse order to avoid index shifting issues when removing items
+    for (let i = formArray.length - 1; i >= 0; i--) {
+      const control = formArray.at(i);
+
+      if (control instanceof FormGroup) {
+        const hasValue = Object.values(control.value).some(value => value !== null && value !== '');
+        if (!hasValue) {
+          formArray.removeAt(i);
+        }
+      } else if (control instanceof FormControl && (!control.value || control.value.trim() === '')) {
+        formArray.removeAt(i);
+      }
+    }
+  }
+
+  private removeAllEmptySections() {
+    const formArrayFields = ['skills', 'education', 'workExperience', 'projects', 'certifications', 'languages'];
+    formArrayFields.forEach(field => this.removeEmptyFormArrayItems(field));
+  }
+
   //FORM SUBMIT HANDLER
   onSubmit(): void {
     // Check if the form is valid before proceeding
@@ -225,17 +249,20 @@ export class ResumeFormComponent implements OnInit {
     // if (this.resumeForm.valid) {
     //   console.log('resume is valid')
 
-      if (this.resume) {
-        // Update the resume object with form values
-        const updatedResume= {
-          ...this.resume,
-          ...this.resumeForm.value
-        };
-        this.formSubmitted.emit(updatedResume);
-      } else if (!this.resume) {
-        const newResume = this.resumeForm.value;
-        this.createResume(newResume)
-      }
+    this.removeAllEmptySections();
+
+
+    if (this.resume) {
+      // Update the resume object with form values
+      const updatedResume= {
+        ...this.resume,
+        ...this.resumeForm.value
+      };
+      this.formSubmitted.emit(updatedResume);
+    } else if (!this.resume) {
+      const newResume = this.resumeForm.value;
+      this.createResume(newResume)
+    }
 
 
     // } else {
