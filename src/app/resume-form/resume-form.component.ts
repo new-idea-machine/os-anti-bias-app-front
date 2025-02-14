@@ -261,7 +261,7 @@ export class ResumeFormComponent implements OnInit {
       this.formSubmitted.emit(updatedResume);
     } else if (!this.resume) {
       const newResume = this.resumeForm.value;
-      this.createResume(newResume)
+      this.formSubmitted.emit(newResume)
     }
 
 

@@ -51,11 +51,19 @@ export class CandidateComponent implements OnInit{
   }
 
   handleFormSubmit(updatedResume: Resume): void {
-    this.resumeService.updateResume(updatedResume).subscribe(() => {
-      this.resume = updatedResume;
-      this.toggleEditMode();
-    });
+    if (this.resume) {
+      this.resumeService.updateResume(updatedResume).subscribe(() => {
+        this.resume = updatedResume;
+        this.toggleEditMode();
+      });
+    } else {
+      this.resumeService.createNewResume(updatedResume).subscribe((newResume) => {
+        this.resume = newResume;
+        this.toggleEditMode();
+      });
+    }
   }
+
 
   getCurrentUserDetails(): void {
     this.userService.getCurrentUser()
