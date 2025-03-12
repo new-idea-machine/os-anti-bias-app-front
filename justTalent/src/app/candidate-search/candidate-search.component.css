@@ -25,6 +25,10 @@
   margin-bottom: 30px;
 }
 
+.candidate_search_form h2 {
+  color: #fff;
+}
+
 .candidate_search_form input {
   padding: 10px;
   margin: 2px;
