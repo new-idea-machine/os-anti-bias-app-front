@@ -7,6 +7,10 @@
 
 }
 
+.candidate_search_componenet h1 {
+  font-size: 40px;
+}
+
 .candidate_search_area{
   display: flex;
   flex-direction: column;
