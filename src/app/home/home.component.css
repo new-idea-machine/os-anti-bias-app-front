@@ -92,7 +92,39 @@ align-items: center;
   align-items: center;
   justify-content: space-evenly;
 }
+.home_section_4{
+  display: flex;
+  background-color: #565264;
+  flex-direction: column;
+  height: 760px;
+  width: 100%;
+}
 
+.home_section_4_header{
+  color: #fff;
+  text-align: center;
+  font-size: 40pt;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.home_section_4_cards{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.home_section_4_info_card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  height: 462px;
+  background-color:  #A6808C;
+}
 .home_section_info_card{
   display: flex;
   flex-direction: column;
